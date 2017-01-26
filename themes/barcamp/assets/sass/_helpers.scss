@@ -9,3 +9,43 @@
   -webkit-box-shadow: $horizontal $vertical $blur $spread $color;
   box-shadow: $horizontal $vertical $blur $spread $color;
 }
+
+@mixin outline-btn() {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $black;
+  border: 1px solid $green;
+  border-radius: 100px;
+  padding: 10px 30px;
+  letter-spacing: 1px;
+  margin: 50px 15px 20px;
+  @include transition(300ms);
+
+  &:hover {
+    background-color: $green;
+  }
+}
+
+@mixin kalam-headline($left) {
+  font-family: 'Kalam', cursive;
+  font-weight: 500;
+  margin-top: 15px;
+  border: none;
+  font-size: 32px;
+  padding: 5px 0;
+  display: inline-block;
+  @if $left {
+    margin-left: 15px;
+  } @else {
+    margin-right: 15px;
+  }
+}
+
+@mixin default-headline() {
+  font-size: 32px;
+  font-weight: 800;
+  border-bottom: 5px solid $green;
+  padding: 5px 0;
+  display: inline-block;
+}

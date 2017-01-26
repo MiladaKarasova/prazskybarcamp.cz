@@ -210,12 +210,8 @@ section.section-about {
   padding: 20px 0 70px;
 
   h2 {
-    font-size: 32px;
-    font-weight: 800;
-    border-bottom: 5px solid $green;
-    padding: 5px 0;
-    display: inline-block;
     margin-bottom: 70px;
+    @include default-headline();
   }
 
   .wrapper {
@@ -369,11 +365,7 @@ section.section-faq {
   padding: 70px 0;
 
   h2 {
-    font-size: 32px;
-    font-weight: 700;
-    display: inline-block;
-    margin: auto;
-    border-bottom: 5px solid $green;
+    @include default-headline();
   }
 
   .wrapper {
@@ -468,22 +460,12 @@ section.section-partners {
   padding: 50px 0 70px;
 
   h2 {
-    font-size: 32px;
-    font-weight: 800;
-    border-bottom: 5px solid $green;
-    padding: 5px 0;
-    display: inline-block;
     margin-bottom: 70px;
+    @include default-headline();
   }
 
   h3 {
-    display: inline-block;
-    font-family: 'Kalam', cursive;
-    font-size: 32px;
-    font-weight: 500;
-    padding: 5px 0;
-    margin-top: 15px;
-    margin-left: 15px;
+    @include kalam-headline(true);
   }
 
   .wrapper {
@@ -566,47 +548,22 @@ section.section-posts {
     padding-top: 100px;
 
     h1 {
-      font-size: 32px;
-      font-weight: 800;
-      border-bottom: 5px solid $green;
-      padding: 5px 0;
-      display: inline-block;
+      @include default-headline();
     }
 
     h2 {
-      font-family: 'Kalam', cursive;
-      font-weight: 500;
-      margin-top: 15px;
-      margin-left: 15px;
-      border: none;
+      @include kalam-headline(true);
     }
 
   }
 
   h2 {
-    font-size: 32px;
-    font-weight: 800;
-    border-bottom: 5px solid $green;
-    padding: 5px 0;
-    display: inline-block;
+    @include default-headline();
     margin-bottom: 70px;
   }
 
   a.btn {
-    display: inline-block;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: $black;
-    border: 1px solid $green;
-    border-radius: 100px;
-    padding: 10px 30px;
-    letter-spacing: 1px;
-    margin: 50px auto 20px;
-    @include transition(300ms);
-
-    &:hover {
-      background-color: $green;
-    }
+    @include outline-btn();
   }
 
   .wrapper {
@@ -698,6 +655,39 @@ section.section-posts {
 section.section-instagram {
   width: 100%;
   padding: 50px 0 70px;
+
+  h1 {
+    @include kalam-headline(false);
+  }
+
+  h2 {
+    @include default-headline();
+  }
+
+}
+
+section.section-speakers {
+  width: 100%;
+  padding: 50px 0 70px;
+
+  h2 {
+    @include default-headline();
+  }
+
+  h3 {
+    @include kalam-headline(true);
+  }
+
+  a {
+    @include outline-btn();
+  }
+
+  .wrapper {
+    width: 95%;
+    max-width: $small-inner;
+    margin: auto;
+  }
+
 }
 
 footer {

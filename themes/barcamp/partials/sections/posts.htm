@@ -1,25 +1,15 @@
 [blogPosts]
-pageNumber = "{{ :page }}"
-postsPerPage = 10
+pageNumber = 1
+postsPerPage = 2
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
-categoryPage = "blog/category"
-postPage = "blog/post"
+categoryPage = "blog-category"
+postPage = "blog-detail"
 ==
 <section class="section-posts">
-    <div class="container">
-
-        <h2>Blog posts</h2>
-
+    <h2>Blog </h2>
+    <div class="wrapper">
         {% component 'blogPosts' %}
-
-        {% if posts %}
-        <p>
-            <a href="{{ 'blog-list' | page }}">
-                View more posts
-            </a>
-        </p>
-        {% endif %}
-
     </div>
+    <a href="{{ 'blog-list' | page }}" class="btn">Zobrazit všechny články</a>
 </section>

@@ -1,0 +1,23 @@
+{% set posts = __SELF__.posts %}
+{% if posts %}
+    {% for post in posts %}
+    <article>
+        <a href="{{ post.url }}" title="{{ post.title }}" class="figure" style="background-image: url(https://fossewaywriters.files.wordpress.com/2017/01/blog-typing-ss-1920-800x450.jpg?w=800)">
+            <img src="{{ 'assets/images/blog-icon.svg' | theme }}" alt="icon-name" />
+        </a>
+        <div>
+            <a href="{{ post.url }}" title="{{ post.title }}">
+                <h3>{{ post.title }}</h3>
+            </a>
+            <p class="time">BLOG 3 MIN</p>
+            <p class="perex">
+                {{ post.summary|raw }}
+                <a href="{{ post.url }}" title="{{ post.title }}" class="more">číst více</a>
+            </p>
+        </div>
+    </article>
+    {% endfor %}
+
+{% else %}
+    <p>Je nám líto, ale nic jsme se zatím nenapsali...</p>
+{% endif %}

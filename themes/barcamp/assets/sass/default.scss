@@ -555,6 +555,151 @@ section.section-partners {
 
 }
 
+section.section-posts {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 50px 0 70px;
+
+  &.white {
+    margin-top: 50px;
+    background-color: transparent;
+    padding-top: 100px;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      border-bottom: 5px solid $green;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    h2 {
+      font-family: 'Kalam', cursive;
+      font-weight: 500;
+      margin-top: 15px;
+      margin-left: 15px;
+      border: none;
+    }
+
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 800;
+    border-bottom: 5px solid $green;
+    padding: 5px 0;
+    display: inline-block;
+    margin-bottom: 70px;
+  }
+
+  a.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $black;
+    border: 1px solid $green;
+    border-radius: 100px;
+    padding: 10px 30px;
+    letter-spacing: 1px;
+    margin: 50px auto 20px;
+    @include transition(300ms);
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+
+  .wrapper {
+    width: 95%;
+    max-width: $max-width;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include flex-wrap(wrap);
+    @include justifyContent(space-around);
+    @include alignItems(flex-start);
+
+    article {
+      width: 45%;
+      margin: 20px;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include alignItems(flex-start);
+      @include justifyContent(center);
+
+      a.figure {
+        width: 150px;
+        height: 150px;
+        background-size: 100%;
+        background: no-repeat center;
+        position: relative;
+
+        img {
+          position: absolute;
+          bottom: 5px;
+          left: 5px;
+        }
+      }
+
+      div {
+        flex: 2;
+        text-align: left;
+        margin-left: 20px;
+
+        a {
+          text-decoration: none;
+
+          &.more {
+            text-decoration: underline;
+            color: $green;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          h3 {
+            color: $black;
+            font-size: 30px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 21px;
+
+          &.perex {
+            margin-top: 5px;
+          }
+
+          &.time {
+            display: inline-block;
+            background-color: $black;
+            color: $white;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 0 8px;
+            letter-spacing: 2.14px;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+section.section-instagram {
+  width: 100%;
+  padding: 50px 0 70px;
+}
+
 footer {
   width: 100%;
   background-color: $almostBlack;

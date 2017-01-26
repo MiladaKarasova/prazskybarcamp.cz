@@ -59,7 +59,10 @@ class Talk extends Model
     public $belongsTo = [
         'category' => 'Barcamp\Talks\Models\Category',
         'type' => 'Barcamp\Talks\Models\Type',
-        'user' => 'RainLab\User\Models\User',
+        'user' => [
+            'RainLab\User\Models\User',
+            'scope' => 'isActivated',
+        ],
     ];
 
     /**

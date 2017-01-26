@@ -35,6 +35,13 @@ class Talks extends ComponentBase
      */
     public function getTalks()
     {
-        return Talk::isApproved()->with('user', 'category')->orderBy('votes')->limit(100)->get();
+        return Talk::isApproved()
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            })
+            ->with('user', 'category')
+            ->orderBy('votes')
+            ->limit(100)
+            ->get();
     }
 }

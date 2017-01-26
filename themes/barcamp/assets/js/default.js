@@ -1,11 +1,11 @@
 
-window.onload = function() {
+$(document).ready(function() {
 
     var controll = false;
 
-    function logo(image) {
+    function logo(image, old) {
 
-        var path = (document.getElementById('logo-img').src).split('/');
+        var path = old.split('/');
         path[path.length - 1] = image;
         return path.join('/');
 
@@ -13,21 +13,17 @@ window.onload = function() {
 
     function menu() {
 
-        if(document.body.scrollTop > 1 && (document.getElementsByClassName('white-nav')).length > 0 && !controll) {
+        if(document.body.scrollTop > 1 && ($(".white-nav")).length > 0 && !controll) {
 
             controll = true;
-
-            document.getElementById('nav').className = '';
-
-            document.getElementById('logo-img').src = logo('barcamp_black.svg');
+            $("#nav").removeClass("white-nav");
+            $("#logo-img").attr("src", logo('barcamp_black.svg', $("#logo-img").attr("src")));
 
         } else if (document.body.scrollTop < 1 && controll) {
 
             controll = false;
-
-            document.getElementById('nav').className = 'white-nav';
-
-            document.getElementById('logo-img').src = logo('barcamp_white.svg');
+            $("#nav").addClass("white-nav");
+            $("#logo-img").attr("src", logo('barcamp_white.svg', $("#logo-img").attr("src")));
 
         }
 
@@ -37,12 +33,9 @@ window.onload = function() {
 
     menu();
 
-    if(document.getElementById('arrow')) {
-        document.getElementById('arrow').addEventListener('click', function () {
-
-            // TODO: scroll down not working
-        });
-    }
+    $("#arrow").on('click', function(){
+        $('html,body').animate({ scrollTop: $("#where").offset().top-50}, 500);
+    });
 
     $(".show-faq").on('click', function() {
 
@@ -61,4 +54,4 @@ window.onload = function() {
 
     });
 
-}
+});

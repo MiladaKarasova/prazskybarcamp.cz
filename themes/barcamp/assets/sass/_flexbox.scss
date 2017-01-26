@@ -1,0 +1,64 @@
+@mixin flexDisplay() {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+}
+
+@mixin flexDirection($value) {
+  -ms-flex-direction: $value;
+  -webkit-flex-direction: $value;
+  -moz-flex-direction: $value;
+  flex-direction: $value;
+}
+
+@mixin alignItems($value) {
+  @if $value == flex-start{
+    -ms-flex-align: start;
+  }@else if $value == flex-end{
+    -ms-flex-align: end;
+  }@else if $value == center{
+    -ms-flex-align: center;
+  }@else if $value == stretch{
+    -ms-flex-align: stretch;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  -ms-align-items: $value;
+  align-items: $value;
+}
+
+@mixin justifyContent($value) {
+  @if $value == flex-start{
+    -ms-flex-pack: start;
+  }@else if $value == flex-end{
+    -ms-flex-pack: end;
+  }@else if $value == center{
+    -ms-flex-pack: center;
+  }@else if $value == space-between{
+    -ms-flex-pack: justify;
+  }
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  -ms-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin flex-wrap($value) {
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  @if $value == nowrap{
+    -ms-flex-wrap: none;
+  }@else{
+    -ms-flex-wrap: $value;
+  }
+}
+
+@mixin flex($num, $percent) {
+  -webkit-box-flex: $num;
+  -moz-box-flex: $num;
+  width: $percent;
+  -webkit-flex: $num;
+  -ms-flex: $num;
+  flex: $num;
+}

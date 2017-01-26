@@ -1,12 +1,31 @@
-{% for category in __SELF__.all %}
-    <h4>{{ category.name }}</h4>
+{% set categories = __SELF__.all %}
 
-    {% for partner in category.partner %}
-
-        <a href="{{ partner.url }}" title="{{ partner.name }}">
-            <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
-        </a>
-
+<div class="half">
+    <h4>{{ categories[0].name }}</h4>
+    {% for partner in categories[0].partner %}
+    <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
+        <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
+    </a>
     {% endfor %}
+</div>
 
-{% endfor %}
+<div class="half">
+    <h4>{{ categories[1].name }}</h4>
+    {% for partner in categories[1].partner %}
+    <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
+        <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
+    </a>
+    {% endfor %}
+</div>
+
+<div class="full">
+    <h4>{{ categories[2].name }}</h4>
+    {% for partner in categories[2].partner %}
+    <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
+        <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
+    </a>
+    {% endfor %}
+    <a class="plus" href="mailto:info@prazskybarcamp.cz?subject=Chci být partnerem Pražského Barcampu" title="Stát se partnerem" target="_blank">
+        <img src="{{ 'assets/images/plus.svg' | theme }}" alt="plus" />
+    </a>
+</div>

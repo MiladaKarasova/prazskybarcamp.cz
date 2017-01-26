@@ -47,7 +47,7 @@ class Talks extends ComponentBase
 
         // talk does not exists
         if (!$talk) {
-            throw new AjaxException('Tento talk neexistuje!');
+            throw new AjaxException('Omlouváme se, ale tato přednáška již neexistuje, nebo ještě není schválená!');
         }
 
         // vote

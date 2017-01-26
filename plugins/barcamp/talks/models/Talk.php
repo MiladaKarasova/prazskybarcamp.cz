@@ -48,7 +48,7 @@ class Talk extends Model
      * @var array
      */
     public $hasMany = [
-        'votes' => 'Barcamp\Talks\Models\Vote',
+        'vote' => 'Barcamp\Talks\Models\Vote',
     ];
 
     /**
@@ -76,9 +76,35 @@ class Talk extends Model
         $this->user_agent = Request::server('HTTP_USER_AGENT');
     }
 
-    public function vote()
+    /**
+     * Vote for the talk.
+     *
+     * @return int|bool
+     */
+    public function addVote()
     {
-        return true;
+        // check if some votes exists
+        $votes = $this->vote()->fromTheSameMachine()->get();
+        if (count($votes)) {
+            return false;
+        }
+
+        // create vote
+        $this->vote()->create();
+
+        // increment redundant counter
+        $this->increaseVotes();
+
+        return $this->votes;
+    }
+
+    /**
+     * Increment vote counter.
+     */
+    public function increaseVotes()
+    {
+        $this->votes += 1;
+        $this->save();
     }
 
     /**

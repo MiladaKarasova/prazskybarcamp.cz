@@ -109,7 +109,7 @@ class TalksFacade
                 $user->isActivated();
             })
             ->with('user', 'category')
-            ->orderBy('votes')
+            ->orderBy('votes', 'desc')
             ->limit(100)
             ->get();
     }

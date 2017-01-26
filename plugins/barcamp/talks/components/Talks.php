@@ -38,7 +38,7 @@ class Talks extends ComponentBase
         // get hash
         $hash = post('hash');
         if (!$hash) {
-            throw new AjaxException(['error' => 'Chybný ověřovací kód, zkuste prosím hlasovat znovu!']);
+            throw new AjaxException('Chybný ověřovací kód, zkuste prosím hlasovat znovu!');
         }
 
         // get talk
@@ -47,11 +47,14 @@ class Talks extends ComponentBase
 
         // talk does not exists
         if (!$talk) {
-            throw new AjaxException(['error' => 'Tento talk neexistuje!']);
+            throw new AjaxException('Tento talk neexistuje!');
         }
 
         // vote
-        $talk->vote();
+        $votes = $talk->addVote();
+        if ($votes === false) {
+            throw new AjaxException('Omlouváme se, ale lze hlasovat pouze jednou!');
+        }
     }
 
     /**

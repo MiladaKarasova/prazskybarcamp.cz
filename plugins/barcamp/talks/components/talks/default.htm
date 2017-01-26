@@ -17,7 +17,8 @@
                 data-request="{{ __SELF__ }}::onVote"
                 data-request-update="'{{ __SELF__ }}::voted': '#vote-{{ talk.hash }}'"
                 data-request-data="hash: '{{ talk.hash }}'"
-                data-request-success="console.log('Voted!');">
+                data-request-success="console.log('Voted!');"
+                data-request-error="alert(jqXHR.responseJSON.result);">
                 hlasovat
             </a>
         </span>

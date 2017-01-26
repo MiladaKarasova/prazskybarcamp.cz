@@ -1,6 +1,7 @@
 <?php namespace Barcamp\Talks\Models;
 
 use Model;
+use Request;
 
 /**
  * Vote Model.
@@ -31,9 +32,9 @@ class Vote extends Model
      */
     public function beforeCreate()
     {
-        $this->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
-        $this->ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
-        $this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+        $this->ip = Request::server('REMOTE_ADDR');
+        $this->ip_forwarded = Request::server('HTTP_X_FORWARDED_FOR');
+        $this->user_agent = Request::server('HTTP_USER_AGENT');
     }
 
     /**
@@ -45,10 +46,10 @@ class Vote extends Model
      */
     public function scopeFromTheSameMachine($query)
     {
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
-        $ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
-        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+        $ip_addr = Request::server('REMOTE_ADDR');
+        $ip_forwarded = Request::server('HTTP_X_FORWARDED_FOR');
+        $user_agent = Request::server('HTTP_USER_AGENT');
 
-        return $query->whereIp($ip)->whereIpForwarded($ip_forwarded)->whereUserAgent($user_agent);
+        return $query->whereIp($ip_addr)->whereIpForwarded($ip_forwarded)->whereUserAgent($user_agent);
     }
 }

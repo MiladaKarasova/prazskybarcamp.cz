@@ -4,34 +4,6 @@
     <h2>Velké díky</h2>
     <h3>Partnerům</h3>
     <div class="wrapper">
-        <div class="half">
-            <h4>{{ partners.all[0].name }}</h4>
-            {% for partner in partners.all[0].partner %}
-                <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
-                    <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
-                </a>
-            {% endfor %}
-        </div>
-
-        <div class="half">
-            <h4>{{ partners.all[1].name }}</h4>
-            {% for partner in partners.all[1].partner %}
-                <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
-                    <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
-                </a>
-            {% endfor %}
-        </div>
-
-        <div class="full">
-            <h4>{{ partners.all[2].name }}</h4>
-            {% for partner in partners.all[2].partner %}
-                <a href="{{ partner.url }}" title="{{ partner.name }}" target="_blank">
-                    <img src="{{ partner.logo.path }}" alt="{{ partner.name }}" />
-                </a>
-            {% endfor %}
-                <a class="plus" href="mailto:info@prazskybarcamp.cz?subject=Chci být partnerem Pražského Barcampu" title="Stát se partnerem" target="_blank">
-                    <img src="{{ 'assets/images/plus.svg' | theme }}" alt="plus" />
-                </a>
-        </div>
+        {% component 'partners' %}
     </div>
 </section>

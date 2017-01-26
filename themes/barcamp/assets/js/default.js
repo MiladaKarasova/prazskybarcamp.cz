@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     menu();
 
-    $("#arrow").on('click', function(){
+    $("#arrow").on("click", function(){
         $("html,body").animate({ scrollTop: $("#where").offset().top-50}, 500);
     });
 

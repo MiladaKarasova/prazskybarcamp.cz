@@ -76,6 +76,11 @@ class Talk extends Model
         $this->user_agent = Request::server('HTTP_USER_AGENT');
     }
 
+    public function vote()
+    {
+        return true;
+    }
+
     /**
      * Fetch only approved talks.
      *

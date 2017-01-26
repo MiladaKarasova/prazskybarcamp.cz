@@ -1,6 +1,8 @@
 <?php namespace Barcamp\Talks\Components;
 
-use Barcamp\Talks\Models\Talk;
+use AjaxException;
+use App;
+use Barcamp\Talks\Facades\TalksFacade;
 use Cms\Classes\ComponentBase;
 
 class Talks extends ComponentBase
@@ -29,19 +31,48 @@ class Talks extends ComponentBase
     }
 
     /**
+     * On vote action.
+     */
+    public function onVote()
+    {
+        // get hash
+        $hash = post('hash');
+        if (!$hash) {
+            throw new AjaxException(['error' => 'Chybný ověřovací kód, zkuste prosím hlasovat znovu!']);
+        }
+
+        // get talk
+        $facade = $this->getFacade();
+        $talk = $facade->getTalkByHash($hash);
+
+        // talk does not exists
+        if (!$talk) {
+            throw new AjaxException(['error' => 'Tento talk neexistuje!']);
+        }
+
+        // vote
+        $talk->vote();
+    }
+
+    /**
      * Get talks.
      *
      * @return mixed
      */
     public function getTalks()
     {
-        return Talk::isApproved()
-            ->whereHas('user', function ($user) {
-                $user->isActivated();
-            })
-            ->with('user', 'category')
-            ->orderBy('votes')
-            ->limit(100)
-            ->get();
+        $facade = $this->getFacade();
+
+        return $facade->getApprovedTalks();
+    }
+
+    /**
+     * Get Talks facade.
+     *
+     * @return TalksFacade
+     */
+    private function getFacade()
+    {
+        return App::make(TalksFacade::class);
     }
 }

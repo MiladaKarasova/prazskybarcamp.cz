@@ -2,7 +2,7 @@
 
 <div class="talks">
     {% for talk in talks %}
-    <div class="talk">
+    <div class="talk" data-ident="{{ talk.hash }}">
         <span class="avatar">
         {% if talk.user.avatar %}
             <img src="{{ talk.user.avatar.getThumb(70, 70, 'exact') }}" alt="{{ talk.user.name }}" />
@@ -10,7 +10,17 @@
         </span>
         <strong>{{ talk.user.name }}</strong><br />
         {{ talk.name }}<br />
-        <em>{{ talk.votes }} hlasů</em>
+        <span id="vote-{{ talk.hash }}">
+            <em>{{ talk.votes }} hlasů</em><br />
+            <a
+                href="#"
+                data-request="{{ __SELF__ }}::onVote"
+                data-request-update="'{{ __SELF__ }}::voted': '#vote-{{ talk.hash }}'"
+                data-request-data="hash: '{{ talk.hash }}'"
+                data-request-success="console.log('Voted!');">
+                hlasovat
+            </a>
+        </span>
     </div>
     {% endfor %}
 </div>

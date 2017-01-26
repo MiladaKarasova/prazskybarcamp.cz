@@ -13,7 +13,7 @@ window.onload = function() {
 
     function menu() {
 
-        if(document.body.scrollTop > 1 && document.getElementsByClassName('white')) {
+        if(document.body.scrollTop > 1 && (document.getElementsByClassName('white-nav')).length > 0 && !controll) {
 
             controll = true;
 
@@ -25,7 +25,7 @@ window.onload = function() {
 
             controll = false;
 
-            document.getElementById('nav').className = 'white';
+            document.getElementById('nav').className = 'white-nav';
 
             document.getElementById('logo-img').src = logo('barcamp_white.svg');
 
@@ -37,10 +37,12 @@ window.onload = function() {
 
     menu();
 
-    document.getElementById('arrow').addEventListener('click', function () {
+    if(document.getElementById('arrow')) {
+        document.getElementById('arrow').addEventListener('click', function () {
 
-       // TODO: scroll down not working
-    });
+            // TODO: scroll down not working
+        });
+    }
 
     $(".show-faq").on('click', function() {
 

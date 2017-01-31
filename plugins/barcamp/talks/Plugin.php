@@ -75,4 +75,19 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label'       => 'Správa programu',
+                'description' => 'Nastavení programu, limitu přednášek',
+                'category'    => 'Program',
+                'icon'        => 'icon-calendar',
+                'class'       => 'Barcamp\Talks\Models\Settings',
+                'order'       => 500,
+                'permissions' => ['barcamp.talks.*'],
+            ],
+        ];
+    }
 }

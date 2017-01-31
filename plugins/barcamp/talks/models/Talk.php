@@ -116,7 +116,23 @@ class Talk extends Model
      */
     public function scopeIsApproved($query)
     {
-        return $query->where('approved', true);
+        return $query
+            ->where('approved', true)
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            });
+    }
+
+    /**
+     * Fetch only approved talks with date.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeHasDate($query)
+    {
+        return $query->isApproved()->whereNotNull('date');
     }
 
     /**

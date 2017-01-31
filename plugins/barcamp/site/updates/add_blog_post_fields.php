@@ -8,7 +8,7 @@ class AddBlogPostFields extends Migration
 {
     public function up()
     {
-        Schema::table('rainlab_blog_posts', function($table)
+        Schema::table('rainlab_blog_posts', function ($table)
         {
             $table->string('type', 30)->nullable()->after('content_html');
             $table->string('link', 300)->nullable()->after('type');

@@ -3,6 +3,8 @@
 use Backend;
 use Event;
 use File;
+use RainLab\Blog\Controllers\Posts;
+use RainLab\Blog\Models\Post;
 use RainLab\User\Controllers\Users;
 use RainLab\User\Models\User;
 use System\Classes\PluginBase;
@@ -44,6 +46,7 @@ class Plugin extends PluginBase
         $this->extendUsersController();
         $this->extendUsersListing();
         $this->extendBackendMenus();
+        $this->extendBlogPost();
     }
 
     /**
@@ -160,6 +163,65 @@ class Plugin extends PluginBase
 
             // Remove FAQ proposals submenu
             $manager->removeSideMenuItem('VojtaSvoboda.Faq', 'faq', 'proposals');
+        });
+    }
+
+    /**
+     * Extends RainLab.Blog Post.
+     */
+    private function extendBlogPost()
+    {
+        // extend Post model
+        Post::extend(function ($model)
+        {
+            // add new fillable fields
+            $model->addFillable(['type', 'link', 'minutes']);
+
+            // add model required fields
+            $model->rules['link'] = 'url';
+            $model->rules['minutes'] = 'numeric';
+        });
+
+        // extend Posts controller
+        Posts::extendFormFields(function ($form, $model, $context)
+        {
+            // apply only for Post model
+            if (!$model instanceof Post) {
+                return;
+            }
+
+            // add new fields
+            $configFile = __DIR__ . '/config/posts_fields.yaml';
+            $config = Yaml::parse(File::get($configFile));
+            $form->addSecondaryTabFields($config);
+        });
+
+        // extend post listing
+        Event::listen('backend.list.extendColumns', function ($widget)
+        {
+            // only for Posts controller
+            if (!$widget->getController() instanceof Posts) {
+                return;
+            }
+
+            // only for Post model
+            if (!$widget->model instanceof Post) {
+                return;
+            }
+
+            // add new column
+            $widget->addColumns([
+                'type' => [
+                    'label' => 'Typ',
+                    'sortable' => true,
+                    'searchable' => true,
+                ],
+                'minutes' => [
+                    'label' => 'Min',
+                    'sortable' => true,
+                    'searchable' => true,
+                ],
+            ]);
         });
     }
 }

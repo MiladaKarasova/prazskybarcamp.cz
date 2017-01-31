@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => env('DATABASE_HOST', 'localhost'),
             'port'      => '',
             'database'  => env('DATABASE_NAME'),
             'username'  => env('DATABASE_USER'),

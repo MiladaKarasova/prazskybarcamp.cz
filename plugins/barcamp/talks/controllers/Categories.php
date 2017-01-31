@@ -31,7 +31,7 @@ class Categories extends Controller
         BackendMenu::setContext('Barcamp.Talks', 'talks', 'categories');
     }
 
-    public function listOverrideColumnValue($record, $columnName, $definition = null)
+    public function listOverrideColumnValue($record, $columnName)
     {
         if ($columnName == 'color') {
             return '<div style="width:18px;height:18px;background-color:'.$record->color.'"></div>';

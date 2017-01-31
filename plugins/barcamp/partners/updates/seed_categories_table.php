@@ -18,7 +18,7 @@ class SeedCategoriesTable extends Seeder
         $seedFile = $this->getSeedFile($defaultSeed);
         $items = Yaml::parse(File::get($seedFile));
 
-        foreach ($items as $key => $item)
+        foreach ($items as $item)
         {
             $item['enabled'] = true;
             $item['slug'] = Str::slug($item['name']);

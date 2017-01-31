@@ -184,7 +184,7 @@ class Plugin extends PluginBase
         });
 
         // extend Posts controller
-        Posts::extendFormFields(function ($form, $model, $context)
+        Posts::extendFormFields(function ($form, $model)
         {
             // apply only for Post model
             if (!$model instanceof Post) {

@@ -97,6 +97,41 @@ class TalksFacade
     }
 
     /**
+     * Get all approved talks.
+     *
+     * @return mixed
+     */
+    public function getApprovedTalks()
+    {
+        return $this->talks
+            ->isApproved()
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            })
+            ->with('user', 'category')
+            ->orderBy('votes', 'desc')
+            ->limit(100)
+            ->get();
+    }
+
+    /**
+     * Get one talk by given hash.
+     *
+     * @param $hash
+     *
+     * @return mixed
+     */
+    public function getTalkByHash($hash)
+    {
+        return $this->talks
+            ->isApproved()
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            })->where('hash', $hash)
+            ->first();
+    }
+
+    /**
      * Get talk category.
      *
      * @param string $slug

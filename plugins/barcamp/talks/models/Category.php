@@ -41,8 +41,8 @@ class Category extends Model
      * @var array
      */
     public $belongsToMany = [
-        'talks' => ['Barcamp\Talks\Models\Talk',
-            'table' => 'barcamp_talks_talks',
+        'talks' => [
+            'Barcamp\Talks\Models\Talk',
             'order' => 'name desc',
             'scope' => 'isApproved',
             'timestamps' => true,

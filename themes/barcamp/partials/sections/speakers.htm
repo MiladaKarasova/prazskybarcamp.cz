@@ -1,8 +1,15 @@
+[talkCategories]
+
+[talks]
+==
 <section class="section-speakers">
     <h2>Zvolte si</h2>
     <h3>přednášející</h3>
     <div class="wrapper">
-        <!-- component for listing speakers -->
+        {% component 'talkCategories' %}
+    </div>
+    <div class="wrapper">
+        {% component 'talks' %}
     </div>
     <a href="javascript:void(0);" title="Všichni přednášející">Všichni přednášející</a>
     <a href="/registration" title="Chci přednášet">Chci přednášet</a>

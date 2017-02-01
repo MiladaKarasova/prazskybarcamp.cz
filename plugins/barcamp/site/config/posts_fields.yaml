@@ -1,0 +1,17 @@
+type:
+    tab: rainlab.blog::lang.post.tab_categories
+    label: Typ
+    type: dropdown
+    default: Interní
+    options:
+        Článek: Článek
+        Blog: Blog
+        Fotka: Fotka
+        Video: Video
+link:
+    tab: rainlab.blog::lang.post.tab_categories
+    label: Externí odkaz
+    comment: "Pouze pro typy: Blog, Fotka, Video"
+minutes:
+    tab: rainlab.blog::lang.post.tab_categories
+    label: Počet minut

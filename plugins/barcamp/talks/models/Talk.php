@@ -48,7 +48,7 @@ class Talk extends Model
      * @var array
      */
     public $hasMany = [
-        'votes' => 'Barcamp\Talks\Models\Vote',
+        'vote' => 'Barcamp\Talks\Models\Vote',
     ];
 
     /**
@@ -59,7 +59,10 @@ class Talk extends Model
     public $belongsTo = [
         'category' => 'Barcamp\Talks\Models\Category',
         'type' => 'Barcamp\Talks\Models\Type',
-        'user' => 'RainLab\User\Models\User',
+        'user' => [
+            'RainLab\User\Models\User',
+            'scope' => 'isActivated',
+        ],
     ];
 
     /**
@@ -71,6 +74,37 @@ class Talk extends Model
         $this->ip = Request::server('REMOTE_ADDR');
         $this->ip_forwarded = Request::server('HTTP_X_FORWARDED_FOR');
         $this->user_agent = Request::server('HTTP_USER_AGENT');
+    }
+
+    /**
+     * Vote for the talk.
+     *
+     * @return int|bool
+     */
+    public function addVote()
+    {
+        // check if some votes exists
+        $votes = $this->vote()->fromTheSameMachine()->get();
+        if (count($votes)) {
+            return false;
+        }
+
+        // create vote
+        $this->vote()->create();
+
+        // increment redundant counter
+        $this->increaseVotes();
+
+        return $this->votes;
+    }
+
+    /**
+     * Increment vote counter.
+     */
+    public function increaseVotes()
+    {
+        $this->votes += 1;
+        $this->save();
     }
 
     /**

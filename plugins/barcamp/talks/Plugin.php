@@ -23,7 +23,8 @@ class Plugin extends PluginBase
     {
         return [
             'Barcamp\Talks\Components\RegistrationForm' => 'registrationForm',
-            // 'Barcamp\Talks\Components\MyComponent' => 'myComponent',
+            'Barcamp\Talks\Components\TalkCategories' => 'talkCategories',
+            'Barcamp\Talks\Components\Talks' => 'talks',
         ];
     }
 

@@ -1,0 +1,9 @@
+{% set categories = __SELF__.categories %}
+
+<div class="categories">
+{% for category in categories %}
+    <span class="category">
+        <span style="color:{{ category.color }};">&bull;</span> {{ category.name }}
+    </span>
+{% endfor %}
+</div>

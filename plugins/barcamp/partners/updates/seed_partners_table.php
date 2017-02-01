@@ -19,7 +19,7 @@ class SeedPartnersTable extends Seeder
         $seedFile = $this->getSeedFile($defaultSeed);
         $items = Yaml::parse(File::get($seedFile));
 
-        foreach ($items as $key => $item)
+        foreach ($items as $item)
         {
             // create partner
             $item['enabled'] = true;

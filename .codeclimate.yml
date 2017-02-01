@@ -1,13 +1,35 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - php
+  eslint:
+    enabled: true
+    channel: "eslint-2"
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+    config:
+      file_extensions: "php"
 ratings:
   paths:
   - "**.css"
   - "**.js"
   - "**.php"
 exclude_paths:
+- "config/"
+- "modules/"
+- "storage/"
+- "tests/"
 - "plugins/anandpatel/"
 - "plugins/rainlab/"
 - "plugins/vojtasvoboda/"
-- "themes/barcamp/assets/vendor/"
 - "themes/barcamp/content/"
 - "themes/barcamp/layouts/"
 - "themes/barcamp/pages/"

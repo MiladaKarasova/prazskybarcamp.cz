@@ -4,6 +4,7 @@ use AjaxException;
 use App;
 use Barcamp\Talks\Facades\TalksFacade;
 use Cms\Classes\ComponentBase;
+use Session;
 
 class Talks extends ComponentBase
 {
@@ -28,6 +29,7 @@ class Talks extends ComponentBase
     public function onRun()
     {
         $this->talks = $this->page['talks'] = $this->getTalks();
+        $this->page['token'] = Session::token();
     }
 
     /**
@@ -35,6 +37,11 @@ class Talks extends ComponentBase
      */
     public function onVote()
     {
+        // check CSRF token
+        if (post('token') !== Session::token()) {
+            throw new AjaxException('Platnost stránky vypršela. Odešlete prosím hlasování znovu.');
+        }
+
         // get hash
         $hash = post('hash');
         if (!$hash) {

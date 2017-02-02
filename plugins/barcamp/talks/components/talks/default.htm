@@ -1,27 +1,30 @@
 {% set talks = __SELF__.talks %}
 
-<div class="talks">
+<div class="talks" style="height: 230px">
     {% for talk in talks %}
-    <div class="talk" data-ident="{{ talk.hash }}">
-        <span class="avatar">
-        {% if talk.user.avatar %}
-            <img src="{{ talk.user.avatar.getThumb(70, 70, 'exact') }}" alt="{{ talk.user.name }}" />
-        {% endif %}
-        </span>
-        <strong>{{ talk.user.name }}</strong><br />
-        {{ talk.name }}<br />
-        <span id="vote-{{ talk.hash }}">
-            <em>{{ talk.votes }} hlasů</em><br />
-            <a
-                href="#"
-                data-request="{{ __SELF__ }}::onVote"
-                data-request-update="'{{ __SELF__ }}::voted': '#vote-{{ talk.hash }}'"
-                data-request-data="hash: '{{ talk.hash }}', token: '{{ token }}'"
-                data-request-success="console.log('Voted!');"
-                data-request-error="alert(jqXHR.responseJSON.result);">
-                hlasovat
-            </a>
-        </span>
-    </div>
+        <div class="talk" data-ident="{{ talk.hash }}">
+            <div>
+                <a href="javascript:void(0);"
+                   title="{{ talk.user.name }} - {{ talk.name }}"
+                   style="color: {{ talk.category.color }}"
+                   data-hash="{{ talk.hash }}"
+                   class="avatar talk-trigger">
+                    {% if talk.user.avatar %}
+                        <img src="{{ talk.user.avatar.getThumb(70, 70, 'exact') }}" alt="{{ talk.user.name }}" />
+                    {% endif %}
+                </a>
+            </div>
+            <div class="right">
+                <a href="javascript:void(0);"
+                   title="{{ talk.user.name }} - {{ talk.name }}"
+                   style="color: {{ talk.category.color }}"
+                   data-hash="{{ talk.hash }}"
+                   class="talk-trigger">
+                    {{ talk.user.name }}
+                </a>
+                <p>{{ talk.name }}</p>
+                <span class="vote-{{ talk.hash }}">{{ talk.votes }} hlasů</span>
+            </div>
+        </div>
     {% endfor %}
 </div>

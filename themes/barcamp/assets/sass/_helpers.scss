@@ -27,6 +27,23 @@
   }
 }
 
+@mixin full-btn() {
+  font-size: 14px;
+  font-weight: 400;
+  color: $black;
+  background-color: $green;
+  padding: 15px 30px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  @include transition(300ms);
+
+  &:hover {
+    @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+  }
+}
+
 @mixin kalam-headline($left) {
   font-family: 'Kalam', cursive;
   font-weight: 500;

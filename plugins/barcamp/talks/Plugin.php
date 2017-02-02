@@ -25,6 +25,7 @@ class Plugin extends PluginBase
             'Barcamp\Talks\Components\RegistrationForm' => 'registrationForm',
             'Barcamp\Talks\Components\TalkCategories' => 'talkCategories',
             'Barcamp\Talks\Components\Talks' => 'talks',
+            'Barcamp\Talks\Components\OneTalk' => 'onetalk'
         ];
     }
 

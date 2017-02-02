@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tomaskazatel
- * Date: 02.02.17
- * Time: 15:07
- */
 
 namespace Barcamp\Talks\Components;
 
@@ -52,15 +46,10 @@ class OneTalk extends ComponentBase
         return $facade->getTalkByHash($hash);
 
     }
-
-    /**
-     * Get Talks facade.
-     *
-     * @return TalksFacade
-     */
+    
     private function getFacade()
     {
         return App::make(TalksFacade::class);
     }
-
+    
 }

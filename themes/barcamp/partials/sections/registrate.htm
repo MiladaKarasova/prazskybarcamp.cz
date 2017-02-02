@@ -1,6 +1,14 @@
+==
+<?php
+function onEnd() {
+    $facade = App::make('Barcamp\Talks\Facades\TalksFacade');
+    $this['left'] = $facade->getTalksLeftCount();
+}
+?>
+==
 <section class="section-registrate">
     <div class="wrapper">
-        <h2>Registruj se právě teď,<br />zbývá už jen <span>20</span> míst.</h2>
-        <a href="/registration" title="">REGISTRUJ SE ZDARMA</a>
+        <h2>Registruj se právě teď,<br />zbývá už jen <span>{{ left }}</span> míst.</h2>
+        <a href="{{ 'registration' | page }}" title="Registrace na Barcamp">REGISTRUJ SE ZDARMA</a>
     </div>
 </section>

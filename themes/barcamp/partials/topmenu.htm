@@ -1,22 +1,22 @@
 <nav id="nav" class="{% if this.page.id == 'home' %}white-nav{% endif%}">
     <div class="wrapper">
         <div class="logo">
-            <a href="/" title="Home">
+            <a href="{{ 'home' | page }}" title="Home">
                 {% if this.page.id == 'home' %}
                 <img src="{{ 'assets/images/barcamp_white.svg' | theme }}" alt="logo" id="logo-img" />
                 {% else %}
-                    <img src="{{ 'assets/images/barcamp_black.svg' | theme }}" alt="logo" id="logo-img" />
+                <img src="{{ 'assets/images/barcamp_black.svg' | theme }}" alt="logo" id="logo-img" />
                 {% endif %}
             </a>
         </div>
         <div class="links">
-            <a href="/" title="Home" class="{% if this.page.id == 'home' %}active{% endif %}">Home</a>
-            <a href="/program" title="Program" class="{% if this.page.id == 'program' %}active{% endif %}">Program</a>
-            <a href="/blog" title="Blog" class="{% if this.page.id == 'blog-list' %}active{% endif %}">Blog</a>
-            <a href="/contact" title="Kontakt" class="{% if this.page.id == 'contact' %}active{% endif %}">Kontakt</a>
+            <a href="{{ 'home' | page }}" title="Home" class="{% if this.page.id == 'home' %}active{% endif %}">Home</a>
+            <a href="{{ 'program' | page }}" title="Program" class="{% if this.page.id == 'program' %}active{% endif %}">Program</a>
+            <a href="{{ 'blog-list' | page }}" title="Blog" class="{% if this.page.id == 'blog-list' %}active{% endif %}">Blog</a>
+            <a href="{{ 'contact' | page }}" title="Kontakt" class="{% if this.page.id == 'contact' %}active{% endif %}">Kontakt</a>
         </div>
         <div class="button">
-            <a href="/registration" title="Registrace">REGISTRACE</a>
+            <a href="{{ 'registration' | page }}" title="Registrace">REGISTRACE</a>
         </div>
     </div>
 </nav>

@@ -2,6 +2,7 @@
 
 use ApplicationException;
 use Barcamp\Talks\Models\Category;
+use Barcamp\Talks\Models\Settings;
 use Barcamp\Talks\Models\Talk;
 use Barcamp\Talks\Models\Type;
 use RainLab\User\Models\User;
@@ -12,14 +13,26 @@ use Str;
  */
 class TalksFacade
 {
+    /** @var User $users */
     private $users;
 
+    /** @var Talk $talks */
     private $talks;
 
+    /** @var Category $categories */
     private $categories;
 
+    /** @var Type $types */
     private $types;
 
+    /**
+     * TalksFacade constructor.
+     *
+     * @param User $users
+     * @param Talk $talks
+     * @param Category $categories
+     * @param Type $types
+     */
     public function __construct(User $users, Talk $talks, Category $categories, Type $types)
     {
         $this->users = $users;
@@ -103,15 +116,30 @@ class TalksFacade
      */
     public function getApprovedTalks()
     {
-        return $this->talks
-            ->isApproved()
-            ->whereHas('user', function ($user) {
-                $user->isActivated();
-            })
-            ->with('user', 'category')
-            ->orderBy('votes', 'desc')
-            ->limit(100)
-            ->get();
+        return $this->talks->isApproved()->with('user', 'category')->orderBy('votes', 'desc')->limit(100)->get();
+    }
+
+    /**
+     * Get all approved talks with date.
+     *
+     * @return mixed
+     */
+    public function getApprovedTalksWithDate()
+    {
+        return $this->talks->hasDate()->orderBy('votes', 'desc')->limit(100)->get();
+    }
+
+    /**
+     * Get talks left count.
+     *
+     * @return mixed
+     */
+    public function getTalksLeftCount()
+    {
+        $taken = $this->getApprovedTalksWithDate()->count();
+        $limit = Settings::get('talks_count', 0);
+
+        return max(0, $limit - $taken);
     }
 
     /**

@@ -3,12 +3,22 @@ url = "/"
 layout = "default"
 is_hidden = 0
 ==
-
+<?php
+function onEnd() {
+    $this['programEnabled'] = Barcamp\Talks\Models\Settings::get('program_ready', false);
+}
+?>
+==
 {% partial 'sections/intro' %}
 {% partial 'sections/where' %}
 {% partial 'sections/about' %}
-{% partial 'sections/program' %}
-{% partial 'sections/speakers' %}
+
+{% if programEnabled %}
+    {% partial 'sections/program' %}
+{% else %}
+    {% partial 'sections/speakers' %}
+{% endif %}
+
 {% partial 'sections/posts' %}
 {% partial 'sections/instagram' %}
 {% partial 'sections/email' %}

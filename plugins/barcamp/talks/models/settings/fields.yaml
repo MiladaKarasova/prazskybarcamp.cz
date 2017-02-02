@@ -1,0 +1,12 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    talks_count:
+        label: Maximální počet přednášek
+        comment: Používá se pro počítadlo "Zbývá už jen XX míst"
+    program_ready:
+        label: Zobrazit program
+        comment: Zobrazí program a schová hlasování
+        type: checkbox

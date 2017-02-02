@@ -190,7 +190,7 @@ class RegistrationForm extends Account
 
         // check if there is free places
         $facade = $this->getFacade();
-        if ($facade->getTalksLeftCount() < 1) {
+        if (!$facade->isRegistrationApproved()) {
             throw new ApplicationException('Omlouváme se, ale registrace jsou již uzavřené.');
         }
     }

@@ -46,15 +46,9 @@ class OneTalk extends ComponentBase
         return $facade->getTalkByHash($hash);
 
     }
-
-    /**
-     * Get Talks facade.
-     *
-     * @return TalksFacade
-     */
+    
     private function getFacade()
     {
         return App::make(TalksFacade::class);
     }
-
 }

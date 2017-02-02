@@ -5,11 +5,11 @@ return [
     'recipients' => [
         'to' => [
             'name' => 'Prazskybarcamp.cz',
-            'email' => 'vojtasvoboda.cz@gmail.com',
+            'email' => 'info@domain.tld',
         ],
         'bcc' => [
             'name' => 'Prazskybarcamp.cz',
-            'email' => 'vojtasvoboda.cz@gmail.com',
+            'email' => 'info@domain.tld',
         ],
     ],
 

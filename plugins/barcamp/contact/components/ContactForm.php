@@ -15,18 +15,18 @@ use Session;
 
 class ContactForm extends ComponentBase
 {
-	public function componentDetails()
-	{
-		return [
-			'name' => 'Kontaktní formulář',
-			'description' => 'Kontaktní formulář',
-		];
-	}
+    public function componentDetails()
+    {
+        return [
+            'name' => 'Kontaktní formulář',
+            'description' => 'Kontaktní formulář',
+        ];
+    }
 
-	public function defineProperties()
-	{
-		return [];
-	}
+    public function defineProperties()
+    {
+        return [];
+    }
 
     /**
      * AJAX form submit by October JS Framework.
@@ -56,11 +56,11 @@ class ContactForm extends ComponentBase
      *
      * @return mixed
      */
-	public function onRun()
-	{
-	    $error = false;
+    public function onRun()
+    {
+        $error = false;
 
-		if (post('submit')) {
+        if (post('submit')) {
 
             if (Session::token() != Input::get('_token')) {
                 $error = 'Platnost formuláře vypršela, obnovte prosím stránku a odešlete formulář znovu.';
@@ -72,24 +72,24 @@ class ContactForm extends ComponentBase
 
                     return Redirect::to($this->page->url . '#form', 303);
 
-                } catch(ApplicaitonException $e) {
+                } catch (ApplicaitonException $e) {
                     $error = $e->getMessage();
 
-                } catch(Exception $e) {
+                } catch (Exception $e) {
                     $error = $e->getMessage();
                 }
             }
-		}
+        }
 
-		$this->page['sent'] = Flash::check();
-		$this->page['post'] = post();
-		$this->page['error'] = $error;
-	}
+        $this->page['sent'] = Flash::check();
+        $this->page['post'] = post();
+        $this->page['error'] = $error;
+    }
 
     /**
      * Save contact form.
      */
-	private function saveForm()
+    private function saveForm()
     {
         /** @var ContactFacade $repository */
         $repository = App::make(ContactFacade::class);

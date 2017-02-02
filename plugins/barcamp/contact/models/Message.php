@@ -14,77 +14,77 @@ use October\Rain\Database\Traits\Validation as ValidationTrait;
  */
 class Message extends Model
 {
-	use SoftDeletingTrait;
+    use SoftDeletingTrait;
 
-	use ValidationTrait;
+    use ValidationTrait;
 
     /**
      * @var string The database table used by the model.
      */
     protected $table = 'barcamp_contact_messages';
 
-	public $rules = [
+    public $rules = [
         'name' => 'required|between:3,100',
         'email' => 'required|email',
         'message' => 'required|min:5|max:3000',
     ];
 
-	public $customMessages = [
-		'name.required' => 'Musíte vyplnit Vaše jméno a příjmení.',
+    public $customMessages = [
+        'name.required' => 'Musíte vyplnit Vaše jméno a příjmení.',
         'email.required' => 'Napište nám prosím i Váš e-mail.',
         'message.required' => 'Text zprávy musí mít alespoň 5 znaků.',
-	];
+    ];
 
-	public $attributeNames = [
-		'name' => 'Jméno a příjmení',
+    public $attributeNames = [
+        'name' => 'Jméno a příjmení',
         'message' => 'Vaše zpráva',
-		'email' => 'E-mail',
-		'phone' => 'Telefon',
+        'email' => 'E-mail',
+        'phone' => 'Telefon',
         'time' => 'Čas',
-	];
+    ];
 
-	protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
-	/** @var array Values are fields accessible to mass assignment. */
-	protected $fillable = [
-		'name', 'email', 'address', 'phone', 'time', 'message', 'locale',
-	];
+    /** @var array Values are fields accessible to mass assignment. */
+    protected $fillable = [
+        'name', 'email', 'address', 'phone', 'time', 'message', 'locale',
+    ];
 
-	/**
-	 * Before create filter
+    /**
+     * Before create filter
      * - add IP address and user_agent attributes
-	 */
-	public function beforeCreate()
-	{
+     */
+    public function beforeCreate()
+    {
         $this->locale = App::getLocale();
 
-		$this->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
-		$this->ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
-		$this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
-	}
+        $this->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
+        $this->ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
+        $this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+    }
 
-	/**
-	 * Set machine scope
-	 *
-	 * @param $query
-	 *
-	 * @return mixed
-	 */
-	public function scopeMachine($query)
-	{
-		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
-		$ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
-		$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+    /**
+     * Set machine scope
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeMachine($query)
+    {
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
+        $ip_forwarded = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
+        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
 
-		return $query->whereIp($ip)->whereIpForwarded($ip_forwarded)->whereUserAgent($user_agent);
-	}
+        return $query->whereIp($ip)->whereIpForwarded($ip_forwarded)->whereUserAgent($user_agent);
+    }
 
     /**
      * If some message exists in last one minute.
      *
      * @return bool
      */
-	public function isExistInLastTime()
+    public function isExistInLastTime()
     {
         // protection time
         $time = Config::get('barcamp.contact::config.protection_time', '-30 seconds');

@@ -35,19 +35,19 @@ class ContactFacade
      *
      * @throws ApplicationException
      */
-	function storeMessage($data)
-	{
+    function storeMessage($data)
+    {
         // check reservation sent limit
         if ($this->message->isExistInLastTime()) {
             throw new ApplicationException('Odeslání je povoleno pouze jednou za 30 sekund.');
         }
 
         // save message
-		$message = $this->message->create($data);
+        $message = $this->message->create($data);
 
         // send confirmation
         MessageMailer::send($message);
 
-		return $message;
-	}
+        return $message;
+    }
 }

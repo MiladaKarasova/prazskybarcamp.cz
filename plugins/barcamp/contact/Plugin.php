@@ -14,15 +14,15 @@ class Plugin extends PluginBase
                 'icon' => 'icon-phone',
                 'permissions' => ['barcamp.contact.*'],
                 'order' => 600,
-				'sideMenu' => [
+                'sideMenu' => [
                     'messages' => [
                         'label' => 'Zprávy',
                         'icon' => 'icon-file-text-o',
                         'url' => Backend::url('barcamp/contact/messages'),
                         'permissions' => ['barcamp.contact.*'],
                     ],
-				]
-            ]
+                ],
+            ],
         ];
     }
 

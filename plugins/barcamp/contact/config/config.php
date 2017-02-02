@@ -2,7 +2,7 @@
 
 return [
 
-	'recipients' => [
+    'recipients' => [
         'to' => [
             'name' => 'Prazskybarcamp.cz',
             'email' => 'vojtasvoboda.cz@gmail.com',
@@ -11,7 +11,7 @@ return [
             'name' => 'Prazskybarcamp.cz',
             'email' => 'vojtasvoboda.cz@gmail.com',
         ],
-	],
+    ],
 
     'protection_time' => '-30 seconds',
 

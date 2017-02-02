@@ -2,7 +2,7 @@
 
 <div class="talks" style="height: 230px">
     {% for talk in talks %}
-        <div class="talk" data-ident="{{ talk.hash }}">
+        <div class="talk" data-ident="{{ talk.hash }}" data-voted="{{ talk.voted ? 'true' : 'false' }}">
             <div>
                 <a href="javascript:void(0);"
                    title="{{ talk.user.name }} - {{ talk.name }}"

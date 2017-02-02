@@ -13,7 +13,17 @@
             <p class="name">{{ talk.user.name }}</p>
             <h1>{{ talk.name }}</h1>
             <p class="left" style="color: {{ talk.category.color }}" >{{ talk.category.name }}</p>
-            <p class="right vote-{{ talk.hash }}">Odhlasovalo {{ talk.votes }} účastníků</p>
+            <p class="right vote-{{ talk.hash }}">
+                {% if talk.votes == 0 %}
+                    Zatím nikdo nehlasoval.
+                {% elseif talk.votes == 1 %}
+                    Odhlasoval {{ talk.votes }} účastník.
+                {% elseif (talk.votes > 1 and talk.votes < 5) %}
+                    Odhlasovali {{ talk.votes }} účastníci.
+                {% else %}
+                    Odhlasovalo {{ talk.votes }} účastníků.
+                {% endif %}
+            </p>
         </div>
     </div>
     <div class="row">
@@ -55,12 +65,16 @@
             {% endif %}
         </div>
         <div class="two vote-{{ talk.hash }} vote">
+            {% if not talk.voted %}
             <a href="#" class="btn"
                data-request="talks::onVote"
                data-request-update="'talks::voted': '.vote-{{ talk.hash }}'"
                data-request-data="hash: '{{ talk.hash }}', token: '{{ token }}'"
                data-request-success="console.log('Voted!');"
                data-request-error="alert(jqXHR.responseJSON.result);">hlasovat</a>
+            {% else %}
+                Pro tento talk bylo již hlasováno.
+            {% endif %}
         </div>
     </div>
     <a href="javascript:void(0);" title="Zavřít" class="close-modal" onclick="swal.close();">

@@ -51,8 +51,7 @@ class Message extends Model
     ];
 
     /**
-     * Before create filter
-     * - add IP address and user_agent attributes
+     * Before create filter - add IP address and user_agent attributes.
      */
     public function beforeCreate()
     {
@@ -64,7 +63,7 @@ class Message extends Model
     }
 
     /**
-     * Set machine scope
+     * Set machine scope.
      *
      * @param $query
      *

@@ -35,7 +35,7 @@ class ContactFacade
      *
      * @throws ApplicationException
      */
-    function storeMessage($data)
+    public function storeMessage($data)
     {
         // check reservation sent limit
         if ($this->message->isExistInLastTime()) {

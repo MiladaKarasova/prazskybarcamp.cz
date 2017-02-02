@@ -1,4 +1,4 @@
-<?php namespace Barcamp\Talks\Updates;
+<?php namespace Barcamp\Partners\Updates;
 
 use Barcamp\Partners\Models\Category;
 use Barcamp\Partners\Updates\Classes\Seeder;

@@ -183,7 +183,14 @@ class RegistrationForm extends Account
      */
     private function checkSettings()
     {
+        // check if registration is allowed
         if (!UserSettings::get('allow_registration', true)) {
+            throw new ApplicationException('Omlouváme se, ale registrace jsou již uzavřené.');
+        }
+
+        // check if there is free places
+        $facade = $this->getFacade();
+        if ($facade->getTalksLeftCount() < 1) {
             throw new ApplicationException('Omlouváme se, ale registrace jsou již uzavřené.');
         }
     }

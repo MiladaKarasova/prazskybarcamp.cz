@@ -61,7 +61,7 @@ $(document).ready(function() {
             .done(function(data) {
                 swal({
                     html: data,
-                    width: '700px',
+                    width: "700px",
                     showConfirmButton: false
                 });
             });

@@ -43,7 +43,7 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'barcamp.contact::mail.contactform' => 'Zpráva z kontaktního formuláře',
+            'barcamp.contact::mail.contact' => 'Zpráva z kontaktního formuláře',
         ];
     }
 }

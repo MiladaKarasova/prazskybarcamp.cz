@@ -16,20 +16,13 @@
 
     <table class="table">
         <tr>
-            <td><label name="name">Jméno</label></td>
-            <td><input name="name" class="input" type="text" value="{{ post.name }}" /></td>
+            <td><input name="name" class="input" type="text" value="{{ post.name }}" placeholder="Jméno a příjmení*" /></td>
         </tr>
         <tr>
-            <td><label name="lastname">Příjmení</label></td>
-            <td><input name="lastname" class="input" type="text" value="{{ post.lastname }}" /></td>
+            <td><input name="email" class="input" type="text" value="{{ post.email }}" placeholder="E-mail*" /></td>
         </tr>
         <tr>
-            <td><label name="email">E-mail</label></td>
-            <td><input name="email" class="input" type="text" value="{{ post.email }}" /></td>
-        </tr>
-        <tr>
-            <td><label name="telefon">Telefon</label></td>
-            <td><input name="phone" class="input" type="text" value="{{ post.phone }}" /></td>
+            <td><textarea name="message" placeholder="Zpráva*">{{ post.message }}</textarea></td>
         </tr>
         <tr>
             <td>{{ form_token() }}</td>

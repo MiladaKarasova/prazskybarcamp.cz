@@ -1,5 +1,6 @@
 <?php namespace Barcamp\Contact\Models;
 
+use App;
 use Carbon\Carbon;
 use Config;
 use Model;
@@ -24,17 +25,19 @@ class Message extends Model
 
 	public $rules = [
         'name' => 'required|between:3,100',
-        'lastname' => 'required|between:3,100',
-        'email' => 'email',
+        'email' => 'required|email',
+        'message' => 'required|min:5|max:3000',
     ];
 
 	public $customMessages = [
-		'name.required' => 'Musíte vyplnit Vaše jméno',
+		'name.required' => 'Musíte vyplnit Vaše jméno a příjmení.',
+        'email.required' => 'Napište nám prosím i Váš e-mail.',
+        'message.required' => 'Text zprávy musí mít alespoň 5 znaků.',
 	];
 
 	public $attributeNames = [
-		'name' => 'Jméno',
-        'lastname' => 'Příjmení',
+		'name' => 'Jméno a příjmení',
+        'message' => 'Vaše zpráva',
 		'email' => 'E-mail',
 		'phone' => 'Telefon',
         'time' => 'Čas',

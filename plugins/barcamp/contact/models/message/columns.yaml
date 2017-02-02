@@ -6,15 +6,8 @@ columns:
   id:
     label: ID
   name:
-    label: Jméno
+    label: Jméno a příjmení
     searchable: yes
-    sortable: yes
-  lastname:
-    label: Příjmení
-    searchable: yes
-    sortable: yes
-  time:
-    label: Čas
     sortable: yes
   email:
     label: E-mail

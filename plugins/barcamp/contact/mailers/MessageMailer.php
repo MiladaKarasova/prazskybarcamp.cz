@@ -11,7 +11,7 @@ class MessageMailer
      *
 	 * @param Message $message
 	 */
-	public static function sendContactForm(Message $message)
+	public static function send(Message $message)
 	{
 		$recipient = new \stdClass();
 		$recipient->email = Config::get('barcamp.contact::config.recipients.to.email');
@@ -19,7 +19,7 @@ class MessageMailer
         $recipient->bcc_email = Config::get('barcamp.contact::config.recipients.bcc.email');
         $recipient->bcc_name = Config::get('barcamp.contact::config.recipients.bcc.name');
 
-		$template = 'barcamp.contact::mail.contactform';
+		$template = 'barcamp.contact::mail.contact';
 
 		$templateParameters = [
 			'stranky' => Config::get('app.url'),

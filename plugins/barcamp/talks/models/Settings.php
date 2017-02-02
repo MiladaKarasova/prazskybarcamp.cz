@@ -16,6 +16,7 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->talks_count = 100;
+        $this->registration_approved = true;
         $this->program_ready = false;
     }
 }

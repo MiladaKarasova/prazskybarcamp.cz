@@ -110,6 +110,16 @@ class TalksFacade
     }
 
     /**
+     * Get if registration is approved.
+     *
+     * @return mixed
+     */
+    public function isRegistrationApproved()
+    {
+        return Settings::get('registration_approved', true);
+    }
+
+    /**
      * Get all approved talks.
      *
      * @return mixed
@@ -136,10 +146,7 @@ class TalksFacade
      */
     public function getTalksLeftCount()
     {
-        $taken = $this->getApprovedTalksWithDate()->count();
-        $limit = Settings::get('talks_count', 0);
-
-        return max(0, $limit - $taken);
+        return Settings::get('talks_count', 0);
     }
 
     /**

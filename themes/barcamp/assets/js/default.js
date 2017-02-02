@@ -54,4 +54,17 @@ $(document).ready(function() {
 
     });
 
+    $(".talk-trigger").on("click", function() {
+        var hash = $(this).attr("data-hash");
+
+        $.get("/ajax/talk/" + hash)
+            .done(function(data) {
+                swal({
+                    html: data,
+                    width: '700px',
+                    showConfirmButton: false
+                });
+            });
+    });
+
 });

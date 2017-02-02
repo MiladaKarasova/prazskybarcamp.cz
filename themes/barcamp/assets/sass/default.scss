@@ -678,7 +678,7 @@ section.section-speakers {
     @include kalam-headline(true);
   }
 
-  a {
+  a.btn {
     @include outline-btn();
   }
 
@@ -686,6 +686,237 @@ section.section-speakers {
     width: 95%;
     max-width: $small-inner;
     margin: auto;
+
+    .categories {
+      width: 100%;
+      margin: 20px auto;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      span.category {
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(center);
+        @include alignItems(center);
+        margin: 0 50px;
+
+        span {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          border-radius: 100%;
+          margin: 0 15px;
+
+        }
+      }
+    }
+
+    .talks {
+      width: 100%;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include flex-wrap(wrap);
+      @include justifyContent(space-around);
+      @include alignItems(flex-start);
+
+      .talk {
+        width: 30%;
+        margin: 50px auto;
+        min-height: 130px;
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(flex-start);
+        @include alignItems(flex-start);
+
+        .avatar {
+          display: block;
+          width: 70px;
+          height: 70px;
+          background-color: $lightGrey;
+          border-radius: 100%;
+          text-decoration: none;
+          color: transparent;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+          }
+        }
+
+        .right {
+          padding-left: 40px;
+          padding-top: 8px;
+          text-align: left;
+
+          a {
+            font-size: 14px;
+            font-weight: 700;
+
+            &:hover {
+              text-decoration: none;
+            }
+
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 19px;
+            font-weight: 400;
+            margin: 10px auto;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 500;
+            color: $halfBlack;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.talk {
+  width: 100%;
+  padding-bottom: 30px;
+  @include flexDisplay();
+  @include flexDirection(column);
+  position: relative;
+
+  a.close-modal {
+    text-decoration: none;
+    color: transparent;
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+  }
+
+  .row {
+    width: 90%;
+    margin: 20px auto 0;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include alignItems(flex-start);
+    @include justifyContent(center);
+
+    .one {
+      @include flex(1, 25%);
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        background-color: $lightGrey;
+        border-radius: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+        }
+      }
+    }
+
+    .two {
+      @include flex(1, 50%);
+      text-align: left;
+      padding-right: 30px;
+
+      h2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+        margin: 10px auto;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: $black;
+        line-height: 23px;
+        margin-top: 0;
+      }
+
+      &.links {
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(flex-start);
+        @include alignItems(center);
+
+        a {
+          text-decoration: underline;
+          color: transparent;
+          height: 25px;
+          margin-right: 20px;
+          @include flexDisplay();
+          @include justifyContent(center);
+          @include alignItems(center);
+        }
+
+      }
+
+      &.vote {
+        text-align: right;
+
+        a.btn {
+          @include full-btn();
+        }
+
+      }
+
+    }
+
+    .three {
+      @include flex(3, 75%);
+      margin-left: 30px;
+      text-align: left;
+
+      p.name {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+      }
+
+      h1 {
+        font-size: 25px;
+        line-height: 34px;
+        font-weight: 700;
+        color: $black;
+        margin-bottom: 30px;
+      }
+
+      p.left {
+        font-size: 14px;
+        font-weight: 700;
+        display: inline-block;
+        width: 45%;
+        text-align: left;
+      }
+
+      p.right {
+        display: inline-block;
+        width: 45%;
+        text-align: right;
+        color: $black;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+    }
+
   }
 
 }

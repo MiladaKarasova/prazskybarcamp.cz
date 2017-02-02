@@ -1,0 +1,39 @@
+<div id="result">
+    {% flash %}
+    <p class="alert alert-success">{{ message }}</p>
+    {% endflash %}
+</div>
+
+<form
+    method="post"
+    data-request="{{ __SELF__ }}::onSubmit"
+    data-request-update="'{{ __SELF__ }}::success': '#result'"
+    data-request-success="$('#{{ __SELF__ }} input[type=text], #{{ __SELF__ }} textarea').val('');"
+    data-request-error="$('#{{ __SELF__ }} #error').text(jqXHR.responseJSON);"
+    id="{{__SELF__}}"{% if sent %} class="sent"{% endif %}>
+
+    <div id="error" class="error center">{% if error %}{{ error }}{% endif %}&nbsp;</div>
+
+    <table class="table">
+        <tr>
+            <td><label name="name">Jméno</label></td>
+            <td><input name="name" class="input" type="text" value="{{ post.name }}" /></td>
+        </tr>
+        <tr>
+            <td><label name="lastname">Příjmení</label></td>
+            <td><input name="lastname" class="input" type="text" value="{{ post.lastname }}" /></td>
+        </tr>
+        <tr>
+            <td><label name="email">E-mail</label></td>
+            <td><input name="email" class="input" type="text" value="{{ post.email }}" /></td>
+        </tr>
+        <tr>
+            <td><label name="telefon">Telefon</label></td>
+            <td><input name="phone" class="input" type="text" value="{{ post.phone }}" /></td>
+        </tr>
+        <tr>
+            <td>{{ form_token() }}</td>
+            <td><input type="submit" name="submit" value="Odeslat" class="btn btn-submit" /></td>
+        </tr>
+    </table>
+</form>

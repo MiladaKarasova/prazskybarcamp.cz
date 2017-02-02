@@ -1,0 +1,28 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+  id:
+    label: ID
+  name:
+    label: Jméno
+    searchable: yes
+    sortable: yes
+  lastname:
+    label: Příjmení
+    searchable: yes
+    sortable: yes
+  time:
+    label: Čas
+    sortable: yes
+  email:
+    label: E-mail
+    searchable: yes
+  message:
+    label: Zpráva
+    searchable: yes
+  created_at:
+    label: Odesláno
+    type: datetime
+    format: H:i:s d.m.Y

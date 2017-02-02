@@ -51,4 +51,5 @@ class OneTalk extends ComponentBase
     {
         return App::make(TalksFacade::class);
     }
+    
 }

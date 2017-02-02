@@ -61,29 +61,34 @@ class ContactForm extends ComponentBase
         $error = false;
 
         if (post('submit')) {
+            try {
+                $this->validateToken();
+                $this->saveForm();
+                Flash::success('Zpráva byla úspěšně odeslána!');
 
-            if (Session::token() != Input::get('_token')) {
-                $error = 'Platnost formuláře vypršela, obnovte prosím stránku a odešlete formulář znovu.';
+                return Redirect::to($this->page->url . '#form', 303);
 
-            } else {
-                try {
-                    $this->saveForm();
-                    Flash::success('Zpráva byla úspěšně odeslána!');
+            } catch (ApplicaitonException $e) {
+                $error = $e->getMessage();
 
-                    return Redirect::to($this->page->url . '#form', 303);
-
-                } catch (ApplicaitonException $e) {
-                    $error = $e->getMessage();
-
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
-                }
+            } catch (Exception $e) {
+                $error = $e->getMessage();
             }
         }
 
         $this->page['sent'] = Flash::check();
         $this->page['post'] = post();
         $this->page['error'] = $error;
+    }
+
+    /**
+     * Validate CSRF token.
+     */
+    private function validateToken()
+    {
+        if (Session::token() != Input::get('_token')) {
+            throw new ApplicationException('Platnost formuláře vypršela, obnovte prosím stránku a odešlete formulář znovu.');
+        }
     }
 
     /**

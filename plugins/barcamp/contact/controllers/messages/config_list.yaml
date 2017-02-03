@@ -1,0 +1,40 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: ~/plugins/barcamp/contact/models/message/columns.yaml
+
+# Model Class name
+modelClass: Barcamp\Contact\Models\Message
+
+# List Title
+title: Manage messages
+
+# Link URL for each record
+# recordUrl: barcamp/contact/messages/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 30
+
+showSetup: true
+showSorting: 1
+
+# Set default sort column
+defaultSort:
+    column: id
+    direction: desc
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+#    buttons: list_toolbar
+#    search:
+#        prompt: Hledat zprávy
+
+    # Search widget configuration
+#    search:
+#        prompt: backend::lang.list.search_prompt

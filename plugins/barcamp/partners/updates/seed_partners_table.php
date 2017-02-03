@@ -1,4 +1,4 @@
-<?php namespace Barcamp\Site\Updates;
+<?php namespace Barcamp\Partners\Updates;
 
 use File;
 use Barcamp\Partners\Models\Partner;

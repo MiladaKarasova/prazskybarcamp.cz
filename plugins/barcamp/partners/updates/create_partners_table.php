@@ -1,6 +1,4 @@
-<?php
-
-namespace Barcamp\Talks\Updates;
+<?php namespace Barcamp\Partners\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;

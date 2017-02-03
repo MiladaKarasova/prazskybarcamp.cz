@@ -2,11 +2,19 @@ title = "Kontakt"
 url = "/kontakt"
 layout = "default"
 is_hidden = 0
+
+[contactForm]
 ==
-<section class="section-intro">
+<section class="section-email">
     <div class="wrapper">
         <p class="text-center">
+            <br /><br />
             {% content 'contact/content' %}
         </p>
+    </div>
+</section>
+<section class="section-email" style="padding-top: 0;">
+    <div class="wrapper">
+        {% component 'contactForm' %}
     </div>
 </section>

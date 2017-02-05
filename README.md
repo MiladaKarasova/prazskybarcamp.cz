@@ -9,6 +9,11 @@
 
 www.prazskybarcamp.cz
 
+## Requirements
+
+- PHP 5.5.9.
+- MySQL 5.7.x or MariaDb.
+
 ## Installation
 
 1. Create .env file as copy of .env.dist and fill each line. Don't forget to fill encryption key and cipher!
@@ -32,10 +37,17 @@ www.prazskybarcamp.cz
     - **rainlab.user::mail.activate** is sent after registration
     - **rainlab.user::mail.welcome** after successfull account confirmation
 
-## Requirements
+## Voting
 
-- PHP 5.5.9.
-- MySQL 5.7.x or MariaDb.
+After user have voted, new vote is created to table `barcamp_talks_votes` and Talk `votes` column is incremented, to 
+have this value precalculated. To be sure we have `votes` column synchronized with real `votes` count, we have to recalculate 
+votes every hour (or less). To recalculate votes automatically you have to setup CRON.
+
+Editing the crontab is commonly performed with the command crontab -e.
+
+```
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+```
 
 ## Unit tests
 

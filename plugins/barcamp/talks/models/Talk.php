@@ -114,6 +114,18 @@ class Talk extends Model
     }
 
     /**
+     * Recalculate all votes.
+     */
+    public function recalculateVotes()
+    {
+        $votes = $this->vote()->count();
+        if ($this->votes != $votes) {
+            $this->votes = $votes;
+            $this->save();
+        }
+    }
+
+    /**
      * Fetch only approved talks.
      *
      * @param $query

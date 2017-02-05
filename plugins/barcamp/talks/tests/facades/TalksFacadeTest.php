@@ -3,6 +3,7 @@
 use App;
 use Barcamp\Talks\Facades\TalksFacade;
 use Barcamp\Talks\Models\Category;
+use Barcamp\Talks\Models\Talk;
 use Barcamp\Talks\Models\Type;
 use PluginTestCase;
 
@@ -30,6 +31,40 @@ class TalksFacadeTest extends PluginTestCase
         $model = $this->getModel();
         $type = $model->getTalkCategory('business');
         $this->assertInstanceOf(Category::class, $type);
+    }
+
+    public function testGetTalks()
+    {
+        $facade = $this->getModel();
+
+        $talks = $facade->getTalks();
+        $this->assertEquals(3, $talks->count());
+
+        $onlyWithVotes = true;
+        $talks = $facade->getTalks($onlyWithVotes);
+        $this->assertEquals(0, $talks->count());
+    }
+
+    public function testRecalculateVotes()
+    {
+        $facade = $this->getModel();
+
+        // add vote and set votes column to zero
+        $talk = Talk::first();
+        $talk->addVote();
+        $talk->votes = 0;
+
+        // get talks with votes
+        $onlyWithVotes = true;
+        $talks = $facade->getTalks($onlyWithVotes);
+        $this->assertEquals(1, $talks->count());
+
+        // recalculate
+        $facade->recalculateVotes();
+
+        // check talk if it's recalculated
+        $talk = Talk::first();
+        $this->assertEquals(1, $talk->votes);
     }
 
     public function testParseSocialNetworksFull()

@@ -67,11 +67,8 @@ class TalksFacade
         // create talk
         $data['user_id'] = $data['user']->id;
         $data['name'] = $data['talkName'];
-        $talk = $this->talks->create($data);
 
-        // send email to admin
-
-        return $talk;
+        return $this->talks->create($data);
     }
 
     /**

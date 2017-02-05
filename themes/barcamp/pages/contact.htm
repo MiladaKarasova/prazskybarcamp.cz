@@ -4,6 +4,20 @@ layout = "default"
 is_hidden = 0
 
 [contactForm]
+
+[team]
+==
+<?php
+use Barcamp\Talks\Models\Settings;
+
+function onStart() {
+    $settings = App::make('Barcamp\Talks\Models\Settings');
+    $settings = $settings->first();
+    $this['program'] = $settings->program;
+    $this['press'] = $settings->press;
+    $this['logo'] = $settings->logo;
+}
+?>
 ==
 <section class="section-contact">
     <div class="wrapper">
@@ -23,3 +37,28 @@ is_hidden = 0
         {% component 'contactForm' %}
     </div>
 </section>
+<section class="section-who-is-behind">
+    <div class="wrapper">
+        <h2>Kdo stojí za Pražským Barcampem</h2>
+        {% component 'team' %}
+    </div>
+</section>
+{% if program or press or logo %}
+    <section class="section-downloads">
+        <div class="wrapper">
+            <h2>Materiály ke stažení</h2>
+            <div class="links">
+                {% if program %}
+                    <a href="{{ program.getPath() }}" title="Program (PDF)">Program (PDF)</a>
+                {% endif %}
+                {% if press %}
+                    <a href="{{ press.getPath() }}" title="Tisková zpráva (PDF)">Tisková zpráva (PDF)</a>
+                {% endif %}
+                {% if logo %}
+                    <a href="{{ logo.getPath() }}" title="Logo (ZIP)">Logo (ZIP)</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endif %}
+<!-- TODO::dostylovat download section -->

@@ -1190,6 +1190,94 @@ section.section-contact-form {
 
 }
 
+section.section-who-is-behind {
+  width: 100%;
+  padding: 70px 0;
+
+  .wrapper {
+    width: 95%;
+    max-width: $small-inner;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .contact {
+      width: 100%;
+      margin-top: 50px;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(space-around);
+      @include alignItems(flex-start);
+      @include flex-wrap(wrap);
+
+      .user {
+        width: 22%;
+        margin: 60px auto 0;
+        @include flexDisplay();
+        @include flexDirection(column);
+        @include alignItems(center);
+
+        a {
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          border-radius: 100%;
+          background-color: $lightGrey;
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 30px;
+          @include transition(300ms);
+
+          &:hover .overlay {
+            @include flexDisplay();
+          }
+
+          .overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: $halfGreen;
+            @include alignItems(center);
+            @include justifyContent(center);
+            @include transition(300ms);
+
+            img {
+              max-width: 50%;
+              height: 40%;
+            }
+          }
+
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+          }
+        }
+
+        p.name {
+          font-size: 14px;
+          font-weight: 700;
+          margin: 5px auto;
+        }
+
+        p.promo {
+          font-size: 14px;
+          font-weight: 300;
+          margin: 5px auto;
+        }
+      }
+    }
+
+  }
+
+}
+
 .talk {
   width: 100%;
   padding-bottom: 30px;

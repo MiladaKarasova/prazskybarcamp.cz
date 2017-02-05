@@ -110,6 +110,17 @@ class TalksFacade
     }
 
     /**
+     * Recalculate all talks votes.
+     */
+    public function recalculateVotes()
+    {
+        $talksWithVotes = $this->talks->has('vote')->get();
+        $talksWithVotes->each(function ($talk) {
+            $talk->recalculateVotes();
+        });
+    }
+
+    /**
      * Get if registration is approved.
      *
      * @return mixed

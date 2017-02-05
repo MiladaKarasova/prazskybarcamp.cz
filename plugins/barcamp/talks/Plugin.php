@@ -1,6 +1,7 @@
 <?php namespace Barcamp\Talks;
 
 use Backend;
+use Barcamp\Talks\Facades\TalksFacade;
 use System\Classes\PluginBase;
 
 /**
@@ -77,6 +78,11 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Register backend settings.
+     *
+     * @return array
+     */
     public function registerSettings()
     {
         return [
@@ -90,5 +96,20 @@ class Plugin extends PluginBase
                 'permissions' => ['barcamp.talks.*'],
             ],
         ];
+    }
+
+    /**
+     * Register scheduler. CRON tab has to be configured!
+     *
+     * @param $schedule
+     */
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+            /** @var TalksFacade $facade */
+            $facade = $this->app->make('Barcamp\Talks\Facades\TalksFacade');
+            $facade->recalculateVotes();
+
+        })->hourly()->name('Recalculate all votes.');
     }
 }

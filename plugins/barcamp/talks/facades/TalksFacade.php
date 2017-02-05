@@ -67,11 +67,8 @@ class TalksFacade
         // create talk
         $data['user_id'] = $data['user']->id;
         $data['name'] = $data['talkName'];
-        $talk = $this->talks->create($data);
 
-        // send email to admin
-
-        return $talk;
+        return $this->talks->create($data);
     }
 
     /**
@@ -90,14 +87,16 @@ class TalksFacade
         }
 
         // add each social network
-        $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        if (!empty($data['social'])) {
+            $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        }
 
         // create User
         $password = Str::random(24);
         $data['username'] = $data['email'];
         $data['password'] = $password;
         $data['password_confirmation'] = $password;
-        $data['self_promo'] = $data['selfpromo'];
+        $data['self_promo'] = !empty($data['selfpromo']) ? $data['selfpromo'] : '';
         $user = $this->users->create($data);
 
         // add photo to User
@@ -110,6 +109,19 @@ class TalksFacade
     }
 
     /**
+     * Recalculate all talks votes. After truncate votes table you should call this method with $onlyTalksWithVotes
+     * parameter set to false.
+     *
+     * @param bool $onlyTalksWithVotes Take talks only with some votes.
+     */
+    public function recalculateVotes($onlyTalksWithVotes = true)
+    {
+        $this->getTalks($onlyTalksWithVotes)->each(function ($talk) {
+            $talk->recalculateVotes();
+        });
+    }
+
+    /**
      * Get if registration is approved.
      *
      * @return mixed
@@ -117,6 +129,22 @@ class TalksFacade
     public function isRegistrationApproved()
     {
         return Settings::get('registration_approved', true);
+    }
+
+    /**
+     * Get talks.
+     *
+     * @param bool $onlyWithVotes Get only talks with some votes.
+     *
+     * @return mixed
+     */
+    public function getTalks($onlyWithVotes = false)
+    {
+        if ($onlyWithVotes) {
+            return $this->talks->has('vote')->get();
+        }
+
+        return $this->talks->all();
     }
 
     /**

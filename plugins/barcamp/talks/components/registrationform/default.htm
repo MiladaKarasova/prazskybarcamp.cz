@@ -13,10 +13,18 @@
     <div class="row">
         <div class="full">
             <div class="slider">
-                <input type="hidden" name="type" id="type" value="speaker" />
+                <input
+                    type="hidden"
+                    name="type"
+                    id="type"
+                    value="{% if (post.type == '') or (post.type == 'speaker') %}speaker{% else %}workshop{% endif %}" />
                 <span>Speaker</span>
                 <label class="switch">
-                    <input type="checkbox" id="registration-type" />
+                    <input
+                        type="checkbox"
+                        id="registration-type"
+                        {% if (post.type == 'workshop') %}checked="checked"{% endif %}
+                    />
                     <div class="round-slider"></div>
                 </label>
                 <span>Workshop</span>
@@ -37,13 +45,17 @@
                 required />
         </div>
         <div class="half" id="switch-name">
-            <label for="talkName">Název přednášky<sup>*</sup></label>
+            {% if (post.type == '') or (post.type == 'speaker') %}
+                <label for="talkName">Název přednášky<sup>*</sup></label>
+            {% else %}
+                <label for="talkName">Název workshopu<sup>*</sup></label>
+            {% endif %}
             <input
                 name="talkName"
                 type="text"
                 id="talkName"
                 value="{{ post.talkName }}"
-                placeholder="Název přednášky"
+                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}Název přednášky{% else %}Název workshopu{% endif %}"
                 class="required"
                 required />
         </div>
@@ -54,7 +66,7 @@
             <label for="annotation">Anotace<sup>*</sup></label>
             <textarea
                 name="annotation"
-                placeholder="O čem je vaše přednáška"
+                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je vaše přednáška{% else %}O čem je váš workshop{% endif %}"
                 id="annotation"
                 class="required"
                 required>{{ post.annotation }}</textarea>

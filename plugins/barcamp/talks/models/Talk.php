@@ -43,6 +43,13 @@ class Talk extends Model
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['voted'];
+
+    /**
      * Has many relationship.
      *
      * @var array
@@ -84,8 +91,7 @@ class Talk extends Model
     public function addVote()
     {
         // check if some votes exists
-        $votes = $this->vote()->fromTheSameMachine()->get();
-        if (count($votes)) {
+        if ($this->getVotedAttribute() !== false) {
             return false;
         }
 
@@ -145,6 +151,18 @@ class Talk extends Model
     public function scopeIsWaiting($query)
     {
         return $query->where('approved', false);
+    }
+
+    /**
+     * Get voted attribute - if current user voted or not.
+     *
+     * @return bool
+     */
+    public function getVotedAttribute()
+    {
+        $votes = $this->vote()->fromTheSameMachine()->first();
+
+        return $votes !== null;
     }
 
     /**

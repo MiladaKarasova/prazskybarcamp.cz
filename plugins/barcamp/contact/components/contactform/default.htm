@@ -1,0 +1,32 @@
+<div id="result">
+    {% flash %}
+    <p class="alert alert-success">{{ message }}</p>
+    {% endflash %}
+</div>
+
+<form
+    method="post"
+    data-request="{{ __SELF__ }}::onSubmit"
+    data-request-update="'{{ __SELF__ }}::success': '#result'"
+    data-request-success="$('#{{ __SELF__ }} input[type=text], #{{ __SELF__ }} textarea').val('');"
+    data-request-error="$('#{{ __SELF__ }} #error').text(jqXHR.responseJSON);"
+    id="{{__SELF__}}"{% if sent %} class="sent"{% endif %}>
+
+    <div id="error" class="error center">{% if error %}{{ error }}{% endif %}&nbsp;</div>
+
+    <table class="table">
+        <tr>
+            <td><input name="name" class="input" type="text" value="{{ post.name }}" placeholder="Jméno a příjmení*" /></td>
+        </tr>
+        <tr>
+            <td><input name="email" class="input" type="text" value="{{ post.email }}" placeholder="E-mail*" /></td>
+        </tr>
+        <tr>
+            <td><textarea name="message" placeholder="Zpráva*">{{ post.message }}</textarea></td>
+        </tr>
+        <tr>
+            <td>{{ form_token() }}</td>
+            <td><input type="submit" name="submit" value="Odeslat" class="btn btn-submit" /></td>
+        </tr>
+    </table>
+</form>

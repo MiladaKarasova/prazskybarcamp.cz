@@ -1,116 +1,155 @@
 {% flash %}
-<p class="alert alert-success">{{ message }}</p>
+    <p class="alert alert-success">{{ message }}</p>
 {% endflash %}
 
 {% if error %}
-<p class="alert alert-danger">{{ error | raw }}</p>
+    <p class="alert alert-danger">{{ error | raw }}</p>
 {% endif %}
 
-<form
-    method="post"
-    accept-charset="UTF-8"
-    enctype="multipart/form-data">
-
-    <div class="form-group">
-        <input
-            name="type"
-            id="type-speaker"
-            type="radio"
-            value="speaker"
-            {% if (post.type == '') or (post.type == 'speaker') %} checked="checked"{% endif %}
-            placeholder="Speaker" />
-        &nbsp;
-        <label for="type-speaker">Speaker {{ post.type }}</label>
-        <br />
-        <input
-            name="type"
-            id="type-workshop"
-            type="radio"
-            value="workshop"
-            {% if post.type == 'workshop' %} checked="checked"{% endif %}
-            placeholder="Workshop" />
-        &nbsp;
-        <label for="type-workshop">Workshop</label>
-    </div>
-
-    <div class="form-group">
-        <label for="registerName">Jméno a příjmení</label>
-        <input
-            name="registerName"
-            type="text"
-            class="form-control"
-            id="registerName"
-            value="{{ post.registerName }}"
-            placeholder="Jméno a příjmení" />
-    </div>
-
-    <div class="form-group">
-        <label for="talkName">Název přednášky</label>
-        <input
-            name="talkName"
-            type="text"
-            class="form-control"
-            id="talkName"
-            value="{{ post.talkName }}"
-            placeholder="Název přednášky" />
-    </div>
-
-    <div class="form-group">
-        <label for="annotation">Anotace</label>
-        <textarea name="annotation" class="form-control" placeholder="Anotace" id="annotation">{{ post.annotation }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="selfpromo">Selfpromo</label>
-        <textarea name="selfpromo" class="form-control" placeholder="Selfpromo" id="selfpromo">{{ post.selfpromo }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="social">Sociální sítě</label>
-        <textarea name="social" class="form-control" placeholder="Sociální sítě" id="social">{{ post.social }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="phone">Telefon</label>
-        <input
-            name="phone"
-            type="text"
-            class="form-control"
-            id="phone"
-            value="{{ post.phone }}"
-            placeholder="Telefon" />
-    </div>
-
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input
-            name="email"
-            type="text"
-            class="form-control"
-            id="email"
-            value="{{ post.email }}"
-            placeholder="E-mail" />
-    </div>
-
-    <div class="form-group">
-        <label for="note">Zpráva pro organizátory</label>
-        <textarea name="note" class="form-control" placeholder="Zpráva pro organizátory" id="note">{{ post.note }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="talkName">Nahrát fotku</label>
-        <input type="file" name="photo" id="photo" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label for="category">Do jaké kategorie spadá přednáška</label>
-        <select name="category" id="category" class="form-control">
-            {% for category in categories %}
-            <option value="{{ category.slug }}"{% if post.category == category.slug %} selected="selected"{% endif %}>{{ category.name }}</option>
-            {% endfor %}
-        </select>
-    </div>
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 
     {{ form_token() }}
-    <button type="submit" name="submit" value="Registrovat se" class="btn btn-default">Registrovat se</button>
+
+    <div class="row">
+        <div class="full">
+            <div class="slider">
+                <input type="hidden" name="type" id="type" value="speaker" />
+                <span>Speaker</span>
+                <label class="switch">
+                    <input type="checkbox" id="registration-type" />
+                    <div class="round-slider"></div>
+                </label>
+                <span>Workshop</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="half">
+            <label for="registerName">Jméno a příjmení<sup>*</sup></label>
+            <input
+                name="registerName"
+                type="text"
+                id="registerName"
+                value="{{ post.registerName }}"
+                placeholder="Jméno a příjmení"
+                class="required"
+                required />
+        </div>
+        <div class="half" id="switch-name">
+            <label for="talkName">Název přednášky<sup>*</sup></label>
+            <input
+                name="talkName"
+                type="text"
+                id="talkName"
+                value="{{ post.talkName }}"
+                placeholder="Název přednášky"
+                class="required"
+                required />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="half">
+            <label for="annotation">Anotace<sup>*</sup></label>
+            <textarea
+                name="annotation"
+                placeholder="O čem je vaše přednáška"
+                id="annotation"
+                class="required"
+                required>{{ post.annotation }}</textarea>
+        </div>
+        <div class="half">
+            <label for="selfpromo">Selfpromo - max 5 vět</label>
+            <textarea
+                name="selfpromo"
+                id="selfpromo">{{ post.selfpromo }}</textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="half">
+            <label for="social">Sociální sítě</label>
+            <textarea
+                name="social"
+                placeholder="www.facebook.com/jmeno www.instagram.com/jmeno www.linkedin.com/jmeno www.twitter/jmeno www.tennejlepsiweb.cz"
+                id="social"
+                class="higher">{{ post.social }}</textarea>
+        </div>
+        <div class="half">
+            <div>
+                <label for="phone">Telefon<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <input
+                    name="phone"
+                    type="text"
+                    id="phone"
+                    value="{{ post.phone }}"
+                    class="required"
+                    required />
+            </div>
+            <div>
+                <label for="email">E-mail<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <input
+                    name="email"
+                    type="text"
+                    id="email"
+                    value="{{ post.email }}"
+                    class="required"
+                    required />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="half">
+            <label for="note">Zpráva pro organizátory</label>
+            <p class="helper"><b>Preferovaný čas</b>, pro kolik lidí chcete přednášet, zajistit něco speciálního na přednášku...</p>
+            <textarea
+                name="note"
+                id="note">{{ post.note }}</textarea>
+        </div>
+        <div class="half">
+            <div>
+                <label for="photo">Nahrát fotku<sup>*</sup></label>
+                <input
+                    type="file"
+                    name="photo"
+                    id="photo"
+                    style="display: none"
+                    accept="image/*"
+                    required />
+                <div class="file">
+                    <button type="button" id="file-trigger">
+                        <img src="{{ 'assets/images/file-plus.svg' | theme }}" alt="plus" />
+                    </button>
+                    <span id="file-name">Název souboru</span>
+                </div>
+            </div>
+            <div>
+                <label>Do jaké kategorie spadá přednáška<sup>*</sup></label>
+                {% for category in categories %}
+                    <div class="radio">
+                        <input
+                            type="radio"
+                            name="category"
+                            value="{{ category.slug }}"
+                            id="category[{{ category.slug }}]"
+                            {% if post.category == category.slug %} selected="selected"{% endif %}
+                            required />
+                        <label for="category[{{ category.slug }}]">{{ category.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="full">
+            <p class="helper">*Povinné pole nutné k vyplnění.</p>
+            <div class="g-recaptcha" data-sitekey="6LeCahQUAAAAAAGNuuyIJIFGsVJUbPPqR76LmNr0"></div>
+        </div>
+    </div>
+
+    <button type="submit" name="submit" value="Registrovat se">ODESLAT</button>
+
 </form>

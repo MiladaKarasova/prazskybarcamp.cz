@@ -5,16 +5,21 @@ is_hidden = 0
 
 [contactForm]
 ==
-<section class="section-email">
+<section class="section-contact">
     <div class="wrapper">
-        <p class="text-center">
-            <br /><br />
+        <h1>Kontakt</h1>
+        <a href="mailto:info@prazskybarcamp.cz"
+           title="info@prazskybarcamp.cz"
+           target="_blank"
+           class="jumbo">info@prazskybarcamp.cz</a>
+        <div class="contact">
             {% content 'contact/content' %}
-        </p>
+        </div>
     </div>
 </section>
-<section class="section-email" style="padding-top: 0;">
+<section class="section-contact-form">
     <div class="wrapper">
+        <h2>Kontaktní formulář</h2>
         {% component 'contactForm' %}
     </div>
 </section>

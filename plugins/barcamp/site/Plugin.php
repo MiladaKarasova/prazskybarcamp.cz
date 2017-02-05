@@ -225,4 +225,12 @@ class Plugin extends PluginBase
             ]);
         });
     }
+
+    public function registerComponents()
+    {
+        return [
+            'Barcamp\Site\Components\Team' => 'team'
+        ];
+    }
+
 }

@@ -2,15 +2,34 @@
 #  Field Definitions
 # ===================================
 
-fields:
-    talks_count:
-        label: Maximální počet přednášek
-        comment: Používá se pro počítadlo "Zbývá už jen XX míst"
-    registration_approved:
-        label: Zobrazit registraci
-        comment: Povolí registraci nových speakerů
-        type: checkbox
-    program_ready:
-        label: Zobrazit program
-        comment: Zobrazí program a schová hlasování
-        type: checkbox
+tabs:
+    fields:
+        talks_count:
+            tab: Obecné
+            label: Maximální počet přednášek
+            comment: Používá se pro počítadlo "Zbývá už jen XX míst"
+        registration_approved:
+            tab: Obecné
+            label: Zobrazit registraci
+            comment: Povolí registraci nových speakerů
+            type: checkbox
+        program_ready:
+            tab: Obecné
+            label: Zobrazit program
+            comment: Zobrazí program a schová hlasování
+            type: checkbox
+        program:
+            tab: Přílohy
+            label: Program v PDF
+            type: fileupload
+            mode: file
+        press:
+            tab: Přílohy
+            label: Tisková zpráva
+            type: fileupload
+            mode: file
+        logo:
+            tab: Přílohy
+            label: Logo
+            type: fileupload
+            mode: file

@@ -36,11 +36,7 @@ class ContactForm extends ComponentBase
     public function onSubmit()
     {
         try {
-            // check token
-            if (Session::token() != Input::get('_token')) {
-                throw new ApplicationException('Platnost formuláře vypršela, obnovte prosím stránku a odešlete formulář znovu.');
-            }
-
+            $this->validateToken();
             $this->saveForm();
 
         } catch (ApplicationException $e) {

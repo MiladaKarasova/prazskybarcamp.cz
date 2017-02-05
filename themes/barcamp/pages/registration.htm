@@ -16,8 +16,8 @@ function onEnd() {
 {% if not user %}
     <section class="section-registration">
         <div class="wrapper">
-            <a href="/" title="Domů" class="back-btn">ZPĚT</a>
-            <h1>Registrační formulář <span id="switch-title">speaker</span></h1>
+            <a href="{{ 'home' | page }}" title="Domů" class="back-btn">ZPĚT</a>
+            <h1>Registrační formulář <span id="switch-title">{% if (post.type == '') or (post.type == 'speaker') %}speaker{% else %}workshop{% endif %}</span></h1>
             {% if enabled %}
                 {% component 'registrationForm' %}
             {% else %}

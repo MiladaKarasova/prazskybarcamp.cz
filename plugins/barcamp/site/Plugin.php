@@ -51,7 +51,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Extend RainLab.User model with new fields.
+     * Extend RainLab.User model with new fields (phone, social networks, self promo).
      */
     private function extendUserModel()
     {
@@ -138,7 +138,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Override backend menus.
+     * Override backend menus (add User sidemenu).
      */
     private function extendBackendMenus()
     {
@@ -168,7 +168,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Extends RainLab.Blog Post.
+     * Extends RainLab.Blog Post (add fields type, link and minutes).
      */
     private function extendBlogPost()
     {

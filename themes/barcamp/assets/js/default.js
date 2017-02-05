@@ -97,6 +97,6 @@ $(document).ready(function() {
             $("#annotation").attr("placeholder", "O čem je vaše přednáška");
             $("#type").val("speaker");
         }
-    })
+    });
 
 });

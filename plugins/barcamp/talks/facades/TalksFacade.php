@@ -107,12 +107,14 @@ class TalksFacade
     }
 
     /**
-     * Recalculate all talks votes.
+     * Recalculate all talks votes. After truncate votes table you should call this method with $onlyTalksWithVotes
+     * parameter set to false.
+     *
+     * @param bool $onlyTalksWithVotes Take talks only with some votes.
      */
-    public function recalculateVotes()
+    public function recalculateVotes($onlyTalksWithVotes = true)
     {
-        $talksWithVotes = $this->talks->has('vote')->get();
-        $talksWithVotes->each(function ($talk) {
+        $this->getTalks($onlyTalksWithVotes)->each(function ($talk) {
             $talk->recalculateVotes();
         });
     }
@@ -125,6 +127,22 @@ class TalksFacade
     public function isRegistrationApproved()
     {
         return Settings::get('registration_approved', true);
+    }
+
+    /**
+     * Get talks.
+     *
+     * @param bool $onlyWithVotes Get only talks with some votes.
+     *
+     * @return mixed
+     */
+    public function getTalks($onlyWithVotes = false)
+    {
+        if ($onlyWithVotes) {
+            return $this->talks->has('vote')->get();
+        }
+
+        return $this->talks->all();
     }
 
     /**

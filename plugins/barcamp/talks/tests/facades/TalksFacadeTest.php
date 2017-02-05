@@ -33,6 +33,18 @@ class TalksFacadeTest extends PluginTestCase
         $this->assertInstanceOf(Category::class, $type);
     }
 
+    public function testGetTalks()
+    {
+        $facade = $this->getModel();
+
+        $talks = $facade->getTalks();
+        $this->assertEquals(3, $talks->count());
+
+        $onlyWithVotes = true;
+        $talks = $facade->getTalks($onlyWithVotes);
+        $this->assertEquals(0, $talks->count());
+    }
+
     public function testRecalculateVotes()
     {
         $facade = $this->getModel();
@@ -41,6 +53,11 @@ class TalksFacadeTest extends PluginTestCase
         $talk = Talk::first();
         $talk->addVote();
         $talk->votes = 0;
+
+        // get talks with votes
+        $onlyWithVotes = true;
+        $talks = $facade->getTalks($onlyWithVotes);
+        $this->assertEquals(1, $talks->count());
 
         // recalculate
         $facade->recalculateVotes();

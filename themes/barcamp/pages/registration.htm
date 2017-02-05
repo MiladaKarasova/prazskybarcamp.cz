@@ -14,15 +14,15 @@ function onEnd() {
 ?>
 ==
 {% if not user %}
-<div class="container">
-    <div class="col-md-4 col-md-offset-4">
-        <h1>Registrace</h1>
-        {% if enabled %}
-            {% component 'registrationForm' %}
-
-        {% else %}
-            <p>Omlouváme se, ale počet míst je již vyčerpán.</p>
-        {% endif %}
-    </div>
-</div>
+    <section class="section-registration">
+        <div class="wrapper">
+            <a href="{{ 'home' | page }}" title="Domů" class="back-btn">ZPĚT</a>
+            <h1>Registrační formulář <span id="switch-title">{% if (post.type == '') or (post.type == 'speaker') %}speaker{% else %}workshop{% endif %}</span></h1>
+            {% if enabled %}
+                {% component 'registrationForm' %}
+            {% else %}
+                <p>Omlouváme se, ale počet míst je již vyčerpán.</p>
+            {% endif %}
+        </div>
+    </section>
 {% endif %}

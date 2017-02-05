@@ -11,6 +11,9 @@
          syntaxCheck="false"
 >
     <testsuites>
+        <testsuite name="Barcamp.Contact Tests">
+            <directory>./plugins/barcamp/contact</directory>
+        </testsuite>
         <testsuite name="Barcamp.Talks Tests">
             <directory>./plugins/barcamp/talks</directory>
         </testsuite>

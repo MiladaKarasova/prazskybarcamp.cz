@@ -1,5 +1,6 @@
 <?php namespace Barcamp\Contact\Mailers;
 
+use App;
 use Config;
 use Mail;
 use Barcamp\Contact\Models\Message;
@@ -13,6 +14,10 @@ class MessageMailer
      */
     public static function send(Message $message)
     {
+        if (App::environment('testing')) {
+            return;
+        }
+
         $recipient = new \stdClass();
         $recipient->email = Config::get('barcamp.contact::config.recipients.to.email');
         $recipient->name = Config::get('barcamp.contact::config.recipients.to.email');

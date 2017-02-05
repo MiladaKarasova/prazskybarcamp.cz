@@ -1,3 +1,16 @@
+==
+<?php
+use Barcamp\Talks\Models\Settings;
+
+function onStart() {
+    $settings = App::make('Barcamp\Talks\Models\Settings');
+    $settings = $settings->first();
+    $this['program'] = $settings->program;
+    $this['press'] = $settings->press;
+    $this['logo'] = $settings->logo;
+}
+?>
+==
 <footer>
     <div class="wrapper">
         <div class="links">
@@ -15,12 +28,20 @@
                 <a href="{{ 'contact' | page }}" title="Všechny kontakty">Všechny kontakty</a>
                 <a href="" title="O nás">O nás</a>
             </div>
+            {% if program or press or logo %}
             <div>
                 <strong>Ke stažení</strong>
-                <a href="#" title="Tisková zpráva (PDF)">Tisková zpráva (PDF)</a>
-                <a href="#" title="Logo (ZIP)">Logo (ZIP)</a>
-                <a href="{{ 'program' | page }}" title="Program (PDF)">Program (PDF)</a>
+                {% if press %}
+                <a href="{{ press.getPath() }}" title="Tisková zpráva (PDF)">Tisková zpráva (PDF)</a>
+                {% endif %}
+                {% if logo %}
+                <a href="{{ logo.getPath() }}" title="Logo (ZIP)">Logo (ZIP)</a>
+                {% endif %}
+                {% if program %}
+                <a href="{{ program.getPath() }}" title="Program (PDF)">Program (PDF)</a>
+                {% endif %}
             </div>
+            {% endif %}
         </div>
         <div class="bottom">
             <p>

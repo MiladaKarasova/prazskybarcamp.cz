@@ -13,6 +13,12 @@ class Settings extends Model
 
     public $settingsFields = 'fields.yaml';
 
+    public $attachOne = [
+        'program' => 'System\Models\File',
+        'press' => 'System\Models\File',
+        'logo' => 'System\Models\File',
+    ];
+
     public function initSettingsData()
     {
         $this->talks_count = 100;

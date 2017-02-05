@@ -6,6 +6,7 @@ use Barcamp\Talks\Models\Category;
 use Barcamp\Talks\Models\Talk;
 use Barcamp\Talks\Models\Type;
 use PluginTestCase;
+use RainLab\User\Models\User;
 
 class TalksFacadeTest extends PluginTestCase
 {
@@ -19,30 +20,40 @@ class TalksFacadeTest extends PluginTestCase
         return App::make(TalksFacade::class);
     }
 
-    public function testGetTalkType()
-    {
-        $model = $this->getModel();
-        $type = $model->getTalkType('speaker');
-        $this->assertInstanceOf(Type::class, $type);
-    }
-
-    public function testGetTalkCategory()
-    {
-        $model = $this->getModel();
-        $type = $model->getTalkCategory('business');
-        $this->assertInstanceOf(Category::class, $type);
-    }
-
-    public function testGetTalks()
+    public function testRegister()
     {
         $facade = $this->getModel();
 
-        $talks = $facade->getTalks();
-        $this->assertEquals(3, $talks->count());
+        // register talk and user
+        $data = [
+            'category' => 'business',
+            'type' => 'speaker',
+            'user' => User::first(),
+            'talkName' => 'Testing talk name',
+            'annotation' => 'Talk annotation',
+        ];
+        $facade->register($data);
 
-        $onlyWithVotes = true;
-        $talks = $facade->getTalks($onlyWithVotes);
-        $this->assertEquals(0, $talks->count());
+        // find talk
+        $talk = Talk::where('name', $data['talkName'])->first();
+        $this->assertEquals($data['talkName'], $talk->name);
+    }
+
+    public function testCreateUser()
+    {
+        $facade = $this->getModel();
+
+        // create User
+        $data = [
+            'email' => 'testing@domain.tld',
+            'name' => 'Testing User',
+        ];
+        $facade->createUser($data);
+
+        // find user
+        $user = User::findByEmail($data['email']);
+        $this->assertEquals($data['name'], $user->name);
+        $this->assertNotEmpty($user->password);
     }
 
     public function testRecalculateVotes()
@@ -65,6 +76,72 @@ class TalksFacadeTest extends PluginTestCase
         // check talk if it's recalculated
         $talk = Talk::first();
         $this->assertEquals(1, $talk->votes);
+    }
+
+    public function testIsRegistrationApproved()
+    {
+        $facade = $this->getModel();
+        $this->assertTrue($facade->isRegistrationApproved());
+    }
+
+    public function testGetTalks()
+    {
+        $facade = $this->getModel();
+
+        $talks = $facade->getTalks();
+        $this->assertEquals(3, $talks->count());
+
+        $onlyWithVotes = true;
+        $talks = $facade->getTalks($onlyWithVotes);
+        $this->assertEquals(0, $talks->count());
+    }
+
+    public function testGetApprovedTalks()
+    {
+        $facade = $this->getModel();
+
+        $talks = $facade->getApprovedTalks();
+        $this->assertEquals(2, $talks->count());
+    }
+
+    public function testGetApprovedTalksWithDate()
+    {
+        $facade = $this->getModel();
+
+        $talks = $facade->getApprovedTalksWithDate();
+        $this->assertEquals(0, $talks->count());
+    }
+
+    public function testGetTalksLeftCount()
+    {
+        $facade = $this->getModel();
+
+        $left = $facade->getTalksLeftCount();
+        $this->assertEquals(100, $left);
+    }
+
+    public function testGetTalkByHash()
+    {
+        $facade = $this->getModel();
+
+        $talk = Talk::first();
+        $talkByHash = $facade->getTalkByHash($talk->hash);
+
+        $this->assertEquals($talk->id, $talkByHash->id);
+    }
+
+    public function testGetTalkCategory()
+    {
+        $model = $this->getModel();
+        $type = $model->getTalkCategory('business');
+        $this->assertInstanceOf(Category::class, $type);
+    }
+
+    public function testGetTalkType()
+    {
+        $model = $this->getModel();
+        $type = $model->getTalkType('speaker');
+        $this->assertInstanceOf(Type::class, $type);
     }
 
     public function testParseSocialNetworksFull()

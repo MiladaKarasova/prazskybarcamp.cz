@@ -18,14 +18,8 @@ class MessageMailer
             return;
         }
 
-        $recipient = new \stdClass();
-        $recipient->email = Config::get('barcamp.contact::config.recipients.to.email');
-        $recipient->name = Config::get('barcamp.contact::config.recipients.to.email');
-        $recipient->bcc_email = Config::get('barcamp.contact::config.recipients.bcc.email');
-        $recipient->bcc_name = Config::get('barcamp.contact::config.recipients.bcc.name');
-
+        $recipient = self::getRecipient();
         $template = 'barcamp.contact::mail.contact';
-
         $templateParameters = [
             'stranky' => Config::get('app.url'),
             'zprava' => $message,
@@ -38,5 +32,21 @@ class MessageMailer
                 $message->bcc($recipient->bcc_email, $recipient->bcc_name);
             }
         });
+    }
+
+    /**
+     * Get recipient class.
+     *
+     * @return \stdClass
+     */
+    public static function getRecipient()
+    {
+        $recipient = new \stdClass();
+        $recipient->email = Config::get('barcamp.contact::config.recipients.to.email');
+        $recipient->name = Config::get('barcamp.contact::config.recipients.to.email');
+        $recipient->bcc_email = Config::get('barcamp.contact::config.recipients.bcc.email');
+        $recipient->bcc_name = Config::get('barcamp.contact::config.recipients.bcc.name');
+
+        return $recipient;
     }
 }

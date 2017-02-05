@@ -87,14 +87,16 @@ class TalksFacade
         }
 
         // add each social network
-        $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        if (!empty($data['social'])) {
+            $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        }
 
         // create User
         $password = Str::random(24);
         $data['username'] = $data['email'];
         $data['password'] = $password;
         $data['password_confirmation'] = $password;
-        $data['self_promo'] = $data['selfpromo'];
+        $data['self_promo'] = !empty($data['selfpromo']) ? $data['selfpromo'] : '';
         $user = $this->users->create($data);
 
         // add photo to User

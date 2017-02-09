@@ -1278,6 +1278,42 @@ section.section-who-is-behind {
 
 }
 
+section.section-downloads {
+  width: 100%;
+  padding: 50px 0 70px;
+  margin: 0;
+  background-color: $greyBg;
+
+  .wrapper {
+    width: 95%;
+    max-width: $small-inner;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .links {
+      width: 100%;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      a {
+        @include outline-btn();
+
+        &:hover {
+          @include box-shadow(0,10px,32px,0,rgba(0,0,0,0.10));
+        }
+      }
+    }
+
+  }
+
+}
+
 .talk {
   width: 100%;
   padding-bottom: 30px;

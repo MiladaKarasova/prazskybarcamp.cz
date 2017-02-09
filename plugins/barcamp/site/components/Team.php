@@ -33,5 +33,4 @@ class Team extends ComponentBase
         $team = UserGroup::where('code', 'team')->first();
         return $team->users;
     }
-
 }

@@ -2,6 +2,7 @@
 
 use File;
 use RainLab\User\Models\User;
+use RainLab\User\Models\UserGroup;
 use Barcamp\Site\Updates\Classes\Seeder;
 use System\Models\File as DiskFile;
 use Yaml;
@@ -17,12 +18,16 @@ class SeedUsersTable extends Seeder
         $defaultSeed = __DIR__ . $this->seedDirPath . $this->seedFileName;
         $seedFile = $this->getSeedFile($defaultSeed);
         $items = Yaml::parse(File::get($seedFile));
+        $group = $this->createGroup();
 
         foreach ($items as $item)
         {
             // create user
             $item['password_confirmation'] = $item['password'];
             $item['is_activated'] = true;
+            $team = (isset($item['team']) && $item['team']) ? true : false;
+            unset($item['team']);
+
             $user = new User();
             $user->fill($item);
 
@@ -34,6 +39,11 @@ class SeedUsersTable extends Seeder
 
             // save user
             $user->save();
+
+            if($team) {
+                $user->addGroup($group);
+            }
+
         }
     }
 
@@ -49,5 +59,16 @@ class SeedUsersTable extends Seeder
         $file->fromFile(__DIR__ . '/sources/profile.jpg');
 
         return $file;
+    }
+
+    private function createGroup()
+    {
+        $userGroup = new UserGroup();
+        $userGroup->name = "Team";
+        $userGroup->code = "team";
+        $userGroup->description = "Barcamp Team Members";
+        $userGroup->save();
+
+        return $userGroup;
     }
 }

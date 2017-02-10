@@ -75,7 +75,7 @@ $(document).ready(function() {
 
         var image = document.getElementById("photo");
         var file = image.files;
-    
+
         if(file.length > 0) {
             $("#file-name").text(file[0].name);
         }
@@ -99,34 +99,32 @@ $(document).ready(function() {
         }
     });
 
-    if(videos !== undefined && videos !== null) {
+    function changeText(name)
+    {
+        $("#changer").fadeOut(500, function() {
+            $("#changer").text(name);
+            $("#changer").fadeIn(500);
+        });
+    }
+
+    if(document.getElementById("bgvid")) {
 
         var actual = 0;
+        var videos = ["Architekt","Gamer","Kreslíř","Speaker","V tom co tě baví"];
+
+        $("#bgvid")[0].play();
 
         setInterval(function() {
 
-            if(videos.length - 1 > actual) {
+            if((videos.length - 1) > actual) {
                 actual++;
             } else {
                 actual = 0;
             }
 
-            changeVideoAndText(videos[actual]);
+            changeText(videos[actual]);
 
-        }, 2000);
+        }, 1980);
 
     }
-
-    function changeVideoAndText(video)
-    {
-        $("#changer").fadeOut(500, function() {
-            $("#changer").text(video.name);
-            $("#changer").fadeIn(500);
-
-            $("#bgvid-mp4").attr("src", video.mp4);
-            $("#bgvid-webm").attr("src", video.webm);
-            $("#bgvid")[0].load();
-        });
-    }
-
 });

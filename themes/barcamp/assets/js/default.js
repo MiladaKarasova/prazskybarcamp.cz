@@ -143,7 +143,7 @@ $(document).ready(function() {
 
         $(".mobile-nav").animate({
             "opacity" : 0,
-            "z-index" : 0
+            "z-index" : -999
         }, 100);
 
     });

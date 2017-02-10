@@ -62,3 +62,11 @@
   -ms-flex: $num;
   flex: $num;
 }
+
+@mixin order($num) {
+  -webkit-box-ordinal-group: $num;
+  -moz-box-ordinal-group: $num;
+  -ms-flex-order: $num;
+  -webkit-order: $num;
+  order: $num;
+}

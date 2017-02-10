@@ -31,6 +31,9 @@ nav {
     .links a {
       color: $white !important;
     }
+    #menu-trigger {
+      color: $white !important;
+    }
   }
 
   .wrapper {
@@ -45,6 +48,12 @@ nav {
 
     .logo {
       @include flex(2, 20%);
+
+      @media screen and (max-width: $break) {
+        img {
+          max-width: 140px;
+        }
+      }
     }
 
     .links {
@@ -53,6 +62,10 @@ nav {
       @include flexDirection(row);
       @include justifyContent(flex-end);
       @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
 
       a {
         color: $black;
@@ -77,6 +90,10 @@ nav {
     .button {
       @include flex(2, 20%);
 
+      @media screen and (max-width: $break) {
+        display: none;
+      }
+
       a {
         font-size: 14px;
         font-weight: 500;
@@ -93,7 +110,87 @@ nav {
         }
       }
     }
+
+    #menu-trigger {
+      display: none;
+      @include flex(4, 40%);
+      @include flexDirection(row);
+      @include justifyContent(flex-end);
+      @include alignItems(center);
+      color: $black;
+      text-decoration: none;
+      margin-right: 10px;
+
+      span {
+        margin-right: 10px;
+      }
+
+      @media screen and (max-width: $break) {
+        @include flexDisplay();
+      }
+    }
   }
+}
+
+section.mobile-nav {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  z-index: 0;
+  @include flexDisplay();
+  @include flexDirection(column);
+  @include alignItems(center);
+  @include justifyContent(center);
+
+  a {
+    color: $black;
+    text-decoration: none;
+    margin: 10px auto;
+    padding: 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    text-transform: uppercase;
+
+    &.active {
+      border-color: $green;
+      font-weight: 700;
+    }
+
+    &:hover {
+      border-color: $green;
+    }
+  }
+
+  a.btn {
+    @include full-btn();
+    padding: 10px 50px;
+    line-height: 14px;
+    margin-top: 30px;
+  }
+
+  a.close-nav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+  }
+
+
 }
 
 section.section-intro {
@@ -102,6 +199,7 @@ section.section-intro {
   height: 100vh;
   max-height: 700px;
   position: relative;
+  overflow: hidden;
 
   #bgvid {
     position: absolute;
@@ -110,6 +208,10 @@ section.section-intro {
     right: 0;
     min-width: 100%;
     height: 100%;
+
+    @media screen and (max-width: $break) {
+      left: -200px;
+    }
   }
 
   .wrapper {
@@ -132,9 +234,17 @@ section.section-intro {
       max-width: 300px;
       line-height: 2.5;
 
+      @media screen and (max-width: $break) {
+        max-width: 200px;
+      }
+
       &:first-child {
         letter-spacing: 2px;
         font-weight: 400;
+
+        @media screen and (max-width: $break) {
+          max-width: 120px;
+        }
       }
     }
 
@@ -143,6 +253,10 @@ section.section-intro {
       @include flexDirection(row);
       @include justifyContent(center);
       @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
 
       h1 {
         font-size: 42px;
@@ -155,6 +269,10 @@ section.section-intro {
           border-bottom: none;
           font-family: 'Kalam', cursive;
           margin-top: 10px;
+        }
+
+        @media screen and (max-width: $break) {
+          font-size: 35px;
         }
       }
 
@@ -183,6 +301,10 @@ section.section-where {
   width: 100%;
   padding: 80px 0;
 
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
   .wrapper {
     width: 95%;
     max-width: $small-inner;
@@ -192,6 +314,10 @@ section.section-where {
     @include justifyContent(space-around);
     @include alignItems(center);
 
+    @media screen and (max-width: $break) {
+      @include alignItems(flex-start);
+    }
+
     div, a {
       @include flexDisplay();
       @include flexDirection(row);
@@ -199,10 +325,20 @@ section.section-where {
       @include alignItems(center);
       color: $black;
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        width: 25%;
+      }
+
       span {
         font-size: 15px;
         font-weight: 400;
         margin-left: 20px;
+
+        @media screen and (max-width: $break) {
+          margin-left: 0;
+          margin-top: 10px;
+        }
       }
     }
 
@@ -222,10 +358,14 @@ section.section-about {
   h2 {
     margin-bottom: 70px;
     @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 40px;
+    }
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
     @include flexDisplay();
@@ -233,10 +373,19 @@ section.section-about {
     @include justifyContent(space-around);
     @include alignItems(flex-start);
 
+    @media screen and (max-width: $break) {
+      @include flexDirection(column);
+    }
+
     div {
       @include flex(1, 50%);
       padding: 0 30px;
       text-align: justify;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        padding: 0;
+      }
 
       h3 {
         font-size: 16px;
@@ -250,6 +399,11 @@ section.section-about {
         margin-bottom: 30px;
         line-height: 2;
         padding-right: 50px;
+
+        @media screen and (max-width: $break) {
+          padding-right: 0;
+        }
+
       }
 
       ol {
@@ -278,7 +432,7 @@ section.section-program {
   background-color: $green;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     margin: auto;
     max-width: $small-inner;
 
@@ -313,7 +467,7 @@ section.section-email {
   padding: 50px 0 70px;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
 
@@ -322,6 +476,10 @@ section.section-email {
       font-weight: 700;
       max-width: 650px;
       margin: 20px auto 50px;
+
+      @media screen and (max-width: $break) {
+        font-size: 22px;
+      }
     }
 
     .form {
@@ -335,6 +493,11 @@ section.section-email {
       @include flexDirection(row);
       @include alignItems(center);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        border: none;
+      }
+
       input {
         @include flex(3, 75%);
         padding: 10px 20px;
@@ -342,6 +505,29 @@ section.section-email {
         border-radius: 100px;
         background: transparent;
         border: none;
+
+        @media screen and (max-width: $break) {
+          border: 1px solid $grey;
+          margin-bottom: 20px;
+          @include flex(1, 85%);
+          text-align: center;
+
+          &::-webkit-input-placeholder {
+            text-align: center;
+          }
+          &::-moz-placeholder {
+            text-align: center;
+          }
+          &:-ms-input-placeholder {
+            text-align: center;
+          }
+          &:-moz-placeholder {
+            text-align: center;
+          }
+
+
+        }
+
       }
 
       button {
@@ -359,6 +545,10 @@ section.section-email {
         @include justifyContent(center);
         @include alignItems(center);
 
+        @media screen and (max-width: $break) {
+          @include flex(1, 100%);
+        }
+
         img {
           margin-left: 10px;
         }
@@ -374,13 +564,17 @@ section.section-faq {
   width: 100%;
   padding: 70px 0;
 
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
   h2 {
     @include default-headline();
   }
 
   .wrapper {
     margin: 50px auto 0;
-    width: 95%;
+    width: 85%;
     max-width: 800px;
     @include flexDisplay();
     @include flexDirection(row);
@@ -388,9 +582,18 @@ section.section-faq {
     @include alignItems(flex-start);
     @include flex-wrap(wrap);
 
+    @media screen and (max-width: $break) {
+      margin-top: 20px;
+    }
+
     .item {
       width: 40%;
       text-align: left;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin-bottom: 15px;
+      }
 
       span {
         color: $green;
@@ -440,6 +643,10 @@ section.section-registrate {
       font-weight: 700;
       margin: auto auto 50px auto;
 
+      @media screen and (max-width: $break) {
+        font-size: 26px;
+      }
+
       span {
         border-bottom: 3px solid $black;
       }
@@ -469,17 +676,30 @@ section.section-partners {
   background-color: $greyBg;
   padding: 50px 0 70px;
 
+  @media screen and (max-width: $break) {
+    padding: 20px 0;
+  }
+
   h2 {
     margin-bottom: 70px;
     @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 15px;
+    }
   }
 
   h3 {
     @include kalam-headline(true);
+
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 15px auto;
+    }
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
     @include flexDisplay();
@@ -506,6 +726,12 @@ section.section-partners {
       @include justifyContent(flex-start);
       @include alignItems(center);
       margin-top: 30px;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin-top: 10px;
+      }
+
     }
 
     .full, .half {
@@ -526,6 +752,12 @@ section.section-partners {
         @include flexDisplay();
         @include justifyContent(center);
         @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          width: 70px;
+          height: 70px;
+          margin-right: 20px;
+        }
 
         +.plus {
           background-color: $green;
@@ -557,12 +789,20 @@ section.section-posts {
     background-color: transparent;
     padding-top: 100px;
 
+    @media screen and (max-width: $break) {
+      margin-top: 20px;
+    }
+
     h1 {
       @include default-headline();
     }
 
     h2 {
       @include kalam-headline(true);
+
+      @media screen and (max-width: $break) {
+        margin-left: auto;
+      }
     }
 
   }
@@ -570,10 +810,19 @@ section.section-posts {
   h2 {
     @include default-headline();
     margin-bottom: 70px;
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 20px;
+    }
   }
 
   a.btn {
     @include outline-btn();
+
+    @media screen and (max-width: $break) {
+      font-size: 14px;
+    }
+
   }
 
   .wrapper {
@@ -594,12 +843,22 @@ section.section-posts {
       @include alignItems(flex-start);
       @include justifyContent(center);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        width: 100%;
+      }
+
       a.figure {
         width: 150px;
         height: 150px;
         background-size: 100%;
         background: no-repeat center;
         position: relative;
+
+        @media screen and (max-width: $break) {
+          width: 100%;
+          background-size: cover;
+        }
 
         img {
           position: absolute;
@@ -612,6 +871,11 @@ section.section-posts {
         flex: 2;
         text-align: left;
         margin-left: 20px;
+
+        @media screen and (max-width: $break) {
+          margin-left: auto;
+          margin-top: 10px;
+        }
 
         a {
           text-decoration: none;
@@ -686,14 +950,19 @@ section.section-speakers {
 
   h3 {
     @include kalam-headline(true);
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 0 0 20px 0;
+    }
   }
 
   a.btn {
     @include outline-btn();
+    margin-top: 10px;
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
 
@@ -704,6 +973,10 @@ section.section-speakers {
       @include flexDirection(row);
       @include justifyContent(center);
       @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
 
       span.category {
         font-size: 14px;
@@ -728,11 +1001,17 @@ section.section-speakers {
 
     .talks {
       width: 100%;
+      height: 270px;
       @include flexDisplay();
       @include flexDirection(row);
       @include flex-wrap(wrap);
       @include justifyContent(space-around);
       @include alignItems(flex-start);
+
+      @media screen and (max-width: $break) {
+        @include justifyContent(flex-start);
+        height: 700px;
+      }
 
       .talk {
         width: 30%;
@@ -742,6 +1021,10 @@ section.section-speakers {
         @include flexDirection(row);
         @include justifyContent(flex-start);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+        }
 
         .avatar {
           display: block;
@@ -803,7 +1086,7 @@ section.section-registration {
 
   .wrapper {
     max-width: $small-inner;
-    width: 95%;
+    width: 85%;
     margin: auto;
     position: relative;
 
@@ -814,6 +1097,11 @@ section.section-registration {
       top: 0;
       padding-top: 10px;
       padding-bottom: 10px;
+
+      @media screen and (max-width: $break) {
+        position: relative;
+      }
+
     }
 
     h1 {
@@ -821,6 +1109,11 @@ section.section-registration {
       font-weight: 700;
       color: $black;
       padding-top: 70px;
+
+      @media screen and (max-width: $break) {
+        padding-top: 20px;
+        margin-bottom: 30px;
+      }
     }
 
     .row {
@@ -832,9 +1125,18 @@ section.section-registration {
       @include alignItems(flex-start);
       @include justifyContent(space-around);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        margin: auto;
+      }
+
       .full {
         width: 95%;
         text-align: center;
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 25px;
+        }
 
         p.helper {
           text-align: center;
@@ -909,6 +1211,11 @@ section.section-registration {
         @include flexDirection(column);
         @include justifyContent(center);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+          margin-bottom: 25px;
+        }
 
         div {
           width: 100%;
@@ -1055,7 +1362,7 @@ section.section-contact {
 
   .wrapper {
     max-width: $small-inner;
-    width: 90%;
+    width: 85%;
     margin: auto;
     text-align: left;
     position: relative;
@@ -1073,6 +1380,13 @@ section.section-contact {
       font-weight: 700;
       color: $lightGrey;
       text-decoration: none;
+
+      @media screen and (max-width: $break) {
+        position: relative;
+        font-size: 20px;
+        color: $black;
+        margin-bottom: 50px;
+      }
     }
 
     .contact {
@@ -1083,8 +1397,17 @@ section.section-contact {
       @include justifyContent(center);
       @include alignItems(flex-start);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        margin: 20px auto;
+      }
+
       div {
         @include flex(1, 25%);
+
+        @media screen and (max-width: $break) {
+          @include flex(1, 100%);
+        }
 
         h2 {
           font-size: 14px;
@@ -1132,8 +1455,12 @@ section.section-contact-form {
   margin: 0;
   background-color: $greyBg;
 
+  @media screen and (max-width: $break) {
+    padding: 20px 0;
+  }
+
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: 550px;
     margin: auto;
 
@@ -1159,6 +1486,10 @@ section.section-contact-form {
         border: none;
         box-shadow: inset 0 0 3px 0 $lightBlack;
 
+        @media screen and (max-width: $break) {
+          width: 85%;
+        }
+
         &.required {
           box-shadow: inset 0 0 3px 0 $blue;
         }
@@ -1175,6 +1506,10 @@ section.section-contact-form {
         border: none;
         box-shadow: inset 0 0 3px 0 $lightBlack;
         font-weight: 300;
+
+        @media screen and (max-width: $break) {
+          width: 85%;
+        }
 
         &.higher {
           height: 150px;
@@ -1205,7 +1540,7 @@ section.section-who-is-behind {
   padding: 70px 0;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
 
@@ -1229,6 +1564,10 @@ section.section-who-is-behind {
         @include flexDisplay();
         @include flexDirection(column);
         @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          width: 44%;
+        }
 
         a {
           display: inline-block;
@@ -1332,7 +1671,7 @@ section.section-blog-post {
   .cover {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 300px;
     position: relative;
     background-position: center;
     background-size: cover;
@@ -1367,7 +1706,7 @@ section.section-blog-post {
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: 600px;
     margin: 50px auto;
     text-align: left;
@@ -1434,14 +1773,28 @@ section.blog-links {
     @include alignItems(flex-start);
     @include justifyContent(center);
 
+    @media screen and (max-width: $break) {
+      @include flexDirection(column);
+    }
+
     .one {
       @include flex(1, 25%);
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+      }
 
       .avatar {
         width: 150px;
         height: 150px;
         background-color: $lightGrey;
         border-radius: 100%;
+
+        @media screen and (max-width: $break) {
+          width: 100px;
+          height: 100px;
+          margin: auto;
+        }
 
         img {
           width: 100%;
@@ -1455,6 +1808,11 @@ section.blog-links {
       @include flex(1, 50%);
       text-align: left;
       padding-right: 30px;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        padding-right: 0;
+      }
 
       h2 {
         font-size: 14px;
@@ -1477,6 +1835,10 @@ section.blog-links {
         @include justifyContent(flex-start);
         @include alignItems(center);
 
+        @media screen and (max-width: $break) {
+          @include justifyContent(center);
+        }
+
         a {
           text-decoration: underline;
           color: transparent;
@@ -1492,6 +1854,10 @@ section.blog-links {
       &.vote {
         text-align: right;
 
+        @media screen and (max-width: $break) {
+          display: none;
+        }
+
         a.btn {
           @include full-btn();
         }
@@ -1505,11 +1871,24 @@ section.blog-links {
       margin-left: 30px;
       text-align: left;
 
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        margin-left: auto;
+        @include flexDisplay();
+        @include flexDirection(column);
+      }
+
       p.name {
         margin: 0;
         font-size: 14px;
         font-weight: 700;
         color: $black;
+
+        @media screen and (max-width: $break) {
+          text-align: center;
+          margin-top: 10px;
+          @include order(1);
+        }
       }
 
       h1 {
@@ -1518,6 +1897,11 @@ section.blog-links {
         font-weight: 700;
         color: $black;
         margin-bottom: 30px;
+
+        @media screen and (max-width: $break) {
+          @include order(4);
+          font-size: 22px;
+        }
       }
 
       p.left {
@@ -1526,6 +1910,13 @@ section.blog-links {
         display: inline-block;
         width: 45%;
         text-align: left;
+
+        @media screen and (max-width: $break) {
+          @include order(2);
+          width: 90%;
+          margin: 10px auto;
+          text-align: center;
+        }
       }
 
       p.right {
@@ -1535,10 +1926,36 @@ section.blog-links {
         color: $black;
         font-size: 14px;
         font-weight: 400;
+
+        @media screen and (max-width: $break) {
+          @include order(3);
+          width: 90%;
+          margin: auto;
+          text-align: center;
+        }
       }
 
     }
 
+  }
+
+  .vote-mobil {
+    display: none;
+
+    @media screen and (max-width: $break) {
+      display: block;
+      width: 100%;
+      margin: 30px auto;
+
+      a {
+        @include full-btn();
+        display: inline-block;
+        max-width: 180px;
+        width: 80%;
+        @include box-shadow(8px,8px,14px,0, rgba(0,0,0,.1));
+      }
+
+    }
   }
 
 }
@@ -1548,7 +1965,7 @@ footer {
   background-color: $almostBlack;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $max-width;
     margin: auto;
 
@@ -1562,10 +1979,19 @@ footer {
       @include justifyContent(space-between);
       @include alignItems(flex-start);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        padding: 30px 0;
+      }
+
       div {
         @include flexDisplay();
         @include flexDirection(column);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 30px;
+        }
 
         strong {
           font-size: 14px;
@@ -1598,8 +2024,16 @@ footer {
       @include alignItems(center);
       padding-bottom: 20px;
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
+
       p {
         margin-right: 60px;
+
+        @media screen and (max-width: $break) {
+          margin-right: auto;
+        }
 
         span, a {
           color: $halfWhite;

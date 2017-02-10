@@ -18,12 +18,14 @@ $(document).ready(function() {
             controll = true;
             $("#nav").removeClass("white-nav");
             $("#logo-img").attr("src", logo("barcamp_black.svg", $("#logo-img").attr("src")));
+            $("#burger-img").attr("src", logo("burger.svg", $("#burger-img").attr("src")));
 
         } else if (document.body.scrollTop < 1 && controll) {
 
             controll = false;
             $("#nav").addClass("white-nav");
             $("#logo-img").attr("src", logo("barcamp_white.svg", $("#logo-img").attr("src")));
+            $("#burger-img").attr("src", logo("burger-w.svg", $("#burger-img").attr("src")));
 
         }
 
@@ -124,8 +126,26 @@ $(document).ready(function() {
 
             changeText(videos[actual]);
 
-        }, 1980);
+        }, 2000);
 
     }
+
+    $("#menu-trigger").on("click", function() {
+
+        $(".mobile-nav").animate({
+            "opacity" : 1,
+            "z-index" : 999
+        }, 100);
+
+    });
+
+    $(".close-nav").on("click", function () {
+
+        $(".mobile-nav").animate({
+            "opacity" : 0,
+            "z-index" : 0
+        }, 100);
+
+    });
 
 });

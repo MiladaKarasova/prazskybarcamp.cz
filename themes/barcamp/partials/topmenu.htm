@@ -18,5 +18,24 @@
         <div class="button">
             <a href="{{ 'registration' | page }}" title="Registrace">REGISTRACE</a>
         </div>
+        <a href="javascript:void(0);" id="menu-trigger">
+            <span>menu</span>
+            {% if this.page.id == 'home' or this.page.id == 'blog-detail' %}
+                <img src="{{ 'assets/images/burger-w.svg' | theme }}" id="burger-img" />
+            {% else %}
+                <img src="{{ 'assets/images/burger.svg' | theme }}" id="burger-img" />
+            {% endif %}
+        </a>
     </div>
 </nav>
+
+<section class="mobile-nav">
+    <a href="javascript:void(0)" class="close-nav">
+        <img src="{{ 'assets/images/close.svg' | theme }}" />
+    </a>
+    <a href="{{ 'home' | page }}" title="Home" class="{% if this.page.id == 'home' %}active{% endif %}">Home</a>
+    <a href="{{ 'program' | page }}" title="Program" class="{% if this.page.id == 'program' %}active{% endif %}">Program</a>
+    <a href="{{ 'blog-list' | page }}" title="Blog" class="{% if this.page.id == 'blog-list' %}active{% endif %}">Blog</a>
+    <a href="{{ 'contact' | page }}" title="Kontakt" class="{% if this.page.id == 'contact' %}active{% endif %}">Kontakt</a>
+    <a href="{{ 'registration' | page }}" title="Registrace" class="btn">REGISTRACE</a>
+</section>

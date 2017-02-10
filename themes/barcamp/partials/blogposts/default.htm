@@ -8,7 +8,7 @@
             href="{{ link }}"
             title="{{ post.title }}"
             class="figure"
-            {% if post.featured_images.first() %}style="background-image: url({{ post.featured_images.first().getThumb(150, 150, 'crop') }})"{% endif %}
+            {% if post.featured_images.first() %}style="background-image: url({{ post.featured_images.first().getThumb(200, 200, 'crop') }})"{% endif %}
             {% if outcome %}target="_blank"{% endif %}>
             <img src="{{ 'assets/images/blog-icon.svg' | theme }}" alt="icon-name" />
         </a>

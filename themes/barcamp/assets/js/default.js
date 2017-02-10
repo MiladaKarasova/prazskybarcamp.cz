@@ -43,8 +43,6 @@ $(document).ready(function() {
 
     $(".show-faq").on("click", function() {
 
-        console.log('ok');
-
         var ps = $(this).next("p");
         var span = $(this).prev("span");
 

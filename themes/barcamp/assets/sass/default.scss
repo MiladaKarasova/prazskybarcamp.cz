@@ -803,7 +803,7 @@ section.section-registration {
 
   .wrapper {
     max-width: $small-inner;
-    width: 95%;
+    width: 85%;
     margin: auto;
     position: relative;
 
@@ -814,6 +814,11 @@ section.section-registration {
       top: 0;
       padding-top: 10px;
       padding-bottom: 10px;
+
+      @media screen and (max-width: $break) {
+        position: relative;
+      }
+
     }
 
     h1 {
@@ -821,6 +826,11 @@ section.section-registration {
       font-weight: 700;
       color: $black;
       padding-top: 70px;
+
+      @media screen and (max-width: $break) {
+        padding-top: 20px;
+        margin-bottom: 30px;
+      }
     }
 
     .row {
@@ -832,9 +842,18 @@ section.section-registration {
       @include alignItems(flex-start);
       @include justifyContent(space-around);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        margin: auto;
+      }
+
       .full {
         width: 95%;
         text-align: center;
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 25px;
+        }
 
         p.helper {
           text-align: center;
@@ -909,6 +928,11 @@ section.section-registration {
         @include flexDirection(column);
         @include justifyContent(center);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+          margin-bottom: 25px;
+        }
 
         div {
           width: 100%;
@@ -1548,7 +1572,7 @@ footer {
   background-color: $almostBlack;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $max-width;
     margin: auto;
 
@@ -1562,10 +1586,19 @@ footer {
       @include justifyContent(space-between);
       @include alignItems(flex-start);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        padding: 30px 0;
+      }
+
       div {
         @include flexDisplay();
         @include flexDirection(column);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 30px;
+        }
 
         strong {
           font-size: 14px;
@@ -1598,8 +1631,16 @@ footer {
       @include alignItems(center);
       padding-bottom: 20px;
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
+
       p {
         margin-right: 60px;
+
+        @media screen and (max-width: $break) {
+          margin-right: auto;
+        }
 
         span, a {
           color: $halfWhite;

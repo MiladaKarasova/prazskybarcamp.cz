@@ -24,17 +24,28 @@ function onEnd() {
 }
 ?>
 ==
-<section class="section-intro">
-    <div class="container">
-        {% set post = blogPost.post %}
 
-        {% if post %}
-            <h1>{{ post.title }}</h1>
-            {% component 'blogPost' %}
+{% set post = blogPost.post %}
 
-        {% else %}
-            <h1>Článek nebyl nalezen :-(</h1>
-            <p>Omlouváme se, ale takový článek jsme nenašli. pokračujte prosím na <a href="{{ 'blog-list' | page }}">seznam všech článků</a>.</p>
-        {% endif %}
-    </div>
+
+<section class="section-blog-post">
+    {% if post %}
+        <div class="cover" {% if post.featured_images.first() %}style="background-image: url({{ post.featured_images.first().path }})"{% endif %}>
+            <div class="cover-inner">
+                <h1>{{ post.title }}</h1>
+                <p class="time">{{ post.type | upper }} {{ post.minutes}}&nbsp;MIN</p>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            {{ post.content_html|raw }}
+        </div>
+    {% else %}
+        <h1>Článek nebyl nalezen :-(</h1>
+        <p>Omlouváme se, ale takový článek jsme nenašli. pokračujte prosím na <a href="{{ 'blog-list' | page }}">seznam všech článků</a>.</p>
+    {% endif %}
+</section>
+
+<section class="blog-links">
+    <a href="{{ 'blog-list' | page }}" title="zpět na všechny články">zpět na všechny články</a>
 </section>

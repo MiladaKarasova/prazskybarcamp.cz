@@ -1,8 +1,8 @@
-<nav id="nav" class="{% if this.page.id == 'home' %}white-nav{% endif%}">
+<nav id="nav" class="{% if this.page.id == 'home' or this.page.id == 'blog-detail' %}white-nav{% endif%}">
     <div class="wrapper">
         <div class="logo">
             <a href="{{ 'home' | page }}" title="Home">
-                {% if this.page.id == 'home' %}
+                {% if this.page.id == 'home' or this.page.id == 'blog-detail' %}
                 <img src="{{ 'assets/images/barcamp_white.svg' | theme }}" alt="logo" id="logo-img" />
                 {% else %}
                 <img src="{{ 'assets/images/barcamp_black.svg' | theme }}" alt="logo" id="logo-img" />

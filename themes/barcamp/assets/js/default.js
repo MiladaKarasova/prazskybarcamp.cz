@@ -70,16 +70,16 @@ $(document).ready(function() {
     $("#file-trigger").on("click", function () {
         $("#photo").click();
     });
-    
+
     $("body").on("change", "#photo", function () {
-       
+
         var image = document.getElementById("photo");
         var file = image.files;
-        
+    
         if(file.length > 0) {
             $("#file-name").text(file[0].name);
         }
-        
+
     });
 
     $("body").on("change", "#registration-type", function () {

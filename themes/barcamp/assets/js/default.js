@@ -126,7 +126,7 @@ $(document).ready(function() {
 
             changeText(videos[actual]);
 
-        }, 1980);
+        }, 2000);
 
     }
 

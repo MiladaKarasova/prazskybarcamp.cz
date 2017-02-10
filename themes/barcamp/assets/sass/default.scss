@@ -1,10 +1,11 @@
 @import "settings";
+@import "font";
 @import "colors";
 @import "flexbox";
 @import "helpers";
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Gilroy', sans-serif;
   background-color: rgb(255, 255, 255);
   text-align: center;
   margin: auto 0;

@@ -103,6 +103,15 @@ section.section-intro {
   max-height: 700px;
   position: relative;
 
+  #bgvid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    height: 100%;
+  }
+
   .wrapper {
     position: absolute;
     top: 0;
@@ -110,7 +119,7 @@ section.section-intro {
     right: 0;
     width: 100%;
     height: 100%;
-    background-color: $transBlack;
+    //background-color: $transBlack;
     @include flexDisplay();
     @include flexDirection(column);
     @include justifyContent(center);

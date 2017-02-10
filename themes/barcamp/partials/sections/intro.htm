@@ -1,9 +1,15 @@
 <section class="section-intro">
+
+    <video autoplay loop id="bgvid">
+        <source src="{{ 'assets/videos/architekt.webm' | theme }}" type="video/webm" id="bgvid-webm">
+        <source src="{{ 'assets/videos/architekt.mp4' }}" type="video/mp4" id="bgvid-mp4">
+    </video>
+
     <div class="wrapper">
         <p>KONFERENCE O TOM, JAK</p>
         <div class="jumbo">
             <h1>Být profi</h1>
-            <h1 id="changer">Cokoliv</h1>
+            <h1 id="changer">Architekt</h1>
         </div>
         <p>Ukaž co tě baví a přijď si poslechnout na konferenci, jak to dělají profíci ve firmě.</p>
     </div>
@@ -11,3 +17,33 @@
         <img src="{{ 'assets/images/sipka.svg' | theme }}" alt="sipka" />
     </a>
 </section>
+
+<script>
+    var videos = [
+        {
+            name: "Architekt",
+            webm: "{{ 'assets/videos/architekt.webm' | theme }}",
+            mp4: "{{ 'assets/videos/architekt.mp4' | theme }}",
+        },
+        {
+            name: "Gamer",
+            webm: "{{ 'assets/videos/gamer.webm' | theme }}",
+            mp4: "{{ 'assets/videos/gamer.mp4' | theme }}",
+        },
+        {
+            name: "Kreslíř",
+            webm: "{{ 'assets/videos/kreslir.webm' | theme }}",
+            mp4: "{{ 'assets/videos/kreslir.mp4' | theme }}",
+        },
+        {
+            name: "Speaker",
+            webm: "{{ 'assets/videos/speaker.webm' | theme }}",
+            mp4: "{{ 'assets/videos/speaker.mp4' }}",
+        },
+        {
+            name: "V tom co tě baví",
+            webm: "{{ 'assets/videos/vtomcotebavi.webm' | theme }}",
+            mp4: "{{ 'assets/videos/vtomcotebavi.mp4' | theme }}",
+        },
+    ]
+</script>

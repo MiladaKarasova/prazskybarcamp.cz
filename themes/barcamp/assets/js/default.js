@@ -99,4 +99,34 @@ $(document).ready(function() {
         }
     });
 
+    if(videos !== undefined && videos !== null) {
+
+        var actual = 0;
+
+        setInterval(function() {
+
+            if(videos.length - 1 > actual) {
+                actual++;
+            } else {
+                actual = 0;
+            }
+
+            changeVideoAndText(videos[actual]);
+
+        }, 2000);
+
+    }
+
+    function changeVideoAndText(video)
+    {
+        $("#changer").fadeOut(500, function() {
+            $("#changer").text(video.name);
+            $("#changer").fadeIn(500);
+
+            $("#bgvid-mp4").attr("src", video.mp4);
+            $("#bgvid-webm").attr("src", video.webm);
+            $("#bgvid")[0].load();
+        });
+    }
+
 });

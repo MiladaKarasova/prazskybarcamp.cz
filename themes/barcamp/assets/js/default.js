@@ -70,16 +70,16 @@ $(document).ready(function() {
     $("#file-trigger").on("click", function () {
         $("#photo").click();
     });
-    
+
     $("body").on("change", "#photo", function () {
-       
+
         var image = document.getElementById("photo");
         var file = image.files;
-        
+
         if(file.length > 0) {
             $("#file-name").text(file[0].name);
         }
-        
+
     });
 
     $("body").on("change", "#registration-type", function () {
@@ -98,5 +98,34 @@ $(document).ready(function() {
             $("#type").val("speaker");
         }
     });
+
+    function changeText(name)
+    {
+        $("#changer").fadeOut(500, function() {
+            $("#changer").text(name);
+            $("#changer").fadeIn(500);
+        });
+    }
+
+    if(document.getElementById("bgvid")) {
+
+        var actual = 0;
+        var videos = ["Architekt","Gamer","Kreslíř","Speaker","V tom co tě baví"];
+
+        $("#bgvid")[0].play();
+
+        setInterval(function() {
+
+            if((videos.length - 1) > actual) {
+                actual++;
+            } else {
+                actual = 0;
+            }
+
+            changeText(videos[actual]);
+
+        }, 1980);
+
+    }
 
 });

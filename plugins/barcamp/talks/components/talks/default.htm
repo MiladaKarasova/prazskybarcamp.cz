@@ -1,6 +1,6 @@
 {% set talks = __SELF__.talks %}
 
-<div class="talks" style="height: 230px">
+<div class="talks">
     {% for talk in talks %}
         <div class="talk" data-ident="{{ talk.hash }}" data-voted="{{ talk.voted ? 'true' : 'false' }}">
             <div>

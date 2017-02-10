@@ -45,6 +45,12 @@ nav {
 
     .logo {
       @include flex(2, 20%);
+
+      @media screen and (max-width: $break) {
+        img {
+          max-width: 140px;
+        }
+      }
     }
 
     .links {
@@ -102,6 +108,7 @@ section.section-intro {
   height: 100vh;
   max-height: 700px;
   position: relative;
+  overflow: hidden;
 
   #bgvid {
     position: absolute;
@@ -110,6 +117,10 @@ section.section-intro {
     right: 0;
     min-width: 100%;
     height: 100%;
+
+    @media screen and (max-width: $break) {
+      left: -200px;
+    }
   }
 
   .wrapper {
@@ -132,9 +143,17 @@ section.section-intro {
       max-width: 300px;
       line-height: 2.5;
 
+      @media screen and (max-width: $break) {
+        max-width: 200px;
+      }
+
       &:first-child {
         letter-spacing: 2px;
         font-weight: 400;
+
+        @media screen and (max-width: $break) {
+          max-width: 120px;
+        }
       }
     }
 
@@ -143,6 +162,10 @@ section.section-intro {
       @include flexDirection(row);
       @include justifyContent(center);
       @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
 
       h1 {
         font-size: 42px;
@@ -155,6 +178,10 @@ section.section-intro {
           border-bottom: none;
           font-family: 'Kalam', cursive;
           margin-top: 10px;
+        }
+
+        @media screen and (max-width: $break) {
+          font-size: 35px;
         }
       }
 
@@ -183,6 +210,10 @@ section.section-where {
   width: 100%;
   padding: 80px 0;
 
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
   .wrapper {
     width: 95%;
     max-width: $small-inner;
@@ -192,6 +223,10 @@ section.section-where {
     @include justifyContent(space-around);
     @include alignItems(center);
 
+    @media screen and (max-width: $break) {
+      @include alignItems(flex-start);
+    }
+
     div, a {
       @include flexDisplay();
       @include flexDirection(row);
@@ -199,10 +234,20 @@ section.section-where {
       @include alignItems(center);
       color: $black;
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        width: 25%;
+      }
+
       span {
         font-size: 15px;
         font-weight: 400;
         margin-left: 20px;
+
+        @media screen and (max-width: $break) {
+          margin-left: 0;
+          margin-top: 10px;
+        }
       }
     }
 
@@ -222,10 +267,14 @@ section.section-about {
   h2 {
     margin-bottom: 70px;
     @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 40px;
+    }
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
     @include flexDisplay();
@@ -233,10 +282,19 @@ section.section-about {
     @include justifyContent(space-around);
     @include alignItems(flex-start);
 
+    @media screen and (max-width: $break) {
+      @include flexDirection(column);
+    }
+
     div {
       @include flex(1, 50%);
       padding: 0 30px;
       text-align: justify;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        padding: 0;
+      }
 
       h3 {
         font-size: 16px;
@@ -250,6 +308,11 @@ section.section-about {
         margin-bottom: 30px;
         line-height: 2;
         padding-right: 50px;
+
+        @media screen and (max-width: $break) {
+          padding-right: 0;
+        }
+
       }
 
       ol {
@@ -278,7 +341,7 @@ section.section-program {
   background-color: $green;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     margin: auto;
     max-width: $small-inner;
 
@@ -313,7 +376,7 @@ section.section-email {
   padding: 50px 0 70px;
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
 
@@ -322,6 +385,10 @@ section.section-email {
       font-weight: 700;
       max-width: 650px;
       margin: 20px auto 50px;
+
+      @media screen and (max-width: $break) {
+        font-size: 22px;
+      }
     }
 
     .form {
@@ -335,6 +402,11 @@ section.section-email {
       @include flexDirection(row);
       @include alignItems(center);
 
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        border: none;
+      }
+
       input {
         @include flex(3, 75%);
         padding: 10px 20px;
@@ -342,6 +414,29 @@ section.section-email {
         border-radius: 100px;
         background: transparent;
         border: none;
+
+        @media screen and (max-width: $break) {
+          border: 1px solid $grey;
+          margin-bottom: 20px;
+          @include flex(1, 85%);
+          text-align: center;
+
+          &::-webkit-input-placeholder {
+            text-align: center;
+          }
+          &::-moz-placeholder {
+            text-align: center;
+          }
+          &:-ms-input-placeholder {
+            text-align: center;
+          }
+          &:-moz-placeholder {
+            text-align: center;
+          }
+
+
+        }
+
       }
 
       button {
@@ -359,6 +454,10 @@ section.section-email {
         @include justifyContent(center);
         @include alignItems(center);
 
+        @media screen and (max-width: $break) {
+          @include flex(1, 100%);
+        }
+
         img {
           margin-left: 10px;
         }
@@ -374,13 +473,17 @@ section.section-faq {
   width: 100%;
   padding: 70px 0;
 
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
   h2 {
     @include default-headline();
   }
 
   .wrapper {
     margin: 50px auto 0;
-    width: 95%;
+    width: 85%;
     max-width: 800px;
     @include flexDisplay();
     @include flexDirection(row);
@@ -388,9 +491,18 @@ section.section-faq {
     @include alignItems(flex-start);
     @include flex-wrap(wrap);
 
+    @media screen and (max-width: $break) {
+      margin-top: 20px;
+    }
+
     .item {
       width: 40%;
       text-align: left;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin-bottom: 15px;
+      }
 
       span {
         color: $green;
@@ -440,6 +552,10 @@ section.section-registrate {
       font-weight: 700;
       margin: auto auto 50px auto;
 
+      @media screen and (max-width: $break) {
+        font-size: 26px;
+      }
+
       span {
         border-bottom: 3px solid $black;
       }
@@ -469,17 +585,30 @@ section.section-partners {
   background-color: $greyBg;
   padding: 50px 0 70px;
 
+  @media screen and (max-width: $break) {
+    padding: 20px 0;
+  }
+
   h2 {
     margin-bottom: 70px;
     @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 15px;
+    }
   }
 
   h3 {
     @include kalam-headline(true);
+
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 15px auto;
+    }
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
     @include flexDisplay();
@@ -506,6 +635,12 @@ section.section-partners {
       @include justifyContent(flex-start);
       @include alignItems(center);
       margin-top: 30px;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin-top: 10px;
+      }
+
     }
 
     .full, .half {
@@ -526,6 +661,12 @@ section.section-partners {
         @include flexDisplay();
         @include justifyContent(center);
         @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          width: 70px;
+          height: 70px;
+          margin-right: 20px;
+        }
 
         +.plus {
           background-color: $green;
@@ -578,10 +719,19 @@ section.section-posts {
   h2 {
     @include default-headline();
     margin-bottom: 70px;
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 20px;
+    }
   }
 
   a.btn {
     @include outline-btn();
+
+    @media screen and (max-width: $break) {
+      font-size: 14px;
+    }
+
   }
 
   .wrapper {
@@ -709,14 +859,19 @@ section.section-speakers {
 
   h3 {
     @include kalam-headline(true);
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 0 0 20px 0;
+    }
   }
 
   a.btn {
     @include outline-btn();
+    margin-top: 10px;
   }
 
   .wrapper {
-    width: 95%;
+    width: 85%;
     max-width: $small-inner;
     margin: auto;
 
@@ -727,6 +882,10 @@ section.section-speakers {
       @include flexDirection(row);
       @include justifyContent(center);
       @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
 
       span.category {
         font-size: 14px;
@@ -751,11 +910,17 @@ section.section-speakers {
 
     .talks {
       width: 100%;
+      height: 270px;
       @include flexDisplay();
       @include flexDirection(row);
       @include flex-wrap(wrap);
       @include justifyContent(space-around);
       @include alignItems(flex-start);
+
+      @media screen and (max-width: $break) {
+        @include justifyContent(flex-start);
+        height: 700px;
+      }
 
       .talk {
         width: 30%;
@@ -765,6 +930,10 @@ section.section-speakers {
         @include flexDirection(row);
         @include justifyContent(flex-start);
         @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+        }
 
         .avatar {
           display: block;

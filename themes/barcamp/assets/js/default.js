@@ -43,6 +43,8 @@ $(document).ready(function() {
 
     $(".show-faq").on("click", function() {
 
+        console.log('ok');
+
         var ps = $(this).next("p");
         var span = $(this).prev("span");
 
@@ -143,7 +145,7 @@ $(document).ready(function() {
 
         $(".mobile-nav").animate({
             "opacity" : 0,
-            "z-index" : 0
+            "z-index" : -999
         }, 100);
 
     });

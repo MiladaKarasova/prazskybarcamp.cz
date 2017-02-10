@@ -1,8 +1,6 @@
 
 $(document).ready(function() {
 
-    var videoSet = (videos) ? videos : null;
-
     var controll = false;
 
     function logo(image, old) {
@@ -101,33 +99,32 @@ $(document).ready(function() {
         }
     });
 
-    function changeVideoAndText(video)
+    function changeText(name)
     {
         $("#changer").fadeOut(500, function() {
-            $("#changer").text(video.name);
+            $("#changer").text(name);
             $("#changer").fadeIn(500);
-
-            $("#bgvid-mp4").attr("src", video.mp4);
-            $("#bgvid-webm").attr("src", video.webm);
-            $("#bgvid")[0].load();
         });
     }
 
-    if(videoSet !== null) {
+    if(document.getElementById("bgvid")) {
 
         var actual = 0;
+        var videos = ["Architekt","Gamer","Kreslíř","Speaker","V tom co tě baví"];
+
+        $("#bgvid")[0].play();
 
         setInterval(function() {
 
-            if(videoSet.length - 1 > actual) {
+            if((videos.length - 1) > actual) {
                 actual++;
             } else {
                 actual = 0;
             }
 
-            changeVideoAndText(videoSet[actual]);
+            changeText(videos[actual]);
 
-        }, 2000);
+        }, 1980);
 
     }
 

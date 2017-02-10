@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 
+    var videoSet = (videos) ? videos : null;
+
     var controll = false;
 
     function logo(image, old) {
@@ -70,16 +72,16 @@ $(document).ready(function() {
     $("#file-trigger").on("click", function () {
         $("#photo").click();
     });
-    
+
     $("body").on("change", "#photo", function () {
-       
+
         var image = document.getElementById("photo");
         var file = image.files;
-        
+
         if(file.length > 0) {
             $("#file-name").text(file[0].name);
         }
-        
+
     });
 
     $("body").on("change", "#registration-type", function () {
@@ -99,24 +101,6 @@ $(document).ready(function() {
         }
     });
 
-    if(videos !== undefined && videos !== null) {
-
-        var actual = 0;
-
-        setInterval(function() {
-
-            if(videos.length - 1 > actual) {
-                actual++;
-            } else {
-                actual = 0;
-            }
-
-            changeVideoAndText(videos[actual]);
-
-        }, 2000);
-
-    }
-
     function changeVideoAndText(video)
     {
         $("#changer").fadeOut(500, function() {
@@ -127,6 +111,24 @@ $(document).ready(function() {
             $("#bgvid-webm").attr("src", video.webm);
             $("#bgvid")[0].load();
         });
+    }
+
+    if(videoSet !== null) {
+
+        var actual = 0;
+
+        setInterval(function() {
+
+            if(videoSet.length - 1 > actual) {
+                actual++;
+            } else {
+                actual = 0;
+            }
+
+            changeVideoAndText(videoSet[actual]);
+
+        }, 2000);
+
     }
 
 });

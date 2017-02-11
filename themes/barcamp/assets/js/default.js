@@ -148,4 +148,9 @@ $(document).ready(function() {
 
     });
 
+    $("#talks-trigger").on("click", function() {
+        $(".talks").css({height: "auto"});
+        $("#talks-trigger").fadeOut(100);
+    });
+
 });

@@ -17,7 +17,7 @@
   color: $black;
   border: 1px solid $green;
   border-radius: 100px;
-  padding: 10px 30px;
+  padding: 12px 30px 10px;
   letter-spacing: 1px;
   margin: 50px 15px 20px;
   @include transition(300ms);
@@ -32,7 +32,7 @@
   font-weight: 400;
   color: $black;
   background-color: $green;
-  padding: 15px 30px;
+  padding: 13px 30px;
   border-radius: 100px;
   text-decoration: none;
   letter-spacing: 1.8px;

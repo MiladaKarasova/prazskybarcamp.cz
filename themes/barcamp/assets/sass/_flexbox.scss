@@ -45,6 +45,7 @@
 }
 
 @mixin flex-wrap($value) {
+  flex-wrap: $value;
   -webkit-flex-wrap: $value;
   -moz-flex-wrap: $value;
   @if $value == nowrap{

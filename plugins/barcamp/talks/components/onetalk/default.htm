@@ -26,29 +26,15 @@
             </p>
         </div>
     </div>
-    <div class="two vote-{{ talk.hash }} vote-mobil">
-        {% if not talk.voted %}
-        <a href="#" class="btn"
-           data-request="talks::onVote"
-           data-request-update="'talks::voted': '.vote-{{ talk.hash }}'"
-           data-request-data="hash: '{{ talk.hash }}', token: '{{ token }}'"
-           data-request-success="console.log('Voted!');"
-           data-request-error="alert(jqXHR.responseJSON.result);">hlasovat</a>
-        {% else %}
-        Pro tento talk bylo již hlasováno.
-        {% endif %}
-    </div>
     <div class="row">
-        <div class="two">
+        <div class="two anotation">
             <h2>Anotace</h2>
             <p>{{ talk.annotation }}</p>
         </div>
-        <div class="two">
+        <div class="two about">
             <h2>O mně</h2>
             <p>{{ talk.user.self_promo }}</p>
         </div>
-    </div>
-    <div class="row">
         <div class="two links">
             {% if talk.user.link_facebook %}
                 <a href="{{ talk.user.link_facebook }}" target="_blank">

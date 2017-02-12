@@ -101,32 +101,35 @@ $(document).ready(function() {
         }
     });
 
-    function changeText(name)
-    {
-        $("#changer").fadeOut(500, function() {
-            $("#changer").text(name);
-            $("#changer").fadeIn(500);
-        });
-    }
-
     if(document.getElementById("bgvid")) {
 
-        var actual = 0;
-        var videos = ["Architekt","Gamer","Kreslíř","Speaker","V tom co tě baví"];
+        var actual = 1;
+        var changer = $("#changer div");
+        var height = (changer.height() / 5);
 
-        $("#bgvid")[0].play();
+        setTimeout(function () {
 
-        setInterval(function() {
+            $("#bgvid")[0].play();
 
-            if((videos.length - 1) > actual) {
-                actual++;
-            } else {
-                actual = 0;
-            }
+            setInterval(function(){
 
-            changeText(videos[actual]);
+                if(5 > actual) {
+                    actual++;
+                } else {
+                    actual = 1;
+                }
 
-        }, 2000);
+                $("#fallback-image").attr("src", logo(actual + ".png", $("#fallback-image").attr("src") ));
+
+                changer.animate({
+                    bottom: -height
+                }, 400, function () {
+                    changer.prepend( changer.find("h1").last() );
+                    changer.css({bottom: 0});
+                });
+            }, 2000);
+
+        }, 200);
 
     }
 

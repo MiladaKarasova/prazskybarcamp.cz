@@ -1,11 +1,11 @@
 @import "settings";
-@import "font";
 @import "colors";
 @import "flexbox";
 @import "helpers";
 
+
 body {
-  font-family: 'Gilroy', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: rgb(255, 255, 255);
   text-align: center;
   margin: auto 0;
@@ -230,11 +230,11 @@ section.section-intro {
       font-size: 15px;
       color: $white;
       font-weight: 300;
-      max-width: 350px;
+      max-width: 370px;
       line-height: 2;
 
       @media screen and (max-width: $break) {
-        max-width: 200px;
+        max-width: 250px;
       }
 
       &:first-child {
@@ -242,7 +242,7 @@ section.section-intro {
         font-weight: 400;
 
         @media screen and (max-width: $break) {
-          max-width: 120px;
+          max-width: 200px;
         }
       }
     }
@@ -257,6 +257,42 @@ section.section-intro {
         @include flexDirection(column);
       }
 
+      #changer {
+        width: 350px;
+        height: 75px;
+        position: relative;
+        overflow: hidden;
+
+        @media screen and (max-width: $break) {
+          margin-top: 20px;
+        }
+
+        div {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: -moz-inline-flex;
+          display: inline-flex;
+          @include flexDirection(column);
+          @include justifyContent(flex-start);
+          @include alignItems(flex-start);
+
+          @media screen and (max-width: $break) {
+            @include alignItems(center);
+          }
+
+          h1 {
+            border-bottom: none;
+            font-family: 'Kalam', cursive;
+            margin: 0 10px 15px 10px;
+            text-align: left;
+          }
+        }
+      }
+
       h1 {
         font-size: 42px;
         font-weight: 800;
@@ -266,17 +302,9 @@ section.section-intro {
         display: inline-block;
         text-align: right;
 
-        &#changer {
-          border-bottom: none;
-          font-family: 'Kalam', cursive;
-          margin: 5px 10px 20px 10px;
-          display: inline-block;
-          width: 320px;
-          text-align: left;
-        }
-
         @media screen and (max-width: $break) {
           font-size: 35px;
+          margin: auto;
         }
       }
 
@@ -681,11 +709,31 @@ section.section-registrate {
       font-weight: 600;
       color: $black;
       background-color: $white;
-      padding: 10px 30px;
+      padding: 13px 30px;
       border-radius: 100px;
       text-decoration: none;
       letter-spacing: 1px;
+      margin: auto 20px;
       @include transition(300ms);
+
+      &.messenger {
+        background-color: $fbColor;
+        color: $white;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        padding: 13px 30px;
+        display: -moz-inline-flex;
+        display: inline-flex;
+        @include flexDirection(row);
+        @include justifyContent(center);
+        @include alignItems(center);
+
+        img {
+          width: 15px;
+          margin-right: 8px;
+        }
+
+      }
 
       &:hover {
         @include box-shadow(0, 10px, 23px, 0, rgba(0, 0, 0, 0.10));
@@ -1839,7 +1887,8 @@ section.section-full-program {
     @include flexDisplay();
     @include flexDirection(row);
     @include alignItems(flex-start);
-    @include justifyContent(center);
+    @include justifyContent(space-around);
+    @include flex-wrap(wrap);
 
     @media screen and (max-width: $break) {
       @include flexDirection(column);
@@ -1873,9 +1922,11 @@ section.section-full-program {
     }
 
     .two {
-      @include flex(1, 50%);
+      //@include flex(1, 50%);
       text-align: left;
       padding-right: 30px;
+      margin-bottom: 20px;
+      width: 40%;
 
       @media screen and (max-width: $break) {
         @include flex(1, 100%);
@@ -1905,6 +1956,7 @@ section.section-full-program {
 
         @media screen and (max-width: $break) {
           @include justifyContent(center);
+          @include order(4);
         }
 
         a {
@@ -1923,13 +1975,28 @@ section.section-full-program {
         text-align: right;
 
         @media screen and (max-width: $break) {
-          display: none;
+          text-align: center;
+          margin-bottom: 50px;
+          @include order(1);
         }
 
         a.btn {
           @include full-btn();
+
+          @media screen and (max-width: $break) {
+            padding: 13px 50px;
+            @include box-shadow(8px,8px,14px,0, rgba(0,0,0,.1));
+          }
         }
 
+      }
+
+      &.anotation {
+        @include order(2);
+      }
+
+      &.about {
+        @include order(3);
       }
 
     }
@@ -1969,6 +2036,7 @@ section.section-full-program {
         @media screen and (max-width: $break) {
           @include order(4);
           font-size: 22px;
+          text-align: center;
         }
       }
 
@@ -2005,25 +2073,6 @@ section.section-full-program {
 
     }
 
-  }
-
-  .vote-mobil {
-    display: none;
-
-    @media screen and (max-width: $break) {
-      display: block;
-      width: 100%;
-      margin: 30px auto;
-
-      a {
-        @include full-btn();
-        display: inline-block;
-        max-width: 180px;
-        width: 80%;
-        @include box-shadow(8px,8px,14px,0, rgba(0,0,0,.1));
-      }
-
-    }
   }
 
 }

@@ -7,9 +7,17 @@ is_hidden = 0
 
 [talkCategories]
 ==
+<?php
+function onEnd() {
+    $this['programEnabled'] = Barcamp\Talks\Models\Settings::get('program_ready', false);
+}
+?>
+==
 <section class="section-full-program">
     <div class="wrapper">
-        <h1>Program</h1>
-        {% component 'talkCategories' %}
+        <h1>Program odtajníme 25.3.2017</h1>
+        {% if programEnabled %}
+            {% component 'talkCategories' %}
+        {% endif %}
     </div>
 </section>

@@ -1033,6 +1033,10 @@ section.section-speakers {
   a.btn {
     @include outline-btn();
     margin-top: 10px;
+
+    &:hover {
+      @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+    }
   }
 
   .wrapper {
@@ -1420,11 +1424,15 @@ section.section-registration {
       @include outline-btn();
       margin-top: 0;
       margin-bottom: 0;
-      background-color: $white;
+      background-color: transparent;
       font-weight: 500;
       cursor: pointer;
       font-size: 16px;
       padding: 15px 50px;
+
+      &:hover {
+        @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+      }
     }
 
   }
@@ -1603,6 +1611,10 @@ section.section-contact-form {
         max-width: 200px;
         margin: 0 auto;
         cursor: pointer;
+
+        &:hover {
+          @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+        }
       }
 
     }
@@ -1829,6 +1841,7 @@ section.section-full-program {
 
   h1 {
     @include default-headline();
+    border: none;
   }
 
   .categories {

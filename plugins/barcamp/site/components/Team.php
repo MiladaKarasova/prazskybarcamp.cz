@@ -7,14 +7,13 @@ use RainLab\User\Models\UserGroup;
 
 class Team extends ComponentBase
 {
-
     public $all;
 
     public function componentDetails()
     {
         return [
             'name' => 'Barcamp Team Members',
-            'description' => 'List all team members'
+            'description' => 'List all team members',
         ];
     }
 
@@ -25,12 +24,16 @@ class Team extends ComponentBase
 
     public function onRun()
     {
-        $this->all = $this->page['all'] = $this->listUsers();
+        $this->all = $this->page['team'] = $this->listUsers();
     }
 
     protected function listUsers()
     {
         $team = UserGroup::where('code', 'team')->first();
+        if (!$team) {
+            return null;
+        }
+
         return $team->users;
     }
 }

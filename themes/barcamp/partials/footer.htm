@@ -5,9 +5,9 @@ use Barcamp\Talks\Models\Settings;
 function onStart() {
     $settings = App::make('Barcamp\Talks\Models\Settings');
     $settings = $settings->first();
-    $this['program'] = $settings->program;
-    $this['press'] = $settings->press;
-    $this['logo'] = $settings->logo;
+    $this['program'] = $settings ? $settings->program : null;
+    $this['press'] = $settings ? $settings->press : null;
+    $this['logo'] = $settings ? $settings->logo : null;
 }
 ?>
 ==

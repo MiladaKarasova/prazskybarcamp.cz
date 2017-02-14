@@ -2201,3 +2201,28 @@ footer {
 
   }
 }
+
+.alert-success {
+  font-size: 18px;
+  font-weight: 700;
+  color: $green;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.alert-danger {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.error {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}

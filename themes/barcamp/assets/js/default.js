@@ -90,13 +90,13 @@ $(document).ready(function() {
             $("#switch-title").text("workshop");
             $("#switch-name label").html("Název workshopu<sup>*</sup>");
             $("#switch-name input").attr("placeholder", "Název workshopu");
-            $("#annotation").attr("placeholder", "O čem je vaš workshop");
+            $("#annotation").attr("placeholder", "O čem je váš workshop");
             $("#type").val("workshop");
         } else {
             $("#switch-title").text("speaker");
-            $("#switch-name label").html("Název přednášky<sup>*</sup>");
-            $("#switch-name input").attr("placeholder", "Název přednášky");
-            $("#annotation").attr("placeholder", "O čem je vaše přednáška");
+            $("#switch-name label").html("Název speaku<sup>*</sup>");
+            $("#switch-name input").attr("placeholder", "Název speaku");
+            $("#annotation").attr("placeholder", "O čem je váš speak");
             $("#type").val("speaker");
         }
     });

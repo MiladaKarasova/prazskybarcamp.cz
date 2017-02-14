@@ -9,7 +9,11 @@
             <div class="item">
                 <span>+</span>
                 <a href="javascript:void(0);" class="show-faq">{{ item.name }}</a>
-                {{ item.text | raw }}
+                {% if loop.index < 3 %}
+                    <p style="display: block">{{ html_strip(item.text) }}</p>
+                {% else %}
+                    <p>{{ html_strip(item.text) }}</p>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

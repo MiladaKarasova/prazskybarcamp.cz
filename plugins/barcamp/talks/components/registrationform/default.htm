@@ -46,7 +46,7 @@
         </div>
         <div class="half" id="switch-name">
             {% if (post.type == '') or (post.type == 'speaker') %}
-                <label for="talkName">Název přednášky<sup>*</sup></label>
+                <label for="talkName">Název speaku<sup>*</sup></label>
             {% else %}
                 <label for="talkName">Název workshopu<sup>*</sup></label>
             {% endif %}
@@ -55,7 +55,7 @@
                 type="text"
                 id="talkName"
                 value="{{ post.talkName }}"
-                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}Název přednášky{% else %}Název workshopu{% endif %}"
+                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}Název speaku{% else %}Název workshopu{% endif %}"
                 class="required"
                 required />
         </div>
@@ -66,7 +66,7 @@
             <label for="annotation">Anotace<sup>*</sup></label>
             <textarea
                 name="annotation"
-                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je vaše přednáška{% else %}O čem je váš workshop{% endif %}"
+                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je váš speak{% else %}O čem je váš workshop{% endif %}"
                 id="annotation"
                 class="required"
                 required>{{ post.annotation }}</textarea>
@@ -90,23 +90,25 @@
         </div>
         <div class="half">
             <div>
-                <label for="phone">Telefon<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <label for="phone">Telefon<sup>*</sup><span> - pouze pro organizátory</span></label>
                 <input
                     name="phone"
                     type="text"
                     id="phone"
                     value="{{ post.phone }}"
                     class="required"
+                    placeholder="123456789"
                     required />
             </div>
             <div>
-                <label for="email">E-mail<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <label for="email">E-mail<sup>*</sup><span> - pouze pro organizátory</span></label>
                 <input
                     name="email"
                     type="text"
                     id="email"
                     value="{{ post.email }}"
                     class="required"
+                    placeholder="email@email.com"
                     required />
             </div>
         </div>
@@ -128,8 +130,7 @@
                     name="photo"
                     id="photo"
                     style="display: none"
-                    accept="image/*"
-                    required />
+                    accept="image/*" />
                 <div class="file">
                     <button type="button" id="file-trigger">
                         <img src="{{ 'assets/images/file-plus.svg' | theme }}" alt="plus" />

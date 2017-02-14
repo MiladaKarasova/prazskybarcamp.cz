@@ -382,6 +382,7 @@ section.section-where {
         font-size: 15px;
         font-weight: 400;
         margin-left: 20px;
+        text-align: left;
 
         @media screen and (max-width: $break) {
           margin-left: 0;
@@ -461,15 +462,18 @@ section.section-about {
         line-height: 1.5;
         list-style-type: none;
         counter-reset: list;
+        display: table;
 
         li {
-          margin-bottom: 12px;
+          text-align: left;
+          display: table-row;
         }
 
         li:before {
           counter-increment: list;
           content: counter(list) ") ";
-
+          display: table-cell;
+          padding-bottom: 30px;
         }
       }
     }
@@ -657,14 +661,14 @@ section.section-faq {
 
       a {
         color: $black;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         text-decoration: none;
         margin-left: 5px;
       }
 
       p {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
         text-align: justify;
         margin: 5px auto auto 18px;
@@ -689,6 +693,15 @@ section.section-registrate {
     width: 95%;
     margin: auto;
     max-width: $small-inner;
+
+    @media screen and (max-width: $break) {
+      @include flexDisplay();
+      @include flexDirection(column);
+
+      a {
+        margin-top: 20px !important;
+      }
+    }
 
     h2 {
       font-size: 32px;
@@ -1030,6 +1043,10 @@ section.section-speakers {
   a.btn {
     @include outline-btn();
     margin-top: 10px;
+
+    &:hover {
+      @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+    }
   }
 
   .wrapper {
@@ -1249,7 +1266,7 @@ section.section-registration {
               left: 0;
               right: 0;
               bottom: 0;
-              background-color: $blue;
+              background-color: $green;
               border-radius: 34px;
               @include transition(400ms);
             }
@@ -1417,11 +1434,15 @@ section.section-registration {
       @include outline-btn();
       margin-top: 0;
       margin-bottom: 0;
-      background-color: $white;
+      background-color: transparent;
       font-weight: 500;
       cursor: pointer;
       font-size: 16px;
       padding: 15px 50px;
+
+      &:hover {
+        @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+      }
     }
 
   }
@@ -1453,6 +1474,10 @@ section.section-contact {
       font-weight: 700;
       color: $lightGrey;
       text-decoration: none;
+
+      &:hover {
+        border-bottom: 7px solid $lightGrey;
+      }
 
       @media screen and (max-width: $break) {
         position: relative;
@@ -1600,6 +1625,10 @@ section.section-contact-form {
         max-width: 200px;
         margin: 0 auto;
         cursor: pointer;
+
+        &:hover {
+          @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+        }
       }
 
     }
@@ -1645,47 +1674,54 @@ section.section-who-is-behind {
         a {
           display: inline-block;
           width: 100px;
-          height: 100px;
-          border-radius: 100%;
-          background-color: $lightGrey;
           position: relative;
-          overflow: hidden;
-          margin-bottom: 30px;
+          text-decoration: none;
           @include transition(300ms);
+
+          .image {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background-color: $lightGrey;
+            border-radius: 100%;
+
+            .overlay {
+              display: none;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: $halfGreen;
+              @include alignItems(center);
+              @include justifyContent(center);
+              @include transition(300ms);
+
+              img {
+                max-width: 50%;
+                height: 40%;
+              }
+            }
+
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 100%;
+            }
+          }
 
           &:hover .overlay {
             @include flexDisplay();
           }
 
-          .overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: $halfGreen;
-            @include alignItems(center);
-            @include justifyContent(center);
-            @include transition(300ms);
-
-            img {
-              max-width: 50%;
-              height: 40%;
-            }
+          p.name {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 5px auto;
+            color: $black;
           }
-
-          img {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-          }
-        }
-
-        p.name {
-          font-size: 14px;
-          font-weight: 700;
-          margin: 5px auto;
         }
 
         p.promo {
@@ -1826,6 +1862,7 @@ section.section-full-program {
 
   h1 {
     @include default-headline();
+    border: none;
   }
 
   .categories {
@@ -1892,6 +1929,15 @@ section.section-full-program {
 
     @media screen and (max-width: $break) {
       @include flexDirection(column);
+    }
+
+    &.mobile {
+      display: none;
+
+      @media screen and (max-width: $break) {
+        display: block;
+      }
+
     }
 
     .one {
@@ -1971,13 +2017,17 @@ section.section-full-program {
 
       }
 
+      @media screen and (max-width: $break) {
+        &.mobile-hide {
+          display: none;
+        }
+      }
+
       &.vote {
         text-align: right;
 
         @media screen and (max-width: $break) {
           text-align: center;
-          margin-bottom: 50px;
-          @include order(1);
         }
 
         a.btn {
@@ -2161,9 +2211,64 @@ footer {
         a:hover {
           color: $almostWhite;
         }
+
+        &.icons {
+          margin-left: 150px;
+          margin-right: 0;
+          @include flexDisplay();
+          @include flexDirection(row);
+
+          a {
+            width: 20px;
+            height: 20px;
+            text-decoration: none;
+            filter: alpha(opacity=60);
+            -moz-opacity:0.6;
+            -khtml-opacity: 0.6;
+            opacity: 0.6;
+            margin: 0 10px;
+
+            img {
+              height: 20px;
+            }
+
+            &:hover {
+              filter: alpha(opacity=90);
+              -moz-opacity:0.9;
+              -khtml-opacity: 0.9;
+              opacity: 0.9;
+            }
+          }
+
+        }
       }
 
     }
 
   }
+}
+
+.alert-success {
+  font-size: 18px;
+  font-weight: 700;
+  color: $green;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.alert-danger {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.error {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }

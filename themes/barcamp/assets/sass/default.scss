@@ -1915,6 +1915,15 @@ section.section-full-program {
       @include flexDirection(column);
     }
 
+    &.mobile {
+      display: none;
+
+      @media screen and (max-width: $break) {
+        display: block;
+      }
+
+    }
+
     .one {
       @include flex(1, 25%);
 
@@ -1992,13 +2001,17 @@ section.section-full-program {
 
       }
 
+      @media screen and (max-width: $break) {
+        &.mobile-hide {
+          display: none;
+        }
+      }
+
       &.vote {
         text-align: right;
 
         @media screen and (max-width: $break) {
           text-align: center;
-          margin-bottom: 50px;
-          @include order(1);
         }
 
         a.btn {

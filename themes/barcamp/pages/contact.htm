@@ -15,9 +15,9 @@ use Barcamp\Talks\Models\Settings;
 function onStart() {
     $settings = App::make('Barcamp\Talks\Models\Settings');
     $settings = $settings->first();
-    $this['program'] = $settings->program;
-    $this['press'] = $settings->press;
-    $this['logo'] = $settings->logo;
+    $this['program'] = $settings ? $settings->program : null;
+    $this['press'] = $settings ? $settings->press : null;
+    $this['logo'] = $settings ? $settings->logo : null;
 }
 ?>
 ==
@@ -39,12 +39,14 @@ function onStart() {
         {% component 'contactForm' %}
     </div>
 </section>
+{% if team %}
 <section class="section-who-is-behind" id="team">
     <div class="wrapper">
         <h2>Kdo stojí za Pražským Barcampem</h2>
         {% component 'team' %}
     </div>
 </section>
+{% endif %}
 {% if program or press or logo %}
     <section class="section-downloads">
         <div class="wrapper">

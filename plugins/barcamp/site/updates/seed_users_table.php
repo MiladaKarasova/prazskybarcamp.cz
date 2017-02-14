@@ -25,7 +25,7 @@ class SeedUsersTable extends Seeder
             // create user
             $item['password_confirmation'] = $item['password'];
             $item['is_activated'] = true;
-            $team = (isset($item['team']) && $item['team']) ? true : false;
+            $team = isset($item['team']) && $item['team'];
             unset($item['team']);
 
             $user = new User();
@@ -40,10 +40,10 @@ class SeedUsersTable extends Seeder
             // save user
             $user->save();
 
-            if($team) {
+            // add to team group
+            if ($team) {
                 $user->addGroup($group);
             }
-
         }
     }
 
@@ -61,6 +61,11 @@ class SeedUsersTable extends Seeder
         return $file;
     }
 
+    /**
+     * Create Team user group.
+     *
+     * @return UserGroup
+     */
     private function createGroup()
     {
         $userGroup = new UserGroup();

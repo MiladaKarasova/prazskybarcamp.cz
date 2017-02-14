@@ -14,8 +14,9 @@
 
     <div id="error" class="error center">{% if error %}{{ error }}{% endif %}&nbsp;</div>
 
-    <input name="name" class="input" type="text" value="{{ post.name }}" placeholder="Jméno a příjmení*" required /></td>
-    <input name="email" class="input" type="text" value="{{ post.email }}" placeholder="E-mail*" required /></td>
-    <textarea name="message" placeholder="Zpráva*" required>{{ post.message }}</textarea></td>
+    <input name="name" class="input" type="text" value="{{ post.name }}" placeholder="Jméno a příjmení*" required />
+    <input name="email" class="input" type="text" value="{{ post.email }}" placeholder="E-mail*" required />
+    <textarea name="message" placeholder="Zpráva*" required>{{ post.message }}</textarea>
+    {{ form_token() }}
     <button type="submit" name="submit">Odeslat</button>
 </form>

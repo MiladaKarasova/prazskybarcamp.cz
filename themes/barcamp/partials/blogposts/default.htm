@@ -2,7 +2,7 @@
 {% if posts %}
     {% for post in posts %}
     <article>
-        {% set outcome = (post.type != 'Článek') %}
+        {% set outcome = (post.type != 'Článek' and post.type != null) %}
         {% set link = outcome ? post.link : post.url %}
         <a
             href="{{ link }}"

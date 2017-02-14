@@ -462,15 +462,17 @@ section.section-about {
         line-height: 1.5;
         list-style-type: none;
         counter-reset: list;
+        display: table;
 
         li {
-          margin-bottom: 12px;
+          text-align: left;
+          display: table-row;
         }
 
         li:before {
           counter-increment: list;
           content: counter(list) ") ";
-
+          display: table-cell;
         }
       }
     }
@@ -658,14 +660,14 @@ section.section-faq {
 
       a {
         color: $black;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         text-decoration: none;
         margin-left: 5px;
       }
 
       p {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
         text-align: justify;
         margin: 5px auto auto 18px;

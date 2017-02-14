@@ -12,6 +12,8 @@ function onEnd() {
     if ($this->blogPost->post) {
         $post = $this->blogPost->post;
         $this->page->title = $post->title;
+        $this->page->meta_title = $post->title;
+        $this->page->meta_description = $post->excerpt;
         $categories = $post->categories;
         $this['category'] = $post->categories->first();
         $this['category_slug'] = $this['category']['attributes']['slug'];

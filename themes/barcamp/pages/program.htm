@@ -15,9 +15,11 @@ function onEnd() {
 ==
 <section class="section-full-program">
     <div class="wrapper">
-        <h1>Program odtajníme 25.3.2017</h1>
         {% if programEnabled %}
+            <h1>Program</h1>
             {% component 'talkCategories' %}
+        {% else %}
+            <h1>Program odtajníme 25.3.2017</h1>
         {% endif %}
     </div>
 </section>

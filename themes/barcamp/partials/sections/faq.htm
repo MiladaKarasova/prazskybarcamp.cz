@@ -2,9 +2,6 @@
 
 [faqs]
 ==
-
-{% set pom = 1 %}
-
 <section class="section-faq">
     <h2>FAQ</h2>
     <div class="wrapper" id="faqs">
@@ -12,9 +9,8 @@
             <div class="item">
                 <span>+</span>
                 <a href="javascript:void(0);" class="show-faq">{{ item.name }}</a>
-                {% if pom < 3 %}
+                {% if loop.index < 3 %}
                     <p style="display: block">{{ html_strip(item.text) }}</p>
-                    {% set pom = pom + 1 %}
                 {% else %}
                     <p>{{ html_strip(item.text) }}</p>
                 {% endif %}

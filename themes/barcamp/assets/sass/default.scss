@@ -694,6 +694,15 @@ section.section-registrate {
     margin: auto;
     max-width: $small-inner;
 
+    @media screen and (max-width: $break) {
+      @include flexDisplay();
+      @include flexDirection(column);
+
+      a {
+        margin-top: 20px !important;
+      }
+    }
+
     h2 {
       font-size: 32px;
       font-weight: 700;
@@ -1665,47 +1674,54 @@ section.section-who-is-behind {
         a {
           display: inline-block;
           width: 100px;
-          height: 100px;
-          border-radius: 100%;
-          background-color: $lightGrey;
           position: relative;
-          overflow: hidden;
-          margin-bottom: 30px;
+          text-decoration: none;
           @include transition(300ms);
+
+          .image {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background-color: $lightGrey;
+            border-radius: 100%;
+
+            .overlay {
+              display: none;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: $halfGreen;
+              @include alignItems(center);
+              @include justifyContent(center);
+              @include transition(300ms);
+
+              img {
+                max-width: 50%;
+                height: 40%;
+              }
+            }
+
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 100%;
+            }
+          }
 
           &:hover .overlay {
             @include flexDisplay();
           }
 
-          .overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: $halfGreen;
-            @include alignItems(center);
-            @include justifyContent(center);
-            @include transition(300ms);
-
-            img {
-              max-width: 50%;
-              height: 40%;
-            }
+          p.name {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 5px auto;
+            color: $black;
           }
-
-          img {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-          }
-        }
-
-        p.name {
-          font-size: 14px;
-          font-weight: 700;
-          margin: 5px auto;
         }
 
         p.promo {

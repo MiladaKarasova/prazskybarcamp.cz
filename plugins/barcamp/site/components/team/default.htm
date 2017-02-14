@@ -4,16 +4,18 @@
     {% for user in users %}
         <div class="user">
             <a href="{% if (user.link_web == '') or (user.link_web == null) %}{{ user.link_facebook }}{% else %}{{ user.link_web }}{% endif %}" title="{{ user.name }}">
-                <img src="{{ user.avatar.getThumb(100, 100, 'exact') }}" />
-                <div class="overlay">
-                    {% if (user.link_web == '') or (user.link_web == null) %}
-                        <img src="{{ 'assets/images/facebook-white.svg' | theme }}" />
-                    {% else %}
-                        <img src="{{ 'assets/images/web-white.svg' | theme }}" />
-                    {% endif %}
+                <div class="image">
+                    <img src="{{ user.avatar.getThumb(100, 100, 'exact') }}" />
+                    <div class="overlay">
+                        {% if (user.link_web == '') or (user.link_web == null) %}
+                            <img src="{{ 'assets/images/facebook-white.svg' | theme }}" />
+                        {% else %}
+                            <img src="{{ 'assets/images/web-white.svg' | theme }}" />
+                        {% endif %}
+                    </div>
                 </div>
+                <p class="name">{{ user.name }}</p>
             </a>
-            <p class="name">{{ user.name }}</p>
             <p class="promo">{{ user.self_promo }}</p>
         </div>
     {% endfor %}

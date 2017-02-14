@@ -90,23 +90,25 @@
         </div>
         <div class="half">
             <div>
-                <label for="phone">Telefon<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <label for="phone">Telefon<sup>*</sup><span> - pouze pro organizátory</span></label>
                 <input
                     name="phone"
                     type="text"
                     id="phone"
                     value="{{ post.phone }}"
                     class="required"
+                    placeholder="123456789"
                     required />
             </div>
             <div>
-                <label for="email">E-mail<sup>*</sup><span> - pouzer pro organizátory</span></label>
+                <label for="email">E-mail<sup>*</sup><span> - pouze pro organizátory</span></label>
                 <input
                     name="email"
                     type="text"
                     id="email"
                     value="{{ post.email }}"
                     class="required"
+                    placeholder="email@email.com"
                     required />
             </div>
         </div>
@@ -128,8 +130,7 @@
                     name="photo"
                     id="photo"
                     style="display: none"
-                    accept="image/*"
-                    required />
+                    accept="image/*" />
                 <div class="file">
                     <button type="button" id="file-trigger">
                         <img src="{{ 'assets/images/file-plus.svg' | theme }}" alt="plus" />

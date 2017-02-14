@@ -473,6 +473,7 @@ section.section-about {
           counter-increment: list;
           content: counter(list) ") ";
           display: table-cell;
+          padding-bottom: 30px;
         }
       }
     }
@@ -1256,7 +1257,7 @@ section.section-registration {
               left: 0;
               right: 0;
               bottom: 0;
-              background-color: $blue;
+              background-color: $green;
               border-radius: 34px;
               @include transition(400ms);
             }
@@ -1464,6 +1465,10 @@ section.section-contact {
       font-weight: 700;
       color: $lightGrey;
       text-decoration: none;
+
+      &:hover {
+        border-bottom: 7px solid $lightGrey;
+      }
 
       @media screen and (max-width: $break) {
         position: relative;

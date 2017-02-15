@@ -1,10 +1,14 @@
 <section class="section-intro">
 
-    <video loop id="bgvid">
+    <video loop class="bgvid desktop" id="bgvid">
         <source src="{{ 'assets/videos/bgvideo.webm' | theme }}" type="video/webm">
-        <source src="{{ 'assets/videos/bgvideo.mp4' }}" type="video/mp4">
-        <img src="{{ 'assets/images/1.png' | theme }}" id="fallback-image" />
+        <source src="{{ 'assets/videos/bgvideo.mp4' | theme }}" type="video/mp4">
+        <img src="{{ 'assets/images/1.png' | theme }}" class="fallback-image" />
     </video>
+
+    <div class="bgvid mobile">
+        <img src="{{ 'assets/images/1.png' | theme }}" class="fallback-image" />
+    </div>
 
     <div class="wrapper">
         <p>KONFERENCE O TOM,</p>
@@ -12,11 +16,11 @@
             <h1>Jak být profi</h1>
             <div id="changer">
                 <div>
-                    <h1>Architekt</h1>
-                    <h1>Speaker</h1>
-                    <h1>Kreslíř</h1>
-                    <h1>Gamer</h1>
-                    <h1>V tom co tě baví</h1>
+                    <h1>architekt</h1>
+                    <h1>speaker</h1>
+                    <h1>kreslíř</h1>
+                    <h1>gamer</h1>
+                    <h1>v tom, co tě baví</h1>
                 </div>
             </div>
         </div>

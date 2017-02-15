@@ -119,7 +119,7 @@ $(document).ready(function() {
                     actual = 1;
                 }
 
-                $("#fallback-image").attr("src", logo(actual + ".png", $("#fallback-image").attr("src") ));
+                $(".fallback-image").attr("src", logo(actual + ".png", $(".fallback-image").attr("src") ));
 
                 changer.animate({
                     bottom: -height

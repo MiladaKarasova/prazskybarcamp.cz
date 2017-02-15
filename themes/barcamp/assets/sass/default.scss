@@ -171,9 +171,24 @@ section.mobile-nav {
 
   a.btn {
     @include full-btn();
-    padding: 10px 50px;
+    padding: 15px 50px 12px;
     line-height: 14px;
     margin-top: 30px;
+
+    &.messenger {
+      background-color: $fbColor;
+      color: $white;
+      border: none;
+      padding: 15px 40px 12px;
+      @include flexDisplay();
+      @include alignItems(center);
+
+      img {
+        width: 15px;
+        margin-right: 10px;
+      }
+
+    }
   }
 
   a.close-nav {
@@ -201,7 +216,7 @@ section.section-intro {
   position: relative;
   overflow: hidden;
 
-  #bgvid {
+  .bgvid {
     position: absolute;
     top: 0;
     left: 0;
@@ -209,8 +224,26 @@ section.section-intro {
     min-width: 100%;
     min-height: 100%;
 
+    &.mobile {
+      height: 100%;
+      display: none;
+
+      img {
+        height: 100%;
+      }
+
+    }
+
     @media screen and (max-width: $break) {
       left: -200px;
+
+      &.desktop {
+        display: none;
+      }
+
+      &.mobile {
+        display: block;
+      }
     }
   }
 

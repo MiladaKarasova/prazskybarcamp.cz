@@ -147,7 +147,7 @@
                             name="category"
                             value="{{ category.slug }}"
                             id="category[{{ category.slug }}]"
-                            {% if post.category == category.slug %} selected="selected"{% endif %}
+                            {% if post.category == category.slug %} checked="checked"{% endif %}
                             required />
                         <label for="category[{{ category.slug }}]">{{ category.name }}</label>
                     </div>

@@ -1,5 +1,12 @@
 {% set talk = __SELF__.talk %}
 
+{% put head %}
+    <meta property="og:title" content="{{ talk.user.name }} - {{ talk.name }}"/>
+    <meta property="og:image" content="{{ 'home' | page }}{{ talk.user.avatar.getThumb(150, 150, 'exact') }}"/>
+    <meta property="og:site_name" content="Pražský barcamp"/>
+    <meta property="og:description" content="{{ talk.annotation }}"/>
+{% endput %}
+
 <div class="talk">
     <div class="row">
         <div class="one">
@@ -79,6 +86,7 @@
             {% endif %}
         </div>
         <div class="two vote-{{ talk.hash }} vote mobile-hide">
+            <a href="http://www.facebook.com/sharer.php?u={{ 'home' | page }}/talk/{{ talk.hash }}" target="_blank" class="share">SDÍLET</a>
             {% if not talk.voted %}
             <a href="#" class="btn"
                data-request="talks::onVote"

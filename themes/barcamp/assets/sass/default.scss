@@ -689,6 +689,10 @@ section.section-registrate {
   padding: 50px 0 70px;
   background-color: $green;
 
+  &.big {
+    padding: 100px 0;
+  }
+
   .wrapper {
     width: 95%;
     margin: auto;
@@ -1174,6 +1178,15 @@ section.section-registration {
   background-color: $greyBg;
   padding: 130px 0 100px;
 
+  &.white {
+    background-color: $white;
+    padding-bottom: 50px;
+
+    a.back-btn {
+      position: relative !important;
+    }
+  }
+
   .wrapper {
     max-width: $small-inner;
     width: 85%;
@@ -1447,6 +1460,16 @@ section.section-registration {
 
   }
 
+}
+
+section.section-talk {
+  max-width: $small-inner;
+  width: 85%;
+  margin: 80px auto;
+
+  .close-modal {
+    display: none !important;
+  }
 }
 
 section.section-contact {
@@ -2028,6 +2051,14 @@ section.section-full-program {
 
         @media screen and (max-width: $break) {
           text-align: center;
+        }
+
+        a.share {
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          color: $green;
+          margin-right: 30px;
         }
 
         a.btn {

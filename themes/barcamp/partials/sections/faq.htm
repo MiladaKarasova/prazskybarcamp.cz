@@ -7,7 +7,11 @@
     <div class="wrapper" id="faqs">
         {% for item in faqs.items %}
             <div class="item">
-                <span>+</span>
+                {% if loop.index < 3 %}
+                    <span>-</span>
+                {% else %}
+                    <span>+</span>
+                {% endif %}
                 <a href="javascript:void(0);" class="show-faq">{{ item.name }}</a>
                 {% if loop.index < 3 %}
                     <p style="display: block">{{ html_strip(item.text) }}</p>

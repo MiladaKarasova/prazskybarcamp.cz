@@ -88,14 +88,14 @@ $(document).ready(function() {
 
         if($("#registration-type").is(":checked")) {
             $("#switch-title").text("workshop");
-            $("#switch-name label").html("Název workshopu<sup>*</sup>");
-            $("#switch-name input").attr("placeholder", "Název workshopu");
+            $("#switch-name label").html("O čem je váš workshopu<sup>*</sup>");
+            $("#switch-name input").attr("placeholder", "O čem je váš workshopu");
             $("#annotation").attr("placeholder", "O čem je váš workshop");
             $("#type").val("workshop");
         } else {
             $("#switch-title").text("speaker");
-            $("#switch-name label").html("Název speaku<sup>*</sup>");
-            $("#switch-name input").attr("placeholder", "Název speaku");
+            $("#switch-name label").html("O čem je váš speech<sup>*</sup>");
+            $("#switch-name input").attr("placeholder", "O čem je váš speech");
             $("#annotation").attr("placeholder", "O čem je váš speak");
             $("#type").val("speaker");
         }

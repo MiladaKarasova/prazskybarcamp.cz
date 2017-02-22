@@ -46,16 +46,16 @@
         </div>
         <div class="half" id="switch-name">
             {% if (post.type == '') or (post.type == 'speaker') %}
-                <label for="talkName">Název speaku<sup>*</sup></label>
+                <label for="talkName">O čem je váš speech<sup>*</sup></label>
             {% else %}
-                <label for="talkName">Název workshopu<sup>*</sup></label>
+                <label for="talkName">O čem je váš workshopu<sup>*</sup></label>
             {% endif %}
             <input
                 name="talkName"
                 type="text"
                 id="talkName"
                 value="{{ post.talkName }}"
-                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}Název speaku{% else %}Název workshopu{% endif %}"
+                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je váš speech{% else %}O čem je váš workshopu{% endif %}"
                 class="required"
                 required />
         </div>
@@ -97,7 +97,7 @@
                     id="phone"
                     value="{{ post.phone }}"
                     class="required"
-                    placeholder="123456789"
+                    placeholder="+420 123 456 789"
                     required />
             </div>
             <div>
@@ -135,7 +135,7 @@
                     <button type="button" id="file-trigger">
                         <img src="{{ 'assets/images/file-plus.svg' | theme }}" alt="plus" />
                     </button>
-                    <span id="file-name">Název souboru</span>
+                    <span id="file-name">Název souboru s vaším jménem</span>
                 </div>
             </div>
             <div>

@@ -33,13 +33,18 @@
     <a href="javascript:void(0)" class="close-nav">
         <img src="{{ 'assets/images/close.svg' | theme }}" />
     </a>
-    <a href="{{ 'home' | page }}" title="Home" class="{% if this.page.id == 'home' %}active{% endif %}">Home</a>
-    <a href="{{ 'program' | page }}" title="Program" class="{% if this.page.id == 'program' %}active{% endif %}">Program</a>
-    <a href="{{ 'blog-list' | page }}" title="Blog" class="{% if this.page.id == 'blog-list' %}active{% endif %}">Blog</a>
-    <a href="{{ 'contact' | page }}" title="Kontakt" class="{% if this.page.id == 'contact' %}active{% endif %}">Kontakt</a>
-    <a href="https://www.eventbrite.com/e/prazsky-barcamp-2017-tickets-31633459529" title="Registrace" class="btn">REGISTRACE</a>
-    <a href="https://www.facebook.com/messages/t/1334039719965264" target="_blank" title="Registrace přes messenger" class="btn messenger">
-        <img src="{{ 'assets/images/messenger.svg' | theme }}" />
-        <span>MESSENGER</span>
-    </a>
+    <div class="mob-top">
+        <a href="{{ 'home' | page }}" title="Home" class="{% if this.page.id == 'home' %}active{% endif %}">Home</a>
+        <a href="{{ 'program' | page }}" title="Program" class="{% if this.page.id == 'program' %}active{% endif %}">Program</a>
+        <a href="{{ 'blog-list' | page }}" title="Blog" class="{% if this.page.id == 'blog-list' %}active{% endif %}">Blog</a>
+        <a href="{{ 'contact' | page }}" title="Kontakt" class="{% if this.page.id == 'contact' %}active{% endif %}">Kontakt</a>
+    </div>
+    <div class="mob-reg">
+        <p><b>Registrujte se zdarma jednou y možností</b></p>
+        <a href="https://www.eventbrite.com/e/prazsky-barcamp-2017-tickets-31633459529" title="Eventbrite" class="btn">EVENTBRITE.COM</a>
+        <a href="https://www.facebook.com/messages/t/1334039719965264" target="_blank" title="Registrace přes messenger" class="btn messenger">
+            <img src="{{ 'assets/images/messenger.svg' | theme }}" />
+            <span>MESSENGER</span>
+        </a>
+    </div>
 </section>

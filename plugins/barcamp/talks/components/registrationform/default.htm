@@ -6,9 +6,12 @@
     <p class="alert alert-danger">{{ error | raw }}</p>
 {% endif %}
 
+{% if not sent %}
 <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 
     {{ form_token() }}
+
+    {% set workshop = (post.type == 'workshop') or (post.type != 'speaker' and type == 'workshop') %}
 
     <div class="row">
         <div class="full">
@@ -17,13 +20,13 @@
                     type="hidden"
                     name="type"
                     id="type"
-                    value="{% if (post.type == '') or (post.type == 'speaker') %}speaker{% else %}workshop{% endif %}" />
+                    value="{% if workshop %}workshop{% else %}speaker{% endif %}" />
                 <span>Speaker</span>
                 <label class="switch">
                     <input
                         type="checkbox"
                         id="registration-type"
-                        {% if (post.type == 'workshop') %}checked="checked"{% endif %}
+                        {% if workshop %}checked="checked"{% endif %}
                     />
                     <div class="round-slider"></div>
                 </label>
@@ -45,17 +48,17 @@
                 required />
         </div>
         <div class="half" id="switch-name">
-            {% if (post.type == '') or (post.type == 'speaker') %}
-                <label for="talkName">O čem je váš speech<sup>*</sup></label>
-            {% else %}
+            {% if workshop %}
                 <label for="talkName">O čem je váš workshopu<sup>*</sup></label>
+            {% else %}
+                <label for="talkName">O čem je váš speech<sup>*</sup></label>
             {% endif %}
             <input
                 name="talkName"
                 type="text"
                 id="talkName"
                 value="{{ post.talkName }}"
-                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je váš speech{% else %}O čem je váš workshopu{% endif %}"
+                placeholder="{% if workshop %}O čem je váš workshopu{% else %}O čem je váš speech{% endif %}"
                 class="required"
                 required />
         </div>
@@ -66,7 +69,7 @@
             <label for="annotation">Anotace<sup>*</sup></label>
             <textarea
                 name="annotation"
-                placeholder="{% if (post.type == '') or (post.type == 'speaker') %}O čem je váš speak{% else %}O čem je váš workshop{% endif %}"
+                placeholder="{% if workshop %}O čem je váš workshop{% else %}O čem je váš speak{% endif %}"
                 id="annotation"
                 class="required"
                 required>{{ post.annotation }}</textarea>
@@ -166,3 +169,4 @@
     <button type="submit" name="submit" value="Registrovat se">ODESLAT</button>
 
 </form>
+{% endif %}

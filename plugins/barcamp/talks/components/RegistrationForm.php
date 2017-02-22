@@ -67,9 +67,10 @@ class RegistrationForm extends Account
 
         // template data
         $this->page['sent'] = Flash::check();
-        $this->page['post'] = Input::all();
+        $this->page['post'] = post();
         $this->page['error'] = $response;
-        $this->page['categories'] = Category::isEnabled()->orderBy('sort_order')->get();
+        $this->page['categories'] = $this->getAllCategories();
+        $this->page['type'] = Input::get('type');
     }
 
     /**
@@ -85,16 +86,14 @@ class RegistrationForm extends Account
             $this->validateForm($data);
             $facade = $this->getFacade();
             $data['user'] = $this->getUser($data);
+            $data['type'] = isset($data['type']) ? $data['type'] : 'speaker';
             $facade->register($data);
 
             // success
-            $message = "Vaše registrace byla úspešně dokončena.";
-            if (isset($data['user']->new)) {
-                $message .= ' Aktivujte prosím svůj účet dle instrukcí ve Vašem e-mailu.';
-            }
+            $message = "Vaše registrace byla úspěšně dokončena. Počkejte až se Vám ozve naše programová vedoucí.";
             Flash::success($message);
 
-            return Redirect::to('/' . Request::path(), 303);
+            return Redirect::to('/' . Request::path() . '?type=' . $data['type'], 303);
 
         } catch(ModelException $e) {
             $error = $e->getMessage();
@@ -212,10 +211,19 @@ class RegistrationForm extends Account
             $photo = Input::file('photo', null);
             $user = $facade->createUser($data, $photo);
             $this->sendActivationEmail($user);
-            $user->new = true;
         }
 
         return $user;
+    }
+
+    /**
+     * Get all enabled categories.
+     *
+     * @return mixed
+     */
+    private function getAllCategories()
+    {
+        return Category::isEnabled()->orderBy('sort_order')->get();
     }
 
     /**

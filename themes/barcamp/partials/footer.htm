@@ -1,0 +1,74 @@
+==
+<?php
+use Barcamp\Talks\Models\Settings;
+
+function onStart() {
+    $settings = App::make('Barcamp\Talks\Models\Settings');
+    $settings = $settings->first();
+    $this['program'] = $settings ? $settings->program : null;
+    $this['press'] = $settings ? $settings->press : null;
+    $this['logo'] = $settings ? $settings->logo : null;
+}
+?>
+==
+<footer>
+    <div class="wrapper">
+        <div class="links">
+            <div>
+                <strong>Registrace</strong>
+                <a href="https://www.eventbrite.com/e/prazsky-barcamp-2017-tickets-31633459529" title="Registrovat se přes eventbrite" target="_blank">Registrovat se přes eventbrite</a>
+                <a href="#messenger" title="Registrovat se přes messenger" target="_blank">Registrovat se přes messenger</a>
+                <a href="{{ 'registration' | page }}" title="Registrovat se jako speaker">Registrovat se jako speaker</a>
+            </div>
+            <div>
+                <strong>Přednášející</strong>
+                <a href="/#speakers" title="Hlasovat pro přednášejícícho">Hlasovat pro přednášejícícho</a>
+            </div>
+            <div>
+                <strong>Kontakt</strong>
+                <a href="mailto:info@prazskybarcamp.cz" title="Chci být dobrovolník">Chci být dobrovolník</a>
+                <a href="{{ 'contact' | page }}" title="Všechny kontakty">Všechny kontakty</a>
+                <a href="{{ 'contact' | page }}#team" title="O nás">O nás</a>
+            </div>
+            {% if program or press or logo %}
+                <div>
+                    <strong>Ke stažení</strong>
+                    {% if press %}
+                        <a href="{{ press.getPath() }}" title="Tisková zpráva (PDF)">Tisková zpráva (PDF)</a>
+                    {% endif %}
+                    {% if logo %}
+                        <a href="{{ logo.getPath() }}" title="Logo (ZIP)">Logo (ZIP)</a>
+                    {% endif %}
+                    {% if program %}
+                        <a href="{{ program.getPath() }}" title="Program (PDF)">Program (PDF)</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="bottom">
+            <p>
+                <span>Design</span>
+                <a href="http://culikzdenek.cz/" title="Design - Zdeněk Čulík">Zdeněk Čulík</a>
+            </p>
+            <p>
+                <span>Code</span>
+                <a href="http://tomaskazatel.cz/" title="Code - Tomáš Kazatel">Tomáš Kazatel</a><span>,</span>
+                <a href="https://www.vojtasvoboda.cz/" title="Code - Vojta Svoboda">Vojta Svoboda</a>
+            </p>
+            <p class="icons">
+                <a href="https://www.facebook.com/prazskybarcamp" target="_blank" title="Facebook">
+                    <img src="{{ 'assets/images/fb-icon.svg' | theme }}" />
+                </a>
+                <a href="https://www.instagram.com/prazskybarcamp" target="_blank" title="Instagram">
+                    <img src="{{ 'assets/images/insta-icon.svg' | theme }}" />
+                </a>
+                <a href="#" title="Twitter">
+                    <img src="{{ 'assets/images/twit-icon.svg' | theme }}" />
+                </a>
+                <a href="#" title="Snapchat">
+                    <img src="{{ 'assets/images/snap-icon.svg' | theme }}" />
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>

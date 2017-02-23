@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Název
+        span: left
+        searchable: true
+    slug:
+        label: Slug
+        span: right
+        preset:
+            field: name
+            type: slug
+    url:
+        label: Url
+        searchable: true
+        span: left
+    category:
+        label: Kategorie
+        type: relation
+        nameFrom: name
+        span: right
+    logo:
+        label: Logo
+        type: fileupload
+        mode: image
+        imageWidth: 100
+        imageHeight: 100
+    enabled:
+        label: Aktivní
+        type: switch
+        default: true

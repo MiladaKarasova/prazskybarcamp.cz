@@ -1,0 +1,19 @@
+==
+<?php
+function onEnd() {
+    $facade = App::make('Barcamp\Talks\Facades\TalksFacade');
+    $this['left'] = $facade->getTalksLeftCount();
+}
+?>
+==
+<section class="section-registrate" id="registration">
+    <div class="wrapper">
+        <h2>At ti nevyfouknou místo! Registruj se hned teď jednou z možností.<br />Zbývá už jen <span>{{ left }}</span> míst.</h2>
+        <a href="https://www.eventbrite.com/e/prazsky-barcamp-2017-tickets-31633459529" title="Registrace na Barcamp" target="_blank">EVENTBRITE.COM</a>
+        <a href="https://www.facebook.com/messages/t/1334039719965264" title="Messenger" class="messenger" target="_blank">
+            <img src="{{ 'assets/images/messenger.svg' | theme }}" />
+            <span>MESSENGER</span>
+        </a>
+        <img src="{{ 'assets/images/herman.png' | theme }}" id="herman" />
+    </div>
+</section>

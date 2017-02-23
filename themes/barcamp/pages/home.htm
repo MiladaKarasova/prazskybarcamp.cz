@@ -1,15 +1,29 @@
-title = "Homepage"
+title = "Konference o tom, jak být profi"
 url = "/"
-layout = "sections"
+layout = "default"
+meta_title = "Konference o tom, jak být profi"
+meta_description = "Konference o tom, jak být profi"
 is_hidden = 0
 ==
-<div class="page-homepage">
-    {% partial 'sections/intro' %}
-    {% partial 'sections/where' %}
-    {% partial 'sections/about' %}
+<?php
+function onEnd() {
+    $this['programEnabled'] = Barcamp\Talks\Models\Settings::get('program_ready', false);
+}
+?>
+==
+{% partial 'sections/intro' %}
+{% partial 'sections/where' %}
+{% partial 'sections/about' %}
+
+{% if programEnabled %}
     {% partial 'sections/program' %}
+{% else %}
     {% partial 'sections/speakers' %}
-    {% partial 'sections/posts' %}
-    {% partial 'sections/faq' %}
-    {% partial 'sections/partners' %}
-</div>
+{% endif %}
+
+{% partial 'sections/posts' %}
+<!--{% partial 'sections/instagram' %}-->
+{% partial 'sections/email' %}
+{% partial 'sections/faq' %}
+{% partial 'sections/partners' %}
+{% partial 'sections/registrate' %}

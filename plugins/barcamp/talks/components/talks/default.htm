@@ -1,0 +1,30 @@
+{% set talks = __SELF__.talks %}
+
+<div class="talks">
+    {% for talk in talks %}
+        <div class="talk" data-ident="{{ talk.hash }}" data-voted="{{ talk.voted ? 'true' : 'false' }}">
+            <div>
+                <a href="javascript:void(0);"
+                   title="{{ talk.user.name }} - {{ talk.name }}"
+                   style="color: {{ talk.category.color }}"
+                   data-hash="{{ talk.hash }}"
+                   class="avatar talk-trigger">
+                    {% if talk.user.avatar %}
+                        <img src="{{ talk.user.avatar.getThumb(70, 70, 'exact') }}" alt="{{ talk.user.name }}" />
+                    {% endif %}
+                </a>
+            </div>
+            <div class="right">
+                <a href="javascript:void(0);"
+                   title="{{ talk.user.name }} - {{ talk.name }}"
+                   style="color: {{ talk.category.color }}"
+                   data-hash="{{ talk.hash }}"
+                   class="talk-trigger">
+                    {{ talk.user.name }}
+                </a>
+                <p>{{ talk.name }}</p>
+                <span class="vote-{{ talk.hash }}">{{ talk.votes }} hlasů</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>

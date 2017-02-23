@@ -1,0 +1,13 @@
+plugin:
+    name: 'Barcamp Partners'
+    description: 'Plugin for management Barcamp Partners'
+    author: 'Tomáš Kazatel'
+    icon: 'icon-building-o'
+    homepage: 'http://www.prazskybarcamp.cz'
+permissions:
+    barcamp.partners.partners:
+        tab: 'Správa partnerů'
+        label: 'Správa partnerů'
+    barcamp.partners.categories:
+        tab: 'Správa partnerů'
+        label: 'Správa kategorií'

@@ -1,0 +1,5 @@
+title: Partneři
+modelClass: Barcamp\Partners\Models\Category
+nameFrom: name
+toolbar:
+    buttons: reorder_toolbar

@@ -1,12 +1,24 @@
-[faqs]
-
 [viewBag]
+
+[faqs]
 ==
 <section class="section-faq">
-    <div class="container">
-        <h2>
-            Často kladené dotazy
-        </h2>
-        {% component 'faqs' %}
+    <h2>FAQ</h2>
+    <div class="wrapper" id="faqs">
+        {% for item in faqs.items %}
+            <div class="item">
+                {% if loop.index < 3 %}
+                    <span>-</span>
+                {% else %}
+                    <span>+</span>
+                {% endif %}
+                <a href="javascript:void(0);" class="show-faq">{{ item.name }}</a>
+                {% if loop.index < 3 %}
+                    <p style="display: block">{{ html_strip(item.text) }}</p>
+                {% else %}
+                    <p>{{ html_strip(item.text) }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 </section>

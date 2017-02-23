@@ -1,20 +1,23 @@
-title = "Blog seznam"
+title = "Blog"
 url = "/blog/:page?"
 layout = "default"
+meta_title = "Blog Pražského Barcampu"
+meta_description = "Blog Pražského Barcampu"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :category }}"
-postsPerPage = 3
+postsPerPage = 100
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = "blog-category"
 postPage = "blog-detail"
 ==
-<section class="section-intro">
-    <div class="container">
-        <h1>inspirujte se <span>blogem videem nebo fotkou</span></h1>
+<section class="section-posts white">
+    <h1>inspirujte se</h1>
+    <h2>blogem nebo videem</h2>
+    <div class="wrapper">
         {% component 'blogPosts' %}
     </div>
 </section>

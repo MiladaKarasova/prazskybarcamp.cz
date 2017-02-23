@@ -1,0 +1,25 @@
+title = "Program"
+url = "/program"
+layout = "default"
+meta_title = "Program Pražského Barcampu"
+meta_description = "Program Pražského Barcampu"
+is_hidden = 0
+
+[talkCategories]
+==
+<?php
+function onEnd() {
+    $this['programEnabled'] = Barcamp\Talks\Models\Settings::get('program_ready', false);
+}
+?>
+==
+<section class="section-full-program">
+    <div class="wrapper">
+        {% if programEnabled %}
+            <h1>Program</h1>
+            {% component 'talkCategories' %}
+        {% else %}
+            <h1>Program odtajníme 25. 3. 2017</h1>
+        {% endif %}
+    </div>
+</section>

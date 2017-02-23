@@ -1,0 +1,32 @@
+
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Partneři
+
+# Model Form Field configuration
+form: $/barcamp/partners/models/partner/fields.yaml
+
+# Model Class name
+modelClass: Barcamp\Partners\Models\Partner
+
+# Default redirect location
+defaultRedirect: barcamp/partners/partners
+
+# Create page
+create:
+    title: Create Partner
+    redirect: barcamp/partners/partners/update/:id
+    redirectClose: barcamp/partners/partners
+
+# Update page
+update:
+    title: Edit Partner
+    redirect: barcamp/partners/partners
+    redirectClose: barcamp/partners/partners
+
+# Preview page
+preview:
+    title: Preview Partner

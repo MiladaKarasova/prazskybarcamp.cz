@@ -1,0 +1,16 @@
+title = "Sdílení přednášky"
+url = "/talk/:hash|[^0-9]"
+layout = "default"
+is_hidden = 0
+
+[onetalk]
+hash = "{{ :hash }}"
+==
+<section class="section-talk">
+    {% component 'onetalk' %}
+</section>
+<section class="section-registrate big">
+    <div class="wrapper">
+        <a href="{{ 'home' | page }}" title="Domů" class="back-btn">ZPĚT</a>
+    </div>
+</section>

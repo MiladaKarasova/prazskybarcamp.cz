@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Název
+        span: left
+        searchable: true
+    slug:
+        label: Slug
+        span: right
+        preset:
+            field: name
+            type: slug
+    enabled:
+        label: Aktivní
+        type: switch
+        default: true

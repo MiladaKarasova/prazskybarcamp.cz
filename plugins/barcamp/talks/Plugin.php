@@ -1,6 +1,7 @@
 <?php namespace Barcamp\Talks;
 
 use Backend;
+use Barcamp\Talks\Facades\TalksFacade;
 use System\Classes\PluginBase;
 
 /**
@@ -23,7 +24,9 @@ class Plugin extends PluginBase
     {
         return [
             'Barcamp\Talks\Components\RegistrationForm' => 'registrationForm',
-            // 'Barcamp\Talks\Components\MyComponent' => 'myComponent',
+            'Barcamp\Talks\Components\TalkCategories' => 'talkCategories',
+            'Barcamp\Talks\Components\Talks' => 'talks',
+            'Barcamp\Talks\Components\OneTalk' => 'onetalk'
         ];
     }
 
@@ -73,5 +76,40 @@ class Plugin extends PluginBase
                 ],
             ],
         ];
+    }
+
+    /**
+     * Register backend settings.
+     *
+     * @return array
+     */
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label'       => 'Správa programu',
+                'description' => 'Nastavení programu, limitu přednášek',
+                'category'    => 'Program',
+                'icon'        => 'icon-calendar',
+                'class'       => 'Barcamp\Talks\Models\Settings',
+                'order'       => 500,
+                'permissions' => ['barcamp.talks.*'],
+            ],
+        ];
+    }
+
+    /**
+     * Register scheduler. CRON tab has to be configured!
+     *
+     * @param $schedule
+     */
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+            /** @var TalksFacade $facade */
+            $facade = $this->app->make('Barcamp\Talks\Facades\TalksFacade');
+            $facade->recalculateVotes();
+
+        })->hourly()->name('Recalculate all votes.');
     }
 }

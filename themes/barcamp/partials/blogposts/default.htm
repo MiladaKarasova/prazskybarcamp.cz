@@ -1,0 +1,36 @@
+{% set posts = __SELF__.posts %}
+{% if posts %}
+    {% for post in posts %}
+    <article>
+        {% set outcome = (post.type != 'Článek' and post.type != null) %}
+        {% set link = outcome ? post.link : post.url %}
+        <a
+            href="{{ link }}"
+            title="{{ post.title }}"
+            class="figure"
+            {% if post.featured_images.first() %}style="background-image: url({{ post.featured_images.first().getThumb(200, 200, 'crop') }})"{% endif %}
+            {% if outcome %}target="_blank"{% endif %}>
+            <img src="{{ 'assets/images/blog-icon.svg' | theme }}" alt="icon-name" />
+        </a>
+        <div>
+            <a href="{{ link }}" title="{{ post.title }}"{% if outcome %} target="_blank"{% endif %}>
+                <h3>{{ post.title }}</h3>
+            </a>
+            <p class="time">{{ post.type | upper }} {{ post.minutes}}&nbsp;MIN</p>
+            <p class="perex">
+                {{ post.summary | raw }}
+                <a
+                    href="{{ link }}"
+                    title="{{ post.title }}"
+                    class="more"
+                    {% if outcome %}target="_blank"{% endif %}>
+                    číst více
+                </a>
+            </p>
+        </div>
+    </article>
+    {% endfor %}
+
+{% else %}
+    <p>Je nám líto, ale nic jsme se zatím nenapsali...</p>
+{% endif %}

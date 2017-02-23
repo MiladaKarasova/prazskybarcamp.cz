@@ -1,0 +1,6 @@
+1.0.1:
+    - Add partners seeder
+    - create_categories_table.php
+    - create_partners_table.php
+    - seed_categories_table.php
+    - seed_partners_table.php

@@ -2,6 +2,7 @@
 
 use ApplicationException;
 use Barcamp\Talks\Models\Category;
+use Barcamp\Talks\Models\Settings;
 use Barcamp\Talks\Models\Talk;
 use Barcamp\Talks\Models\Type;
 use RainLab\User\Models\User;
@@ -12,14 +13,26 @@ use Str;
  */
 class TalksFacade
 {
+    /** @var User $users */
     private $users;
 
+    /** @var Talk $talks */
     private $talks;
 
+    /** @var Category $categories */
     private $categories;
 
+    /** @var Type $types */
     private $types;
 
+    /**
+     * TalksFacade constructor.
+     *
+     * @param User $users
+     * @param Talk $talks
+     * @param Category $categories
+     * @param Type $types
+     */
     public function __construct(User $users, Talk $talks, Category $categories, Type $types)
     {
         $this->users = $users;
@@ -54,11 +67,8 @@ class TalksFacade
         // create talk
         $data['user_id'] = $data['user']->id;
         $data['name'] = $data['talkName'];
-        $talk = $this->talks->create($data);
 
-        // send email to admin
-
-        return $talk;
+        return $this->talks->create($data);
     }
 
     /**
@@ -77,14 +87,16 @@ class TalksFacade
         }
 
         // add each social network
-        $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        if (!empty($data['social'])) {
+            $data = array_merge($data, $this->parseSocialNetworks($data['social']));
+        }
 
         // create User
         $password = Str::random(24);
         $data['username'] = $data['email'];
         $data['password'] = $password;
         $data['password_confirmation'] = $password;
-        $data['self_promo'] = $data['selfpromo'];
+        $data['self_promo'] = !empty($data['selfpromo']) ? $data['selfpromo'] : '';
         $user = $this->users->create($data);
 
         // add photo to User
@@ -94,6 +106,92 @@ class TalksFacade
         }
 
         return $user;
+    }
+
+    /**
+     * Recalculate all talks votes. After truncate votes table you should call this method with $onlyTalksWithVotes
+     * parameter set to false.
+     *
+     * @param bool $onlyTalksWithVotes Take talks only with some votes.
+     */
+    public function recalculateVotes($onlyTalksWithVotes = true)
+    {
+        $this->getTalks($onlyTalksWithVotes)->each(function ($talk) {
+            $talk->recalculateVotes();
+        });
+    }
+
+    /**
+     * Get if registration is approved.
+     *
+     * @return mixed
+     */
+    public function isRegistrationApproved()
+    {
+        return Settings::get('registration_approved', true);
+    }
+
+    /**
+     * Get talks.
+     *
+     * @param bool $onlyWithVotes Get only talks with some votes.
+     *
+     * @return mixed
+     */
+    public function getTalks($onlyWithVotes = false)
+    {
+        if ($onlyWithVotes) {
+            return $this->talks->has('vote')->get();
+        }
+
+        return $this->talks->all();
+    }
+
+    /**
+     * Get all approved talks.
+     *
+     * @return mixed
+     */
+    public function getApprovedTalks()
+    {
+        return $this->talks->isApproved()->with('user', 'category')->orderBy('votes', 'desc')->limit(100)->get();
+    }
+
+    /**
+     * Get all approved talks with date.
+     *
+     * @return mixed
+     */
+    public function getApprovedTalksWithDate()
+    {
+        return $this->talks->hasDate()->orderBy('votes', 'desc')->limit(100)->get();
+    }
+
+    /**
+     * Get talks left count.
+     *
+     * @return mixed
+     */
+    public function getTalksLeftCount()
+    {
+        return Settings::get('talks_count', 0);
+    }
+
+    /**
+     * Get one talk by given hash.
+     *
+     * @param $hash
+     *
+     * @return mixed
+     */
+    public function getTalkByHash($hash)
+    {
+        return $this->talks
+            ->isApproved()
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            })->where('hash', $hash)
+            ->first();
     }
 
     /**

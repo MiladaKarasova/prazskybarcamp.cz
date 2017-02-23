@@ -1,0 +1,2394 @@
+@import "settings";
+@import "colors";
+@import "flexbox";
+@import "helpers";
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  margin: auto 0;
+
+  * {
+    outline: none;
+  }
+
+}
+
+nav {
+  width: 100%;
+  height: 75px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $white;
+
+  &.white-nav {
+    background-color: transparent;
+    .links a {
+      color: $white !important;
+    }
+    #menu-trigger {
+      color: $white !important;
+    }
+  }
+
+  .wrapper {
+    width: 95%;
+    height: 100%;
+    max-width: $max-width;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include justifyContent(space-between);
+    @include alignItems(center);
+
+    .logo {
+      @include flex(2, 20%);
+
+      @media screen and (max-width: $break) {
+        img {
+          max-width: 140px;
+        }
+      }
+    }
+
+    .links {
+      @include flex(6, 60%);
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(flex-end);
+      @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
+
+      a {
+        color: $black;
+        text-decoration: none;
+        margin: 5px 25px 0;
+        padding: 5px 0;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 2px solid transparent;
+
+        &.active {
+          border-color: $green;
+          font-weight: 700;
+        }
+
+        &:hover {
+          border-color: $green;
+        }
+      }
+    }
+
+    .button {
+      @include flex(2, 20%);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
+
+      a {
+        font-size: 14px;
+        font-weight: 500;
+        color: $black;
+        background-color: $green;
+        padding: 13px 30px 10px;
+        border-radius: 100px;
+        text-decoration: none;
+        letter-spacing: 1.8px;
+        @include transition(300ms);
+
+        &:hover {
+          @include box-shadow(0, 10px, 23px, 0, rgba(0, 0, 0, 0.10));
+        }
+      }
+    }
+
+    #menu-trigger {
+      display: none;
+      @include flex(4, 40%);
+      @include flexDirection(row);
+      @include justifyContent(flex-end);
+      @include alignItems(center);
+      color: $black;
+      text-decoration: none;
+      margin-right: 10px;
+
+      span {
+        margin-right: 10px;
+      }
+
+      @media screen and (max-width: $break) {
+        @include flexDisplay();
+      }
+    }
+  }
+}
+
+section.mobile-nav {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 100px;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  z-index: -999;
+
+  a {
+    color: $black;
+    text-decoration: none;
+    margin: 10px auto;
+    padding: 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    text-transform: uppercase;
+
+    &.active {
+      border-color: $green;
+      font-weight: 700;
+    }
+
+    &:hover {
+      border-color: $green;
+    }
+  }
+
+  a.btn {
+    @include full-btn();
+    padding: 15px 0 12px;
+    min-width: 200px;
+    line-height: 14px;
+    margin-top: 30px;
+
+    &.messenger {
+      background-color: $fbColor;
+      color: $white;
+      border: none;
+      padding: 15px 0 12px;
+      @include flexDisplay();
+      @include alignItems(center);
+      @include justifyContent(center);
+
+      img {
+        width: 15px;
+        margin-right: 10px;
+      }
+
+    }
+  }
+
+  a.close-nav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+  }
+
+  .mob-top {
+    width: 100%;
+    height: 55%;
+    padding: 0;
+    margin: 0;
+    @include flexDisplay();
+    @include flexDirection(column);
+    @include alignItems(center);
+    @include justifyContent(center);
+  }
+
+  .mob-reg {
+    width: 100%;
+    height: 45%;
+    background-color: $greyBg;
+    padding: 0;
+    @include flexDisplay();
+    @include flexDirection(column);
+    @include alignItems(center);
+    @include justifyContent(center);
+
+    p {
+      max-width: 60%;
+    }
+
+  }
+
+
+}
+
+section.section-intro {
+
+  width: 100%;
+  height: 100vh;
+  max-height: 700px;
+  position: relative;
+  overflow: hidden;
+
+  .bgvid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+    &.mobile {
+      height: 100%;
+      display: none;
+
+      img {
+        height: 100%;
+      }
+
+    }
+
+    @media screen and (max-width: $break) {
+      left: -200px;
+
+      &.desktop {
+        display: none;
+      }
+
+      &.mobile {
+        display: block;
+      }
+    }
+  }
+
+  .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    @include flexDisplay();
+    @include flexDirection(column);
+    @include justifyContent(center);
+    @include alignItems(center);
+
+    p {
+      font-size: 15px;
+      color: $white;
+      font-weight: 300;
+      max-width: 370px;
+      line-height: 2;
+
+      @media screen and (max-width: $break) {
+        max-width: 250px;
+      }
+
+      &:first-child {
+        letter-spacing: 2px;
+        font-weight: 400;
+
+        @media screen and (max-width: $break) {
+          max-width: 200px;
+        }
+      }
+    }
+
+    .jumbo {
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
+
+      #changer {
+        width: 350px;
+        height: 75px;
+        position: relative;
+        overflow: hidden;
+
+        @media screen and (max-width: $break) {
+          margin-top: 20px;
+        }
+
+        div {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: -moz-inline-flex;
+          display: inline-flex;
+          @include flexDirection(column);
+          @include justifyContent(flex-start);
+          @include alignItems(flex-start);
+
+          @media screen and (max-width: $break) {
+            @include alignItems(center);
+          }
+
+          h1 {
+            border-bottom: none;
+            font-family: 'Kalam', cursive;
+            margin: 0 10px 15px 10px;
+            text-align: left;
+          }
+        }
+      }
+
+      h1 {
+        font-size: 42px;
+        font-weight: 800;
+        margin: 0 0 20px 60px;
+        color: $white;
+        border-bottom: 7px solid $green;
+        display: inline-block;
+        text-align: right;
+
+        @media screen and (max-width: $break) {
+          font-size: 35px;
+          margin: auto;
+        }
+      }
+
+    }
+
+  }
+
+  a#arrow {
+    width: 50px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    @include transition(350ms);
+
+    &:hover {
+      bottom: 15px;
+    }
+  }
+
+}
+
+section.section-where {
+
+  width: 100%;
+  padding: 80px 0;
+
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
+  .wrapper {
+    width: 95%;
+    max-width: $small-inner;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include justifyContent(space-around);
+    @include alignItems(center);
+
+    @media screen and (max-width: $break) {
+      @include alignItems(flex-start);
+    }
+
+    a {
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+      color: $black;
+    }
+
+    div {
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+      color: $black;
+      width: 30%;
+    }
+
+    div, a {
+
+      img {
+        max-height: 45px;
+        max-width: 50px;
+      }
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        width: 25%;
+      }
+
+      span {
+        font-size: 15px;
+        font-weight: 400;
+        margin-left: 20px;
+        text-align: left;
+
+        @media screen and (max-width: $break) {
+          margin-left: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+
+}
+
+section.section-about {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 20px 0 70px;
+
+  h2 {
+    margin-bottom: 70px;
+    @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .wrapper {
+    width: 85%;
+    max-width: $small-inner;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include justifyContent(space-around);
+    @include alignItems(flex-start);
+
+    @media screen and (max-width: $break) {
+      @include flexDirection(column);
+    }
+
+    div {
+      @include flex(1, 50%);
+      padding: 0 30px;
+      text-align: justify;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        padding: 0;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        line-height: 2;
+        padding-right: 50px;
+
+        @media screen and (max-width: $break) {
+          padding-right: 0;
+        }
+
+      }
+
+      ol {
+        padding-left: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        list-style-type: none;
+        counter-reset: list;
+        display: table;
+
+        li {
+          text-align: left;
+          display: table-row;
+          padding-bottom: 10px;
+          line-height: 1.5;
+        }
+
+        li:before {
+          counter-increment: list;
+          content: counter(list) ") ";
+          display: table-cell;
+          padding-bottom: 30px;
+        }
+      }
+    }
+
+  }
+
+}
+
+section.section-program {
+  width: 100%;
+  padding: 50px 0 70px;
+  background-color: $green;
+
+  .wrapper {
+    width: 85%;
+    margin: auto;
+    max-width: $small-inner;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+
+    a {
+      font-size: 14px;
+      font-weight: 600;
+      color: $black;
+      background-color: $white;
+      padding: 10px 70px;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      @include transition(300ms);
+
+      &:hover {
+        @include box-shadow(0, 10px, 23px, 0, rgba(0, 0, 0, 0.10));
+      }
+    }
+  }
+
+}
+
+section.section-email {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 50px 0 70px;
+
+  .wrapper {
+    width: 85%;
+    max-width: $small-inner;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      max-width: 650px;
+      margin: 20px auto 50px;
+      max-width: 450px;
+
+      @media screen and (max-width: $break) {
+        font-size: 22px;
+      }
+    }
+
+    .form {
+      width: 100%;
+      max-width: 450px;
+      border: 1px solid $grey;
+      border-radius: 100px;
+      margin: auto;
+      padding: 2px;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        border: none;
+      }
+
+      input {
+        @include flex(3, 75%);
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 100px;
+        background: transparent;
+        border: none;
+
+        @media screen and (max-width: $break) {
+          border: 1px solid $grey;
+          margin-bottom: 20px;
+          @include flex(1, 85%);
+          text-align: center;
+          padding: 16px 20px 14px;
+
+          &::-webkit-input-placeholder {
+            text-align: center;
+          }
+          &::-moz-placeholder {
+            text-align: center;
+          }
+          &:-ms-input-placeholder {
+            text-align: center;
+          }
+          &:-moz-placeholder {
+            text-align: center;
+          }
+
+
+        }
+
+      }
+
+      button {
+        @include flex(1, 25%);
+        padding: 10px 20px;
+        background-color: $green;
+        color: $black;
+        border: none;
+        border-radius: 100px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(center);
+        @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          @include flex(1, 100%);
+          padding: 16px 20px 14px;
+        }
+
+        img {
+          margin-left: 10px;
+        }
+      }
+
+    }
+  }
+
+}
+
+section.section-faq {
+
+  width: 100%;
+  padding: 70px 0;
+
+  @media screen and (max-width: $break) {
+    padding: 30px 0;
+  }
+
+  h2 {
+    @include default-headline();
+  }
+
+  .wrapper {
+    margin: 50px auto 0;
+    width: 85%;
+    max-width: 800px;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include justifyContent(space-around);
+    @include alignItems(flex-start);
+    @include flex-wrap(wrap);
+
+    @media screen and (max-width: $break) {
+      margin-top: 20px;
+    }
+
+    .item {
+      width: 40%;
+      text-align: left;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+      }
+
+      span {
+        color: $green;
+        font-size: 14px;
+        font-weight: 700;
+        width: 8px;
+        display: inline-block;
+      }
+
+      a {
+        color: $black;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        margin-left: 5px;
+      }
+
+      p {
+        font-size: 16px;
+        font-weight: 300;
+        text-align: justify;
+        margin: 5px auto auto 18px;
+        line-height: 1.5;
+        display: none;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+      }
+
+    }
+
+  }
+
+}
+
+section.section-registrate {
+
+  width: 100%;
+  padding: 50px 0 70px;
+  background-color: $green;
+  position: relative;
+
+  #herman {
+    position: absolute;
+    bottom: 0;
+
+    @media screen and (max-width: $break) {
+      display: none;
+    }
+
+  }
+
+  &.big {
+    padding: 100px 0;
+  }
+
+  .wrapper {
+    width: 95%;
+    margin: auto;
+    max-width: $small-inner;
+
+    @media screen and (max-width: $break) {
+      @include flexDisplay();
+      @include flexDirection(column);
+
+      a {
+        margin-top: 20px !important;
+      }
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: auto auto 50px auto;
+      max-width: 450px;
+
+      @media screen and (max-width: $break) {
+        font-size: 26px;
+      }
+
+      span {
+        border-bottom: 3px solid $black;
+      }
+    }
+
+    a {
+      font-size: 14px;
+      font-weight: 600;
+      color: $black;
+      background-color: $white;
+      padding: 13px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      margin: auto 20px;
+      @include transition(300ms);
+
+      &.messenger {
+        background-color: $fbColor;
+        color: $white;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        padding: 13px 30px;
+        display: -moz-inline-flex;
+        display: inline-flex;
+        @include flexDirection(row);
+        @include justifyContent(center);
+        @include alignItems(center);
+
+        img {
+          width: 15px;
+          margin-right: 8px;
+        }
+
+      }
+
+      &:hover {
+        @include box-shadow(0, 10px, 23px, 0, rgba(0, 0, 0, 0.10));
+      }
+    }
+  }
+
+}
+
+section.section-partners {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 50px 0 70px;
+
+  @media screen and (max-width: $break) {
+    padding: 20px 0;
+  }
+
+  h2 {
+    margin-bottom: 70px;
+    @include default-headline();
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 15px;
+    }
+  }
+
+  h3 {
+    @include kalam-headline(true);
+
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 15px auto;
+    }
+  }
+
+  .wrapper {
+    width: 85%;
+    max-width: $small-inner;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include flex-wrap(wrap);
+    @include justifyContent(flex-start);
+    @include alignItems(flex-start);
+
+    .full {
+      width: 100%;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include flex-wrap(wrap);
+      @include justifyContent(flex-start);
+      @include alignItems(center);
+      margin-top: 30px;
+    }
+
+    .half {
+      width: 50%;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include flex-wrap(wrap);
+      @include justifyContent(flex-start);
+      @include alignItems(center);
+      margin-top: 30px;
+
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+    }
+
+    .full, .half {
+      h4 {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      a {
+        width: 90px;
+        height: 90px;
+        text-decoration: none;
+        background-color: $lightGrey;
+        border-radius: 100%;
+        margin: 15px 75px 15px 0;
+        @include flexDisplay();
+        @include justifyContent(center);
+        @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          width: 70px;
+          height: 70px;
+          margin-right: 20px;
+        }
+
+        +.plus {
+          background-color: $green;
+          img {
+            width: 30%;
+            height: 30%;
+          }
+        }
+
+        img {
+          width: 80%;
+          height: 80%;
+          border-radius: 100%;
+        }
+      }
+    }
+
+  }
+
+}
+
+section.section-posts {
+  width: 100%;
+  padding: 50px 0 70px;
+
+  &.white {
+    margin-top: 50px;
+    background-color: transparent;
+    padding-top: 100px;
+
+    @media screen and (max-width: $break) {
+      margin-top: 20px;
+    }
+
+    h1 {
+      @include default-headline();
+    }
+
+    h2 {
+      @include kalam-headline(true);
+
+      @media screen and (max-width: $break) {
+        margin-left: auto;
+      }
+    }
+
+  }
+
+  h2 {
+    @include default-headline();
+    margin-bottom: 70px;
+
+    @media screen and (max-width: $break) {
+      margin-bottom: 20px;
+    }
+  }
+
+  a.btn {
+    @include outline-btn();
+
+    @media screen and (max-width: $break) {
+      font-size: 14px;
+    }
+
+  }
+
+  .wrapper {
+    width: 95%;
+    max-width: $max-width;
+    margin: auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include flex-wrap(wrap);
+    @include justifyContent(space-around);
+    @include alignItems(flex-start);
+
+    article {
+      width: 45%;
+      margin: 20px;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include alignItems(flex-start);
+      @include justifyContent(center);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        width: 100%;
+      }
+
+      a.figure {
+        width: 150px;
+        height: 150px;
+        background-size: 100%;
+        background: no-repeat center;
+        position: relative;
+
+        @media screen and (max-width: $break) {
+          width: 100%;
+          background-size: cover;
+        }
+
+        img {
+          position: absolute;
+          bottom: 5px;
+          left: 5px;
+        }
+      }
+
+      div {
+        flex: 2;
+        text-align: left;
+        margin-left: 20px;
+
+        @media screen and (max-width: $break) {
+          margin-left: auto;
+          margin-top: 10px;
+        }
+
+        a {
+          text-decoration: none;
+
+          &.more {
+            text-decoration: underline;
+            color: $green;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          h3 {
+            color: $black;
+            font-size: 30px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 21px;
+
+          &.perex {
+            margin-top: 5px;
+          }
+
+          &.time {
+            display: inline-block;
+            background-color: $black;
+            color: $white;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 0 8px;
+            letter-spacing: 2.14px;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+section.section-instagram {
+  width: 100%;
+  padding: 50px 0 70px;
+
+  h1 {
+    @include kalam-headline(false);
+  }
+
+  h2 {
+    @include default-headline();
+  }
+
+}
+
+section.section-speakers {
+  width: 100%;
+  padding: 50px 0 70px;
+
+  h2 {
+    @include default-headline();
+  }
+
+  h3 {
+    @include kalam-headline(true);
+    @media screen and (max-width: $break) {
+      display: block;
+      margin: 0 0 20px 0;
+    }
+  }
+
+  a.btn {
+    @include outline-btn();
+    margin-top: 10px;
+
+    &:hover {
+      @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+    }
+  }
+
+  .wrapper {
+    width: 85%;
+    max-width: $small-inner;
+    margin: auto;
+
+    .categories {
+      width: 100%;
+      margin: 20px auto;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      @media screen and (max-width: $break) {
+        display: none;
+      }
+
+      span.category {
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(center);
+        @include alignItems(center);
+        margin: 0 50px;
+
+        span {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          border-radius: 100%;
+          margin: 0 15px;
+
+        }
+      }
+    }
+
+    .talks {
+      width: 100%;
+      height: 270px;
+      overflow: hidden;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include flex-wrap(wrap);
+      @include justifyContent(space-around);
+      @include alignItems(flex-start);
+
+      @media screen and (max-width: $break) {
+        @include justifyContent(flex-start);
+        height: 700px;
+      }
+
+      .talk {
+        width: 30%;
+        margin: 50px auto;
+        min-height: 130px;
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(flex-start);
+        @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+        }
+
+        .avatar {
+          display: block;
+          width: 70px;
+          height: 70px;
+          background-color: $lightGrey;
+          border-radius: 100%;
+          text-decoration: none;
+          color: transparent;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+          }
+        }
+
+        .right {
+          padding-left: 40px;
+          padding-top: 8px;
+          text-align: left;
+
+          a {
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+
+            &:hover {
+              text-decoration: none;
+            }
+
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 19px;
+            font-weight: 400;
+            margin: 10px auto;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 500;
+            color: $halfBlack;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+section.section-registration {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 130px 0 100px;
+
+  &.white {
+    background-color: $white;
+    padding-bottom: 50px;
+
+    a.back-btn {
+      position: relative !important;
+    }
+  }
+
+  .wrapper {
+    max-width: $small-inner;
+    width: 85%;
+    margin: auto;
+    position: relative;
+
+    a.back-btn {
+      @include full-btn();
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      @media screen and (max-width: $break) {
+        position: relative;
+      }
+
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: $black;
+      padding-top: 70px;
+
+      @media screen and (max-width: $break) {
+        padding-top: 20px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .row {
+      width: 100%;
+      max-width: 800px;
+      margin: 50px auto;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include alignItems(flex-start);
+      @include justifyContent(space-around);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        margin: auto;
+      }
+
+      .full {
+        width: 95%;
+        text-align: center;
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 25px;
+        }
+
+        p.helper {
+          text-align: center;
+        }
+
+        .g-recaptcha {
+          margin: auto;
+          width: 304px;
+        }
+
+        .slider {
+          max-width: 300px;
+          margin: auto;
+          @include flexDisplay();
+          @include flexDirection(row);
+          @include alignItems(center);
+          @include justifyContent(space-around);
+
+          input {
+            display: none;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 700;
+          }
+
+          .switch {
+            position: relative;
+            width: 60px;
+            height: 34px;
+
+            .round-slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: $green;
+              border-radius: 34px;
+              @include transition(400ms);
+            }
+
+            .round-slider:before {
+              border-radius: 50%;
+              position: absolute;
+              content: "";
+              height: 26px;
+              width: 26px;
+              left: 4px;
+              bottom: 4px;
+              background-color: $white;
+              @include transition(400ms);
+            }
+
+            input:checked + .round-slider:before {
+              -webkit-transform: translateX(26px);
+              -ms-transform: translateX(26px);
+              transform: translateX(26px);
+            }
+
+          }
+
+        }
+
+      }
+
+      .half {
+        width: 40%;
+        @include flexDisplay();
+        @include flexDirection(column);
+        @include justifyContent(center);
+        @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          width: 95%;
+          margin-bottom: 25px;
+        }
+
+        div {
+          width: 100%;
+          margin-bottom: 30px;
+          @include flexDisplay();
+          @include flexDirection(column);
+          @include justifyContent(center);
+          @include alignItems(flex-start);
+
+          label {
+            text-align: left;
+            width: 100%;
+          }
+
+          .radio {
+            width: 100%;
+            @include flexDisplay();
+            @include flexDirection(row);
+            @include justifyContent(flex-start);
+            @include alignItems(center);
+            margin-bottom: 10px;
+
+            label {
+              margin: 0 0 0 10px;
+              font-size: 18px;
+              font-weight: 300;
+            }
+
+            input {
+              width: 22px;
+              height: 22px;
+              margin: 2px 0 0 0;
+            }
+
+          }
+
+        }
+
+        label {
+          font-size: 16px;
+          font-weight: 700;
+          color: $black;
+          margin-bottom: 10px;
+          margin-left: 3px;
+
+          span {
+            color: $grey;
+            font-weight: 300;
+          }
+        }
+
+        input[type="text"] {
+          width: 90%;
+          height: 30px;
+          padding: 10px 20px;
+          font-size: 18px;
+          font-weight: 300;
+          background-color: $white;
+          border-radius: 5px;
+          border: none;
+          box-shadow: inset 0 0 3px 0 $lightBlack;
+
+          &.required {
+            box-shadow: inset 0 0 3px 0 $blue;
+          }
+        }
+
+        textarea {
+          width: 90%;
+          height: 100px;
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: $white;
+          border-radius: 5px;
+          border: none;
+          box-shadow: inset 0 0 3px 0 $lightBlack;
+          font-weight: 300;
+
+          &.higher {
+            height: 150px;
+          }
+
+          &.required {
+            box-shadow: inset 0 0 3px 0 $blue;
+          }
+        }
+
+        .file {
+          @include flexDisplay();
+          @include flexDirection(row);
+          @include justifyContent(flex-start);
+          @include alignItems(center);
+          margin-bottom: 0;
+
+          #file-trigger {
+            background-color: transparent;
+            width: 40px;
+            height: 40px;
+            border: 1px solid $green;
+            border-radius: 5px;
+            padding: 0;
+            @include flexDisplay();
+            @include justifyContent(center);
+            @include alignItems(center);
+          }
+
+          #file-name {
+            color: $grey;
+            font-weight: 300;
+            font-size: 14px;
+          }
+
+        }
+      }
+
+      p.helper {
+        color: $grey;
+        text-align: left;
+        margin: 10px 5px;
+        font-weight: 300;
+        font-size: 15px;
+      }
+
+    }
+
+    button {
+      @include outline-btn();
+      margin-top: 0;
+      margin-bottom: 0;
+      background-color: transparent;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 15px 50px;
+
+      &:hover {
+        @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+      }
+    }
+
+  }
+
+}
+
+section.section-talk {
+  max-width: $small-inner;
+  width: 85%;
+  margin: 80px auto;
+
+  .close-modal {
+    display: none !important;
+  }
+}
+
+section.section-contact {
+  width: 100%;
+  padding: 120px 0 50px;
+  position: relative;
+
+  .wrapper {
+    max-width: $small-inner;
+    width: 85%;
+    margin: auto;
+    text-align: left;
+    position: relative;
+
+    h1 {
+      @include default-headline();
+    }
+
+    a.jumbo {
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 0;
+      font-size: 38px;
+      font-weight: 700;
+      color: $lightGrey;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 7px solid $lightGrey;
+      }
+
+      @media screen and (max-width: $break) {
+        position: relative;
+        font-size: 20px;
+        color: $black;
+        margin-bottom: 50px;
+      }
+    }
+
+    .contact {
+      width: 100%;
+      margin: 100px 0;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(flex-start);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        margin: 20px auto;
+      }
+
+      div {
+        @include flex(1, 25%);
+
+        @media screen and (max-width: $break) {
+          @include flex(1, 100%);
+        }
+
+        h2 {
+          font-size: 14px;
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+
+        p {
+          font-size: 13px;
+          font-weight: 300;
+          line-height: 31px;
+          margin-top: 0;
+          @include flexDisplay();
+          @include flexDirection(column);
+          @include alignItems(flex-start);
+
+          a {
+            color: $black;
+            word-wrap: break-word;
+
+            &.tel {
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+}
+
+section.section-contact-form {
+  width: 100%;
+  padding: 50px 0 70px;
+  margin: 0;
+  background-color: $greyBg;
+
+  @media screen and (max-width: $break) {
+    padding: 20px 0;
+  }
+
+  .wrapper {
+    width: 85%;
+    max-width: 550px;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    form {
+      width: 100%;
+      @include flexDisplay();
+      @include flexDirection(column);
+
+      input[type="text"] {
+        width: 90%;
+        height: 30px;
+        padding: 10px 20px;
+        margin: 0 auto 30px;
+        font-size: 18px;
+        font-weight: 300;
+        background-color: $white;
+        border-radius: 5px;
+        border: none;
+        box-shadow: inset 0 0 3px 0 $lightBlack;
+
+        @media screen and (max-width: $break) {
+          width: 85%;
+        }
+
+        &.required {
+          box-shadow: inset 0 0 3px 0 $blue;
+        }
+      }
+
+      textarea {
+        width: 90%;
+        height: 100px;
+        padding: 10px 20px;
+        margin: 0 auto 30px;
+        font-size: 16px;
+        background-color: $white;
+        border-radius: 5px;
+        border: none;
+        box-shadow: inset 0 0 3px 0 $lightBlack;
+        font-weight: 300;
+
+        @media screen and (max-width: $break) {
+          width: 85%;
+        }
+
+        &.higher {
+          height: 150px;
+        }
+
+        &.required {
+          box-shadow: inset 0 0 3px 0 $blue;
+        }
+      }
+
+      button {
+        @include outline-btn();
+        background-color: transparent;
+        font-weight: 500;
+        max-width: 200px;
+        margin: 0 auto;
+        cursor: pointer;
+
+        &:hover {
+          @include box-shadow(8px, 8px, 14px, 0, rgba(0, 0, 0, 0.10));
+        }
+      }
+
+    }
+
+  }
+
+}
+
+section.section-who-is-behind {
+  width: 100%;
+  padding: 70px 0;
+
+  .wrapper {
+    width: 85%;
+    max-width: $small-inner;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .contact {
+      width: 100%;
+      margin-top: 50px;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(space-around);
+      @include alignItems(flex-start);
+      @include flex-wrap(wrap);
+
+      .user {
+        width: 22%;
+        margin: 60px auto 0;
+        @include flexDisplay();
+        @include flexDirection(column);
+        @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          width: 44%;
+        }
+
+        a {
+          display: inline-block;
+          width: 130px;
+          position: relative;
+          text-decoration: none;
+          @include transition(300ms);
+
+          .image {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            margin: auto auto 30px;
+            background-color: $lightGrey;
+            border-radius: 100%;
+
+            .overlay {
+              display: none;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: $halfGreen;
+              @include alignItems(center);
+              @include justifyContent(center);
+              @include transition(300ms);
+
+              img {
+                max-width: 50%;
+                height: 40%;
+              }
+            }
+
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 100%;
+            }
+          }
+
+          &:hover .overlay {
+            @include flexDisplay();
+          }
+
+          p.name {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 5px auto;
+            color: $black;
+          }
+        }
+
+        p.promo {
+          font-size: 14px;
+          font-weight: 300;
+          margin: 5px auto;
+        }
+      }
+    }
+
+  }
+
+}
+
+section.section-downloads {
+  width: 100%;
+  padding: 50px 0 70px;
+  margin: 0;
+  background-color: $greyBg;
+
+  .wrapper {
+    width: 95%;
+    max-width: $small-inner;
+    margin: auto;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .links {
+      width: 100%;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      a {
+        @include outline-btn();
+
+        &:hover {
+          @include box-shadow(0,10px,32px,0,rgba(0,0,0,0.10));
+        }
+      }
+    }
+
+  }
+
+}
+
+section.section-blog-post {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  .cover {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: $break) {
+      height: 350px;
+
+      h1 {
+        font-size: 25px;
+      }
+    }
+
+    .cover-inner {
+      width: 100%;
+      height: 100%;
+      background-color: $transBlack;
+      @include flexDisplay();
+      @include flexDirection(column);
+      @include justifyContent(center);
+      @include alignItems(center);
+
+      h1 {
+        font-size: 35px;
+        font-weight: 700;
+        color: $white;
+      }
+
+      p.time {
+        display: inline-block;
+        background-color: $black;
+        color: $white;
+        font-weight: 700;
+        font-size: 11px;
+        padding: 0 8px;
+        letter-spacing: 2.14px;
+        line-height: 30px;
+      }
+    }
+  }
+
+  .wrapper {
+    width: 85%;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+
+    h1 {
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 39;
+    }
+
+    h2, h3 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 39;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 39px;
+      font-weight: 400;
+      text-align: left;
+    }
+
+  }
+}
+
+section.blog-links {
+  width: 100%;
+  background-color: $greyBg;
+  padding: 30px 0;
+
+  a {
+    @include outline-btn();
+
+    &:hover {
+      @include box-shadow(0,10px,32px,0,rgba(0,0,0,0.10));
+    }
+  }
+
+}
+
+section.section-full-program {
+  width: 100%;
+  padding: 100px 0;
+
+  h1 {
+    @include default-headline();
+    border: none;
+  }
+
+  .categories {
+    width: 100%;
+    margin: 20px auto;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include justifyContent(center);
+    @include alignItems(center);
+
+    @media screen and (max-width: $break) {
+      display: none;
+    }
+
+    span.category {
+      font-size: 14px;
+      font-weight: 700;
+      color: $black;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(center);
+      @include alignItems(center);
+      margin: 0 50px;
+
+      span {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        margin: 0 15px;
+
+      }
+    }
+  }
+
+}
+
+.talk {
+  width: 100%;
+  padding-bottom: 30px;
+  @include flexDisplay();
+  @include flexDirection(column);
+  position: relative;
+
+  a.close-modal {
+    text-decoration: none;
+    color: transparent;
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+  }
+
+  .row {
+    width: 90%;
+    margin: 20px auto 0;
+    @include flexDisplay();
+    @include flexDirection(row);
+    @include alignItems(flex-start);
+    @include justifyContent(space-around);
+    @include flex-wrap(wrap);
+
+    @media screen and (max-width: $break) {
+      @include flexDirection(column);
+    }
+
+    &.mobile {
+      display: none;
+
+      @media screen and (max-width: $break) {
+        display: block;
+      }
+
+    }
+
+    .one {
+      @include flex(1, 25%);
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+      }
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        background-color: $lightGrey;
+        border-radius: 100%;
+
+        @media screen and (max-width: $break) {
+          width: 100px;
+          height: 100px;
+          margin: auto;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+        }
+      }
+    }
+
+    .two {
+      //@include flex(1, 50%);
+      text-align: left;
+      padding-right: 30px;
+      margin-bottom: 20px;
+      width: 40%;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        padding-right: 0;
+      }
+
+      h2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+        margin: 10px auto;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: $black;
+        line-height: 23px;
+        margin-top: 0;
+      }
+
+      &.links {
+        @include flexDisplay();
+        @include flexDirection(row);
+        @include justifyContent(flex-start);
+        @include alignItems(center);
+
+        @media screen and (max-width: $break) {
+          @include justifyContent(center);
+          @include order(4);
+        }
+
+        a {
+          text-decoration: underline;
+          color: transparent;
+          height: 25px;
+          margin-right: 20px;
+          @include flexDisplay();
+          @include justifyContent(center);
+          @include alignItems(center);
+        }
+
+      }
+
+      @media screen and (max-width: $break) {
+        &.mobile-hide {
+          display: none;
+        }
+      }
+
+      &.vote {
+        text-align: right;
+
+        @media screen and (max-width: $break) {
+          text-align: center;
+        }
+
+        a.share {
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          color: $green;
+          margin-right: 30px;
+        }
+
+        a.btn {
+          @include full-btn();
+
+          @media screen and (max-width: $break) {
+            padding: 13px 50px;
+            @include box-shadow(8px,8px,14px,0, rgba(0,0,0,.1));
+          }
+        }
+
+      }
+
+      &.anotation {
+        @include order(2);
+      }
+
+      &.about {
+        @include order(3);
+      }
+
+    }
+
+    .three {
+      @include flex(3, 75%);
+      margin-left: 30px;
+      text-align: left;
+
+      @media screen and (max-width: $break) {
+        @include flex(1, 100%);
+        margin-left: auto;
+        @include flexDisplay();
+        @include flexDirection(column);
+      }
+
+      p.name {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: $black;
+
+        @media screen and (max-width: $break) {
+          text-align: center;
+          margin-top: 10px;
+          @include order(1);
+        }
+      }
+
+      h1 {
+        font-size: 25px;
+        line-height: 34px;
+        font-weight: 700;
+        color: $black;
+        margin-bottom: 30px;
+
+        @media screen and (max-width: $break) {
+          @include order(4);
+          font-size: 22px;
+          text-align: center;
+        }
+      }
+
+      p.left {
+        font-size: 14px;
+        font-weight: 700;
+        display: inline-block;
+        width: 45%;
+        text-align: left;
+
+        @media screen and (max-width: $break) {
+          @include order(2);
+          width: 90%;
+          margin: 10px auto;
+          text-align: center;
+        }
+      }
+
+      p.right {
+        display: inline-block;
+        width: 45%;
+        text-align: right;
+        color: $black;
+        font-size: 14px;
+        font-weight: 400;
+
+        @media screen and (max-width: $break) {
+          @include order(3);
+          width: 90%;
+          margin: auto;
+          text-align: center;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+footer {
+  width: 100%;
+  background-color: $almostBlack;
+
+  .wrapper {
+    width: 85%;
+    max-width: $max-width;
+    margin: auto;
+
+    .links {
+      width: 100%;
+      margin: auto;
+      padding: 100px 0 70px;
+      max-width: $small-inner;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(space-between);
+      @include alignItems(flex-start);
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+        padding: 30px 0;
+      }
+
+      div {
+        @include flexDisplay();
+        @include flexDirection(column);
+        @include alignItems(flex-start);
+
+        @media screen and (max-width: $break) {
+          margin-bottom: 30px;
+        }
+
+        strong {
+          font-size: 14px;
+          color: $white;
+          font-weight: 600;
+        }
+
+        a {
+          font-size: 14px;
+          text-decoration: none;
+          color: $halfWhite;
+          font-weight: 300;
+          margin-top: 20px;
+
+          &:hover {
+            color: $almostWhite;
+          }
+        }
+      }
+
+    }
+
+    .bottom {
+      width: 100%;
+      max-width: $small-inner;
+      margin: auto;
+      @include flexDisplay();
+      @include flexDirection(row);
+      @include justifyContent(flex-start);
+      @include alignItems(center);
+      padding-bottom: 20px;
+
+      @media screen and (max-width: $break) {
+        @include flexDirection(column);
+      }
+
+      p {
+        margin-right: 60px;
+
+        @media screen and (max-width: $break) {
+          margin-right: auto;
+        }
+
+        span, a {
+          color: $halfWhite;
+          font-size: 14px;
+          font-weight: 300;
+        }
+
+        a:hover {
+          color: $almostWhite;
+        }
+
+        &.icons {
+          margin-left: 150px;
+          margin-right: 0;
+          @include flexDisplay();
+          @include flexDirection(row);
+
+          a {
+            width: 20px;
+            height: 20px;
+            text-decoration: none;
+            filter: alpha(opacity=60);
+            -moz-opacity:0.6;
+            -khtml-opacity: 0.6;
+            opacity: 0.6;
+            margin: 0 10px;
+
+            img {
+              height: 20px;
+            }
+
+            &:hover {
+              filter: alpha(opacity=90);
+              -moz-opacity:0.9;
+              -khtml-opacity: 0.9;
+              opacity: 0.9;
+            }
+          }
+
+        }
+      }
+
+    }
+
+  }
+}
+
+.alert-success {
+  font-size: 18px;
+  font-weight: 700;
+  color: $green;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.alert-danger {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.error {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}

@@ -1,16 +1,36 @@
 title = "Registrace"
 url = "/registrace/:code?"
 layout = "default"
+meta_title = "Registrace na Pražský Barcamp"
+meta_description = "Registrace na Pražský Barcamp"
 is_hidden = 0
 
 [registrationForm]
 paramCode = "code"
 ==
+<?php
+function onEnd() {
+    $facade = App::make('Barcamp\Talks\Facades\TalksFacade');
+    $this['enabled'] = $facade->isRegistrationApproved();
+}
+?>
+==
 {% if not user %}
-<div class="container">
-    <div class="col-md-4 col-md-offset-4">
-        <h1>Registrace</h1>
-        {% component 'registrationForm' %}
-    </div>
-</div>
+    <section class="section-registration">
+        <div class="wrapper">
+            <a href="{{ 'home' | page }}" title="Domů" class="back-btn">ZPĚT</a>
+            <h1>
+                Registrační formulář -
+                <span id="switch-title">
+                    {% set workshop = (post.type == 'workshop') or (post.type != 'speaker' and type == 'workshop') %}
+                    {{ workshop ? 'workshop' : 'speaker' }}
+                </span>
+            </h1>
+            {% if enabled %}
+                {% component 'registrationForm' %}
+            {% else %}
+                <p>Omlouváme se, ale počet míst je již vyčerpán.</p>
+            {% endif %}
+        </div>
+    </section>
 {% endif %}

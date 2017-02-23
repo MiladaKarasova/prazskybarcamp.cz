@@ -1,0 +1,10 @@
+%YAML 1.1
+---
+# database table: barcamp_partners_categories
+-
+  name: "Hlavní partneři"
+-
+  name: "Mediální partneři"
+-
+  name: "Partneři"
+...

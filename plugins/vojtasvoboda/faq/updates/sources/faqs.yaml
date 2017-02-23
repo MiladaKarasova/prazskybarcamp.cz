@@ -1,12 +1,27 @@
 %YAML 1.1
 ---
-# vojtasvoboda_faq_faqs
 -
-  name: "First question"
-  text: "<p>First answer</p>"
+  name: "Bude nějaký catering?"
+  text: "<p>Do nosu si dáš už ráno u snídaně. Hodinu mezi 12:00 a 13:00 jsme vyhradili na oddech spojený s obědem. Během celého dne bude k mání bageta, ovoce, káva, čaj a další občerstvení.</p>"
   enabled: 1
 -
-  name: "Second question"
-  text: "<p>Second answer</p>"
+  name: "Zaparkuji na místě?"
+  text: "<p>Ozvi se nám a zkusíme ti nějaké to parkovací místo podržet. Anebo ti můžeme doporučit vyvoněné taxi, na které je spoleh.</p>"
+  enabled: 1
+-
+  name: "Co všechno je součástí vstupenky?"
+  text: "<p>Vstupenka zdarma tě dostane na všechny přednášky, na každou z nich dostaneš sezení, které ti nikdo nevyfoukne. Stačí si včas vybrat, kde chceš sedět. K tomu u nás máš catering a další servis.</p>"
+  enabled: 1
+-
+  name: "Jak se tam dostanu?"
+  text: "<p>Rozhodně se nemusíš bát, že by tě cesta k nám rozfuněla – s využitím MHD se dostaneš skoro až k našim dveřím. Jsme na adrese XXXXX poblíž zastávky XXXX, kam jezdí linky XXXXX ze stanice metra XXXXX. </p>"
+  enabled: 1
+-
+  name: "Co si mám vzít?"
+  text: "<p>Přines si cokoli, co ti pomůže odnést si co nejvíce poznatků. (Můžeš kreslit, můžeš psát, ale cokoli nahrávat a fotit je bohužel zakázáno.) Škrtit tě dresscodem nechceme. Toho si užiješ dost, až se naplno rozjede tvá kariéra.</p>"
+  enabled: 1
+-
+  name: "Je nezbytné se registrovat?"
+  text: "<p>Ne, že bychom ti nevěřili nos mezi očima, ale jedině s kompletní rezervací ti umíme splnit vše, co konference slibuje. Očekáváme, že zájem bude větší, než naše kapacity, proto s registrací neváhej!</p>"
   enabled: 1
 ...

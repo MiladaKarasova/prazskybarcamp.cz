@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+# database table: barcamp_partners_partners
+-
+  category_id: 1
+  name: "První partner"
+  url: "http://prvnipartner.cz"
+-
+  category_id: 1
+  name: "Druhý partner"
+  url: "http://druhypartner.cz"
+-
+  category_id: 2
+  name: "Třetí partner"
+  url: "http://tretipartner.cz"
+-
+  category_id: 2
+  name: "Čtvrtý partner"
+  url: "http://ctvrtypartner.cz"
+-
+  category_id: 3
+  name: "Další partner 1"
+  url: "http://dalsipartner1.cz"
+-
+  category_id: 3
+  name: "Další partner 2"
+  url: "http://dalsipartner2.cz"
+-
+  category_id: 3
+  name: "Další partner 3"
+  url: "http://dalsipartner3.cz"
+-
+  category_id: 3
+  name: "Další partner 4"
+  url: "http://dalsipartner4.cz"
+-
+  category_id: 3
+  name: "Další partner 5"
+  url: "http://dalsipartner5.cz"
+-
+  category_id: 3
+  name: "Další partner 6"
+  url: "http://dalsipartner6.cz"
+...

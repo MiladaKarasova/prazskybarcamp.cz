@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'backendForceSecure' => null,
+    'backendForceSecure' => env('CMS_BACKEND_SECURE', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -278,7 +278,7 @@ return [
     |
     */
 
-    'linkPolicy' => 'detect',
+    'linkPolicy' => env('CMS_LINK_POLICY', 'detect'),
 
     /*
     |--------------------------------------------------------------------------

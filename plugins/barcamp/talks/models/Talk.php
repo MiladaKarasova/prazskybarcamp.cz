@@ -43,12 +43,19 @@ class Talk extends Model
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['voted'];
+
+    /**
      * Has many relationship.
      *
      * @var array
      */
     public $hasMany = [
-        'votes' => 'Barcamp\Talks\Models\Vote',
+        'vote' => 'Barcamp\Talks\Models\Vote',
     ];
 
     /**
@@ -59,7 +66,10 @@ class Talk extends Model
     public $belongsTo = [
         'category' => 'Barcamp\Talks\Models\Category',
         'type' => 'Barcamp\Talks\Models\Type',
-        'user' => 'RainLab\User\Models\User',
+        'user' => [
+            'RainLab\User\Models\User',
+            'scope' => 'isActivated',
+        ],
     ];
 
     /**
@@ -74,6 +84,48 @@ class Talk extends Model
     }
 
     /**
+     * Vote for the talk.
+     *
+     * @return int|bool
+     */
+    public function addVote()
+    {
+        // check if some votes exists
+        if ($this->getVotedAttribute() !== false) {
+            return false;
+        }
+
+        // create vote
+        $this->vote()->create();
+
+        // increment redundant counter
+        $this->increaseVotes();
+
+        return $this->votes;
+    }
+
+    /**
+     * Increment vote counter.
+     */
+    public function increaseVotes()
+    {
+        $this->votes += 1;
+        $this->save();
+    }
+
+    /**
+     * Recalculate all votes.
+     */
+    public function recalculateVotes()
+    {
+        $votes = $this->vote()->count();
+        if ($this->votes != $votes) {
+            $this->votes = $votes;
+            $this->save();
+        }
+    }
+
+    /**
      * Fetch only approved talks.
      *
      * @param $query
@@ -82,7 +134,23 @@ class Talk extends Model
      */
     public function scopeIsApproved($query)
     {
-        return $query->where('approved', true);
+        return $query
+            ->where('approved', true)
+            ->whereHas('user', function ($user) {
+                $user->isActivated();
+            });
+    }
+
+    /**
+     * Fetch only approved talks with date.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeHasDate($query)
+    {
+        return $query->isApproved()->whereNotNull('date');
     }
 
     /**
@@ -95,6 +163,18 @@ class Talk extends Model
     public function scopeIsWaiting($query)
     {
         return $query->where('approved', false);
+    }
+
+    /**
+     * Get voted attribute - if current user voted or not.
+     *
+     * @return bool
+     */
+    public function getVotedAttribute()
+    {
+        $votes = $this->vote()->fromTheSameMachine()->first();
+
+        return $votes !== null;
     }
 
     /**

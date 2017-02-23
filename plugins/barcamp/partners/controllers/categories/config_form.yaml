@@ -1,0 +1,32 @@
+
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Kategorie
+
+# Model Form Field configuration
+form: $/barcamp/partners/models/category/fields.yaml
+
+# Model Class name
+modelClass: Barcamp\Partners\Models\Category
+
+# Default redirect location
+defaultRedirect: barcamp/partners/categories
+
+# Create page
+create:
+    title: Create Category
+    redirect: barcamp/partners/categories/update/:id
+    redirectClose: barcamp/partners/categories
+
+# Update page
+update:
+    title: Edit Category
+    redirect: barcamp/partners/categories
+    redirectClose: barcamp/partners/categories
+
+# Preview page
+preview:
+    title: Preview Category

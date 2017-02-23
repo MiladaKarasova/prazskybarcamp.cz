@@ -1,10 +1,32 @@
 <section class="section-intro">
-    <div class="container">
-        <h1>
-            Pražský Barcamp &nbsp;<span class="icon-beer"></span>
-        </h1>
-        <p>
-            Konference o tom, jak být profi architekt. Ukaž co tě baví a přijď si poslechnout na konferenci, jak to dělají profíci ve firmě.
-        </p>
+
+    <video loop class="bgvid desktop" id="bgvid">
+        <source src="{{ 'assets/videos/bgvideo.webm' | theme }}" type="video/webm">
+        <source src="{{ 'assets/videos/bgvideo.mp4' | theme }}" type="video/mp4">
+        <img src="{{ 'assets/images/1.png' | theme }}" class="fallback-image" />
+    </video>
+
+    <div class="bgvid mobile">
+        <img src="{{ 'assets/images/1.png' | theme }}" class="fallback-image" />
     </div>
+
+    <div class="wrapper">
+        <p>KONFERENCE O TOM,</p>
+        <div class="jumbo">
+            <h1>Jak být profi</h1>
+            <div id="changer">
+                <div>
+                    <h1>architekt</h1>
+                    <h1>speaker</h1>
+                    <h1>kreslíř</h1>
+                    <h1>gamer</h1>
+                    <h1>v tom, co tě baví</h1>
+                </div>
+            </div>
+        </div>
+        <p>Přijď si poslechnout profesionály, kteří mají už tolik zkušeností, že si je nemusí nechávat pro sebe.</p>
+    </div>
+    <a href="javascript:void(0);" title="Pokračovat" id="arrow">
+        <img src="{{ 'assets/images/sipka.svg' | theme }}" alt="sipka" />
+    </a>
 </section>

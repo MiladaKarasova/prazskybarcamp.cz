@@ -1,0 +1,11 @@
+ignore:
+  - "bootstrap"
+  - "config"
+  - "modules"
+  - "plugins/anandpatel"
+  - "plugins/rainlab"
+  - "plugins/vojtasvoboda"
+  - "storage"
+  - "tests"
+  - "themes"
+  - "vendor"

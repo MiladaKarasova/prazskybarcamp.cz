@@ -5,7 +5,7 @@
 | [![Build Status](https://travis-ci.org/BarcampPraha/prazskybarcamp.cz.svg?branch=master)](https://travis-ci.org/BarcampPraha/prazskybarcamp.cz) | [![Build Status](https://travis-ci.org/BarcampPraha/prazskybarcamp.cz.svg?branch=develop)](https://travis-ci.org/BarcampPraha/prazskybarcamp.cz) |
 | [![StyleCI](https://styleci.io/repos/79055930/shield?branch=master)](https://styleci.io/repos/79055930) | [![StyleCI](https://styleci.io/repos/79055930/shield?branch=develop)](https://styleci.io/repos/79055930) |
 | [![Codacy](https://api.codacy.com/project/badge/Grade/0a91176118544eb4906475b275fa9ad9)](https://www.codacy.com/app/vojtasvoboda/prazskybarcamp-cz) | [![Codacy](https://api.codacy.com/project/badge/Grade/0a91176118544eb4906475b275fa9ad9)](https://www.codacy.com/app/vojtasvoboda/prazskybarcamp-cz) |
-| [![Codecov branch](https://img.shields.io/codecov/c/github/BarcampPraha/prazskybarcamp.cz/master.svg)]() | [![Codecov branch](https://img.shields.io/codecov/c/github/BarcampPraha/prazskybarcamp.cz/develop.svg)]() |
+| [![Codecov branch](https://img.shields.io/codecov/c/github/BarcampPraha/prazskybarcamp.cz/master.svg)](https://codecov.io/gh/BarcampPraha/prazskybarcamp.cz/branch/master) | [![Codecov branch](https://img.shields.io/codecov/c/github/BarcampPraha/prazskybarcamp.cz/develop.svg)](https://codecov.io/gh/BarcampPraha/prazskybarcamp.cz/branch/develop) |
 
 www.prazskybarcamp.cz
 

@@ -3,6 +3,7 @@ ignore:
   - "config"
   - "modules"
   - "plugins/anandpatel"
+  - "plugins/barcamp/site"
   - "plugins/rainlab"
   - "plugins/vojtasvoboda"
   - "storage"

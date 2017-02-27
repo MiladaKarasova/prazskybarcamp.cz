@@ -1,0 +1,12 @@
+ignore:
+  - "bootstrap"
+  - "config"
+  - "modules"
+  - "plugins/anandpatel"
+  - "plugins/barcamp/site"
+  - "plugins/rainlab"
+  - "plugins/vojtasvoboda"
+  - "storage"
+  - "tests"
+  - "themes"
+  - "vendor"

@@ -21,6 +21,7 @@ before_script: git reset --hard HEAD
 script:
   - mkdir -p build/logs
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - bash <(curl -s https://codecov.io/bash)
 
 after_success:
   - travis_retry php vendor/bin/coveralls

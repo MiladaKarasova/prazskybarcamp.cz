@@ -710,6 +710,7 @@ section.section-faq {
       width: 40%;
       text-align: left;
       margin-bottom: 20px;
+      position: relative;
 
       @media screen and (max-width: $break) {
         width: 100%;
@@ -721,6 +722,9 @@ section.section-faq {
         font-weight: 700;
         width: 8px;
         display: inline-block;
+        position: absolute;
+        top: 2px;
+        left: 0;
       }
 
       a {
@@ -729,6 +733,8 @@ section.section-faq {
         font-weight: 700;
         text-decoration: none;
         margin-left: 5px;
+        display: block;
+        padding-left: 15px;
       }
 
       p {

@@ -450,6 +450,17 @@ section.section-where {
       }
     }
 
+    a.test {
+      text-align: left;
+      color: $green;
+      display: block;
+
+      span {
+        margin-left: 20px;
+      }
+
+    }
+
     a:hover {
       text-decoration: none;
     }

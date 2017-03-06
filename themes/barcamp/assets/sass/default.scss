@@ -434,7 +434,7 @@ section.section-where {
 
       @media screen and (max-width: $break) {
         @include flexDirection(column);
-        width: 25%;
+        
       }
 
       span {
@@ -455,8 +455,16 @@ section.section-where {
       color: $green;
       display: block;
 
+      @media screen and (max-width: $break) {
+        width: 100% !important;
+      }
+
       span {
         margin-left: 20px;
+
+        @media screen and (max-width: $break) {
+          margin-left: 0px;
+        }
       }
 
     }

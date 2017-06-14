@@ -31,6 +31,7 @@ description = "Default layout"
         <link href="https://cdn.jsdelivr.net/sweetalert2/6.3.3/sweetalert2.min.css" rel="stylesheet" />
         <link href="{{ [
             '@framework.extras',
+            'assets/sass/superslides.css',
             'assets/sass/default.scss'
         ] | theme }}" rel="stylesheet" />
         {% styles %}
@@ -56,6 +57,8 @@ description = "Default layout"
         <script src="{{ [
             '@framework',
             '@framework.extras',
+            'assets/js/jquery.hammer.min.js',
+            'assets/js/jquery.superslides.min.js',
             'assets/js/default.js'
         ] | theme}}"></script>
         {% scripts %}

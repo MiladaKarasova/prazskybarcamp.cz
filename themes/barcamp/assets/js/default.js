@@ -1,6 +1,18 @@
 
 $(document).ready(function() {
 
+    $('#slides').superslides({
+        pagination: false
+    });
+
+    $('#slides').hammer().on('swipeleft', function() {
+        $(this).superslides('animate', 'next');
+    });
+
+    $('#slides').hammer().on('swiperight', function() {
+        $(this).superslides('animate', 'prev');
+    });
+
     var controll = false;
 
     function logo(image, old) {

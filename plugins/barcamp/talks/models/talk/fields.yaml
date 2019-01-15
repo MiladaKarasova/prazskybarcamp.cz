@@ -22,7 +22,7 @@ fields:
         type: datepicker
         span: left
         minDate: 2017-04-07
-        maxDate: 2017-04-07
+        maxDate: 2019-04-06
     category:
         type: relation
         label: Kategorie
